@@ -586,7 +586,7 @@
         <!-- Admin Panel -->
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
-            <div class="admin-controls active" id="adminControls">
+            <div class="admin-controls" id="adminControls">
                 <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)" style="display: none;">
                 <div id="adminButtons" style="display: block;">
                     <div style="margin-bottom: 10px;">
@@ -594,7 +594,7 @@
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-Save Connected!</span></div>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-saved at 11:53:30 AM</span></div>
                     <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
@@ -618,8 +618,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 74%;">
-                    <span id="overallPercent">74%</span>
+                <div class="overall-bar" id="overallBar" style="width: 79%;">
+                    <span id="overallPercent">79%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -646,44 +646,44 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>50%</strong> Complete</span>
+                                    <span><strong>67%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 50%">
-                                        50%
+                                    <div class="progress-bar progress-danger" style="width: 67%">
+                                        67%
                                     </div>
                                     <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                                 </div>
                             </div>
                             
                             <div class="tasks-info">
-                                <span>Tasks: 3/6</span>
-                                <span>Remaining: 3</span>
-                                <span class="blockers-count">🚫 3 Blockers</span>
+                                <span>Tasks: 4/6</span>
+                                <span>Remaining: 2</span>
+                                <span class="blockers-count">🚫 2 Blockers</span>
                             </div>
                         </div>
                         
                         <div class="checkpoints-panel " id="checkpoints-0">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
-                                <span class="blocker-badge">3 Blockers</span>
+                                <span class="blocker-badge">2 Blockers</span>
                             </div>
                             
                             
                                 <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="toggleTaskCompletion(0, 0)">
-                                        !
+                                    <div class="checkpoint-status checkpoint-completed" onclick="toggleTaskCompletion(0, 0)">
+                                        ✓
                                     </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 0)">
                                             Golf Simulator Systems Installed &amp; Tested
-                                            <span class="blocker-badge">Must Complete</span>
+                                            
                                         </div>
                                         <div class="task-controls">
                                             <button class="task-btn" onclick="toggleTaskCompletion(0, 0)">
-                                                Mark Complete
+                                                Mark Incomplete
                                             </button>
                                             <button class="task-btn" onclick="toggleTaskBlocker(0, 0)">
                                                 Remove Blocker
@@ -804,8 +804,8 @@
                             </button>
                             
                             <div class="checkpoint-summary">
-                                <span class="completed-count">3/6 Complete</span>
-                                <span><span class="blockers-count">3 Blocking Launch</span></span>
+                                <span class="completed-count">4/6 Complete</span>
+                                <span><span class="blockers-count">2 Blocking Launch</span></span>
                             </div>
                         </div>
                     </div>
@@ -1551,13 +1551,13 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 50,
+                    "progress": 67,
                     "threshold": 85,
                     "icon": "⛳",
                     "criticalCheckpoints": [
                               {
                                         "task": "Golf Simulator Systems Installed & Tested",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
