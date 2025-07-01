@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaunchPad Golf - Opening Readiness Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #181818 100%);
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #5A5A5A;
+            margin-bottom: 30px;
+        }
+
+        .overall-progress {
+            background: #2C2B2B;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px solid #ED0000;
+        }
+
+        .overall-title {
+            font-size: 1.8rem;
+            color: #ED0000;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .overall-bar-container {
+            background: #121212;
+            height: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            border: 1px solid #5A5A5A;
+        }
+
+        .overall-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ED0000 0%, #FF4444 100%);
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .workstreams {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .workstream {
+            background: #2C2B2B;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 5px solid #ED0000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .workstream:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(237, 0, 0, 0.2);
+        }
+
+        .workstream-content {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .workstream-main {
+            min-width: 0;
+        }
+
+        .workstream-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .workstream-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #FFFFFF;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-ready {
+            background: #28a745;
+            color: white;
+        }
+
+        .status-warning {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .status-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .progress-container {
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .threshold-label {
+            color: #5A5A5A;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .edit-mode .threshold-label {
+            background: #ED0000;
+            color: white;
+        }
+
+        .editable-date {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .edit-mode .editable-date {
+            background: #ED0000;
+            color: white;
+        }
+
+        .edit-mode .editable-date:hover {
+            background: #FF4444;
+        }
+
+        .progress-bar-container {
+            background: #121212;
+            height: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #5A5A5A;
+        }
+
+        .progress-bar {
+            height: 100%;
+            transition: width 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .threshold-marker {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #FFFFFF;
+            z-index: 2;
+        }
+
+        .threshold-marker::after {
+            content: attr(data-threshold) '%';
+            position: absolute;
+            top: -25px;
+            left: -15px;
+            font-size: 0.7rem;
+            color: #FFFFFF;
+            background: #ED0000;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .progress-ready {
+            background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
+        }
+
+        .progress-warning {
+            background: linear-gradient(90deg, #ffc107 0%, #ffcd39 100%);
+        }
+
+        .progress-danger {
+            background: linear-gradient(90deg, #dc3545 0%, #e4606d 100%);
+        }
+
+        .tasks-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #5A5A5A;
+        }
+
+        .golf-ball {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            margin-right: 10px;
+            position: relative;
+        }
+
+        .golf-ball::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #e0e0e0);
+        }
+
+        .checkpoints-panel {
+            width: 350px;
+            background: #181818;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #5A5A5A;
+        }
+
+        .checkpoints-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ED0000;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkpoint-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+        }
+
+        .checkpoint-item:hover {
+            background: #2C2B2B;
+        }
+
+        .checkpoint-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkpoint-completed {
+            background: #28a745;
+            color: white;
+        }
+
+        .checkpoint-pending {
+            background: #5A5A5A;
+            color: white;
+        }
+
+        .checkpoint-blocker {
+            background: #dc3545;
+            color: white;
+            animation: pulse-red 2s infinite;
+        }
+
+        .checkpoint-text {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #FFFFFF;
+        }
+
+        .checkpoint-blocker-text {
+            color: #FF6B6B;
+            font-weight: 500;
+        }
+
+        .blocker-badge {
+            background: #dc3545;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-left: 8px;
+        }
+
+        .checkpoint-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #5A5A5A;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
+
+        .blockers-count {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .completed-count {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .toggle-checkpoints {
+            background: #ED0000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-left: auto;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-checkpoints:hover {
+            background: #FF4444;
+        }
+
+        .checkpoints-hidden {
+            display: none;
+        }
+
+        /* Admin Interface Styles */
+        .admin-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2C2B2B;
+            border: 2px solid #ED0000;
+            border-radius: 10px;
+            padding: 15px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .admin-toggle {
+            background: #ED0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .admin-toggle:hover {
+            background: #FF4444;
+        }
+
+        .admin-controls {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #5A5A5A;
+        }
+
+        .admin-controls.active {
+            display: block;
+        }
+
+        .admin-button {
+            background: #5A5A5A;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .admin-button:hover {
+            background: #ED0000;
+        }
+
+        .admin-button.active {
+            background: #28a745;
+        }
+
+        .password-input {
+            background: #181818;
+            border: 1px solid #5A5A5A;
+            color: white;
+            padding: 8px;
+            border-radius: 4px;
+            margin: 5px;
+            width: 150px;
+        }
+
+        .editable-task {
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .editable-task:hover {
+            background: #2C2B2B;
+            outline: 1px dashed #ED0000;
+        }
+
+        .edit-mode .editable-task {
+            border: 1px dashed #ED0000;
+        }
+
+        .task-controls {
+            display: none;
+            margin-top: 8px;
+            gap: 8px;
+        }
+
+        .edit-mode .task-controls {
+            display: flex;
+        }
+
+        .task-btn {
+            background: #5A5A5A;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .task-btn:hover {
+            background: #ED0000;
+        }
+
+        .task-btn.delete {
+            background: #dc3545;
+        }
+
+        .add-task-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            display: none;
+        }
+
+        .edit-mode .add-task-btn {
+            display: block;
+        }
+
+        .add-task-btn:hover {
+            background: #34ce57;
+        }
+
+        .export-data {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .import-data {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .edit-mode-indicator {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            background: #ED0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 25px 25px 0;
+            font-weight: bold;
+            z-index: 999;
+            display: none;
+            animation: pulse 2s infinite;
+        }
+
+        .edit-mode-indicator.active {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        }
+
+        .ready-to-launch {
+            animation: pulse 2s infinite;
+        }
+
+        @media (max-width: 1000px) {
+            .workstream-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkpoints-panel {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Admin Panel -->
+        <div class="admin-panel">
+            <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
+            <div class="admin-controls" id="adminControls">
+                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)">
+                <div id="adminButtons" style="display: none;">
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
+                    <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
+                    <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
+                    <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
+                    <button class="admin-button" onclick="saveData()">💾 Save</button>
+                    <button class="admin-button" onclick="loadData()">📂 Load</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Mode Indicator -->
+        <div class="edit-mode-indicator" id="editModeIndicator">
+            ✏️ EDIT MODE ACTIVE
+        </div>
+
+        <div class="header">
+            <h1 class="title">LaunchPad Golf</h1>
+            <p class="subtitle">Opening Readiness Dashboard</p>
+        </div>
+
+        <div class="overall-progress">
+            <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
+            <div class="overall-bar-container">
+                <div class="overall-bar" id="overallBar">
+                    <span id="overallPercent">0%</span>
+                </div>
+            </div>
+            <div class="tasks-info">
+                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">March 15, 2025</strong></span>
+                <span id="overallStatus">Preparing for Launch...</span>
+            </div>
+        </div>
+
+        <div class="workstreams" id="workstreams">
+            <!-- Workstreams will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let isEditMode = false;
+        let isAdminAuthenticated = false;
+        const adminPassword = "launchpad2025";
+        let launchDate = "March 15, 2025";
+
+        const workstreams = [
+            {
+                title: 'Golf Operations',
+                progress: 92,
+                threshold: 85,
+                totalTasks: 48,
+                completedTasks: 44,
+                icon: '⛳',
+                criticalCheckpoints: [
+                    { task: 'Golf Simulator Systems Installed & Tested', completed: true, isBlocker: true },
+                    { task: 'Ball Tracking Technology Calibrated', completed: true, isBlocker: true },
+                    { task: 'Suite Safety Equipment Installed', completed: true, isBlocker: true },
+                    { task: 'Golf Club Inventory Stocked', completed: false, isBlocker: true },
+                    { task: 'Staff Training on Golf Operations', completed: true, isBlocker: false },
+                    { task: 'Emergency Procedures Documented', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'IT/Technology',
+                progress: 78,
+                threshold: 90,
+                totalTasks: 35,
+                completedTasks: 27,
+                icon: '💻',
+                criticalCheckpoints: [
+                    { task: 'POS System Integration Complete', completed: true, isBlocker: true },
+                    { task: 'WiFi Network Infrastructure Live', completed: true, isBlocker: true },
+                    { task: 'Reservation System Tested', completed: false, isBlocker: true },
+                    { task: 'Payment Processing Certified', completed: false, isBlocker: true },
+                    { task: 'Backup Systems Configured', completed: true, isBlocker: false },
+                    { task: 'Security Cameras & Access Control', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'Food & Beverage',
+                progress: 88,
+                threshold: 80,
+                totalTasks: 42,
+                completedTasks: 37,
+                icon: '🍽️',
+                criticalCheckpoints: [
+                    { task: 'Kitchen Equipment Installation Complete', completed: true, isBlocker: true },
+                    { task: 'Liquor License Approved', completed: true, isBlocker: true },
+                    { task: 'Food Safety Certification Obtained', completed: true, isBlocker: true },
+                    { task: 'Initial Inventory Delivered', completed: false, isBlocker: true },
+                    { task: 'Menu Finalized & Printed', completed: true, isBlocker: false },
+                    { task: 'Staff Food Handler Certifications', completed: true, isBlocker: false }
+                ]
+            },
+            {
+                title: 'Marketing & Communications',
+                progress: 95,
+                threshold: 75,
+                totalTasks: 28,
+                completedTasks: 27,
+                icon: '📢',
+                criticalCheckpoints: [
+                    { task: 'Website Launch & Reservations Live', completed: true, isBlocker: true },
+                    { task: 'Grand Opening Marketing Campaign', completed: true, isBlocker: false },
+                    { task: 'Social Media Accounts Active', completed: true, isBlocker: false },
+                    { task: 'Staff Communication Training', completed: true, isBlocker: false },
+                    { task: 'Media Kit & Press Release Ready', completed: true, isBlocker: false },
+                    { task: 'Signage Installation Complete', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'HR/Talent Acquisition',
+                progress: 65,
+                threshold: 85,
+                totalTasks: 32,
+                completedTasks: 21,
+                icon: '👥',
+                criticalCheckpoints: [
+                    { task: 'General Manager Hired & Onboarded', completed: true, isBlocker: true },
+                    { task: 'Kitchen Manager Hired & Trained', completed: true, isBlocker: true },
+                    { task: 'Minimum Staffing Levels Met', completed: false, isBlocker: true },
+                    { task: 'All Staff Background Checks Complete', completed: false, isBlocker: true },
+                    { task: 'Opening Team Training Completed', completed: false, isBlocker: true },
+                    { task: 'Employee Handbook Distributed', completed: true, isBlocker: false }
+                ]
+            }
+        ];
+
+        function getStatusInfo(progress, threshold) {
+            if (progress >= threshold) {
+                return { status: 'ready', text: 'READY TO LAUNCH', class: 'status-ready' };
+            } else if (progress >= threshold - 15) {
+                return { status: 'warning', text: 'ALMOST READY', class: 'status-warning' };
+            } else {
+                return { status: 'danger', text: 'NEEDS ATTENTION', class: 'status-danger' };
+            }
+        }
+
+        function getProgressClass(progress, threshold) {
+            if (progress >= threshold) return 'progress-ready';
+            if (progress >= threshold - 15) return 'progress-warning';
+            return 'progress-danger';
+        }
+
+        function renderWorkstreams() {
+            const container = document.getElementById('workstreams');
+            container.innerHTML = '';
+            
+            workstreams.forEach((workstream, index) => {
+                const statusInfo = getStatusInfo(workstream.progress, workstream.threshold);
+                const progressClass = getProgressClass(workstream.progress, workstream.threshold);
+                
+                const totalCheckpoints = workstream.criticalCheckpoints.length;
+                const completedCheckpoints = workstream.criticalCheckpoints.filter(cp => cp.completed).length;
+                const blockers = workstream.criticalCheckpoints.filter(cp => !cp.completed && cp.isBlocker);
+                const blockersCount = blockers.length;
+                
+                const workstreamElement = document.createElement('div');
+                workstreamElement.className = 'workstream';
+                
+                workstreamElement.innerHTML = `
+                    <div class="workstream-content">
+                        <div class="workstream-main">
+                            <div class="workstream-header">
+                                <h3 class="workstream-title">
+                                    <span class="golf-ball"></span>
+                                    ${workstream.icon} ${workstream.title}
+                                </h3>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
+                                        View Tasks
+                                    </button>
+                                    <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-container">
+                                <div class="progress-label">
+                                    <span><strong>${workstream.progress}%</strong> Complete</span>
+                                    <span class="threshold-label" onclick="editThreshold(${index})">Target: ${workstream.threshold}%</span>
+                                </div>
+                                
+                                <div class="progress-bar-container">
+                                    <div class="progress-bar ${progressClass}" style="width: ${workstream.progress}%">
+                                        ${workstream.progress >= 20 ? workstream.progress + '%' : ''}
+                                    </div>
+                                    <div class="threshold-marker" style="left: ${workstream.threshold}%" data-threshold="${workstream.threshold}"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="tasks-info">
+                                <span>Tasks: ${workstream.completedTasks}/${workstream.totalTasks}</span>
+                                <span>Checkpoints: ${completedCheckpoints}/${totalCheckpoints}</span>
+                                ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
+                            </div>
+                        </div>
+                        
+                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-${index}">
+                            <div class="checkpoints-title">
+                                🎯 Critical Checkpoints
+                                ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
+                            </div>
+                            
+                            ${workstream.criticalCheckpoints.map((checkpoint, cpIndex) => `
+                                <div class="checkpoint-item">
+                                    <div class="checkpoint-status ${checkpoint.completed ? 'checkpoint-completed' : (checkpoint.isBlocker ? 'checkpoint-blocker' : 'checkpoint-pending')}" 
+                                         onclick="toggleTaskCompletion(${index}, ${cpIndex})">
+                                        ${checkpoint.completed ? '✓' : (checkpoint.isBlocker ? '!' : '○')}
+                                    </div>
+                                    <div class="checkpoint-text ${(!checkpoint.completed && checkpoint.isBlocker) ? 'checkpoint-blocker-text' : ''}">
+                                        <div class="editable-task" onclick="editTask(${index}, ${cpIndex})">
+                                            ${checkpoint.task}
+                                            ${(!checkpoint.completed && checkpoint.isBlocker) ? '<span class="blocker-badge">Must Complete</span>' : ''}
+                                        </div>
+                                        <div class="task-controls">
+                                            <button class="task-btn" onclick="toggleTaskCompletion(${index}, ${cpIndex})">
+                                                ${checkpoint.completed ? 'Mark Incomplete' : 'Mark Complete'}
+                                            </button>
+                                            <button class="task-btn" onclick="toggleTaskBlocker(${index}, ${cpIndex})">
+                                                ${checkpoint.isBlocker ? 'Remove Blocker' : 'Make Blocker'}
+                                            </button>
+                                            <button class="task-btn delete" onclick="deleteTask(${index}, ${cpIndex})">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                            
+                            <button class="add-task-btn" onclick="addTask(${index})">
+                                ➕ Add New Task
+                            </button>
+                            
+                            <div class="checkpoint-summary">
+                                <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
+                                <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(workstreamElement);
+            });
+        }
+
+        function calculateOverallProgress() {
+            let totalWeight = 0;
+            let achievedWeight = 0;
+            
+            workstreams.forEach(workstream => {
+                const weight = workstream.threshold / 100;
+                totalWeight += weight;
+                
+                if (workstream.progress >= workstream.threshold) {
+                    achievedWeight += weight;
+                } else {
+                    achievedWeight += weight * (workstream.progress / workstream.threshold);
+                }
+            });
+            
+            return Math.round((achievedWeight / totalWeight) * 100);
+        }
+
+        function updateOverallProgress() {
+            const overallProgress = calculateOverallProgress();
+            const overallBar = document.getElementById('overallBar');
+            const overallPercent = document.getElementById('overallPercent');
+            const overallStatus = document.getElementById('overallStatus');
+            
+            overallBar.style.width = overallProgress + '%';
+            overallPercent.textContent = overallProgress + '%';
+            
+            if (overallProgress >= 85) {
+                overallStatus.textContent = '🚀 READY FOR LAUNCH!';
+                overallBar.parentElement.parentElement.classList.add('ready-to-launch');
+            } else if (overallProgress >= 70) {
+                overallStatus.textContent = '⚠️ Launch Preparation in Progress';
+            } else {
+                overallStatus.textContent = '🔧 Active Development Phase';
+            }
+        }
+
+        function toggleCheckpoints(index) {
+            const panel = document.getElementById(`checkpoints-${index}`);
+            const button = panel.parentElement.querySelector('.toggle-checkpoints');
+            
+            if (panel.classList.contains('checkpoints-hidden')) {
+                panel.classList.remove('checkpoints-hidden');
+                button.textContent = 'Hide Tasks';
+            } else {
+                panel.classList.add('checkpoints-hidden');
+                button.textContent = 'View Tasks';
+            }
+        }
+
+        // Admin functions
+        function toggleAdminPanel() {
+            const controls = document.getElementById('adminControls');
+            controls.classList.toggle('active');
+        }
+
+        function checkAdminPassword(event) {
+            if (event.key === 'Enter') {
+                const password = document.getElementById('adminPassword').value;
+                if (password === adminPassword) {
+                    isAdminAuthenticated = true;
+                    document.getElementById('adminButtons').style.display = 'block';
+                    document.getElementById('adminPassword').style.display = 'none';
+                } else {
+                    alert('Incorrect password');
+                    document.getElementById('adminPassword').value = '';
+                }
+            }
+        }
+
+        function toggleEditMode() {
+            if (!isAdminAuthenticated) return;
+            
+            isEditMode = !isEditMode;
+            const indicator = document.getElementById('editModeIndicator');
+            const editBtn = document.getElementById('editModeBtn');
+            const body = document.body;
+            
+            if (isEditMode) {
+                body.classList.add('edit-mode');
+                indicator.classList.add('active');
+                editBtn.classList.add('active');
+                editBtn.textContent = '✅ Exit Edit';
+            } else {
+                body.classList.remove('edit-mode');
+                indicator.classList.remove('active');
+                editBtn.classList.remove('active');
+                editBtn.textContent = '📝 Edit Mode';
+            }
+        }
+
+        function editTask(workstreamIndex, checkpointIndex) {
+            if (!isEditMode) return;
+            
+            const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
+            const newTask = prompt('Edit task name:', task.task);
+            if (newTask && newTask.trim()) {
+                task.task = newTask.trim();
+                renderWorkstreams();
+                updateOverallProgress();
+            }
+        }
+
+        function toggleTaskCompletion(workstreamIndex, checkpointIndex) {
+            if (!isEditMode) return;
+            
+            const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
+            task.completed = !task.completed;
+            
+            // Update completed tasks count to match checkpoint completion
+            const workstream = workstreams[workstreamIndex];
+            const completedCheckpoints = workstream.criticalCheckpoints.filter(cp => cp.completed).length;
+            const totalCheckpoints = workstream.criticalCheckpoints.length;
+            
+            // Update completedTasks to reflect checkpoint progress
+            workstream.completedTasks = Math.round((completedCheckpoints / totalCheckpoints) * workstream.totalTasks);
+            
+            // Update progress percentage
+            const checkpointProgress = (completedCheckpoints / totalCheckpoints) * 100;
+            workstream.progress = Math.round(checkpointProgress);
+            
+            renderWorkstreams();
+            updateOverallProgress();
+        }
+
+        function toggleTaskBlocker(workstreamIndex, checkpointIndex) {
+            if (!isEditMode) return;
+            
+            const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
+            task.isBlocker = !task.isBlocker;
+            renderWorkstreams();
+            updateOverallProgress();
+        }
+
+        function deleteTask(workstreamIndex, checkpointIndex) {
+            if (!isEditMode) return;
+            
+            if (confirm('Are you sure you want to delete this task?')) {
+                workstreams[workstreamIndex].criticalCheckpoints.splice(checkpointIndex, 1);
+                renderWorkstreams();
+                updateOverallProgress();
+            }
+        }
+
+        function addTask(workstreamIndex) {
+            if (!isEditMode) return;
+            
+            const taskName = prompt('Enter new task name:');
+            if (taskName && taskName.trim()) {
+                workstreams[workstreamIndex].criticalCheckpoints.push({
+                    task: taskName.trim(),
+                    completed: false,
+                    isBlocker: false
+                });
+                renderWorkstreams();
+                updateOverallProgress();
+            }
+        }
+
+        function editThreshold(workstreamIndex) {
+            if (!isEditMode) return;
+            
+            const workstream = workstreams[workstreamIndex];
+            const newThreshold = prompt(`Edit target percentage for ${workstream.title}:`, workstream.threshold);
+            
+            if (newThreshold !== null) {
+                const threshold = parseInt(newThreshold);
+                if (threshold >= 0 && threshold <= 100) {
+                    workstream.threshold = threshold;
+                    renderWorkstreams();
+                    updateOverallProgress();
+                } else {
+                    alert('Please enter a number between 0 and 100');
+                }
+            }
+        }
+
+        function editLaunchDate() {
+            if (!isEditMode) return;
+            
+            const newDate = prompt('Edit target launch date:', launchDate);
+            if (newDate && newDate.trim()) {
+                launchDate = newDate.trim();
+                document.getElementById('launchDate').textContent = launchDate;
+            }
+        }
+
+        function exportData() {
+            const data = {
+                workstreams: workstreams,
+                exportDate: new Date().toISOString(),
+                version: "1.0"
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `launchpad-tasks-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    if (data.workstreams && Array.isArray(data.workstreams)) {
+                        if (confirm('This will replace all current tasks. Continue?')) {
+                            workstreams.length = 0;
+                            workstreams.push(...data.workstreams);
+                            renderWorkstreams();
+                            updateOverallProgress();
+                            alert('Tasks imported successfully!');
+                        }
+                    } else {
+                        alert('Invalid file format');
+                    }
+                } catch (error) {
+                    alert('Error reading file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function saveData() {
+            localStorage.setItem('launchpadTasks', JSON.stringify(workstreams));
+            alert('Tasks saved to browser storage!');
+        }
+
+        function loadData() {
+            const saved = localStorage.getItem('launchpadTasks');
+            if (saved) {
+                if (confirm('This will replace current tasks with saved data. Continue?')) {
+                    workstreams.length = 0;
+                    workstreams.push(...JSON.parse(saved));
+                    renderWorkstreams();
+                    updateOverallProgress();
+                    alert('Tasks loaded from browser storage!');
+                }
+            } else {
+                alert('No saved data found in browser storage.');
+            }
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            renderWorkstreams();
+            updateOverallProgress();
+        });
+
+        // Auto-update simulation (optional - remove if not needed)
+        setInterval(() => {
+            if (!isEditMode) {
+                const randomIndex = Math.floor(Math.random() * workstreams.length);
+                const workstream = workstreams[randomIndex];
+                
+                if (workstream.progress < 100 && Math.random() > 0.8) {
+                    workstream.progress = Math.min(100, workstream.progress + 1);
+                    workstream.completedTasks = Math.min(workstream.totalTasks, 
+                        Math.round((workstream.progress / 100) * workstream.totalTasks));
+                    
+                    renderWorkstreams();
+                    updateOverallProgress();
+                }
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
