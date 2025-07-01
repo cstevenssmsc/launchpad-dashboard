@@ -727,6 +727,15 @@
 
         function renderWorkstreams() {
             const container = document.getElementById('workstreams');
+            
+            // Store which panels are currently open
+            const openPanels = [];
+            const existingPanels = container.querySelectorAll('.checkpoints-panel:not(.checkpoints-hidden)');
+            existingPanels.forEach((panel, index) => {
+                const panelId = panel.id.split('-')[1];
+                openPanels.push(parseInt(panelId));
+            });
+            
             container.innerHTML = '';
             
             workstreams.forEach((workstream, index) => {
@@ -741,6 +750,11 @@
                 const workstreamElement = document.createElement('div');
                 workstreamElement.className = 'workstream';
                 
+                // Check if this panel should be open
+                const isOpen = openPanels.includes(index);
+                const panelClass = isOpen ? '' : 'checkpoints-hidden';
+                const buttonText = isOpen ? 'Hide Tasks' : 'View Tasks';
+                
                 workstreamElement.innerHTML = `
                     <div class="workstream-content">
                         <div class="workstream-main">
@@ -751,7 +765,7 @@
                                 </h3>
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
-                                        View Tasks
+                                        ${buttonText}
                                     </button>
                                     <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
                                 </div>
@@ -778,7 +792,7 @@
                             </div>
                         </div>
                         
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-${index}">
+                        <div class="checkpoints-panel ${panelClass}" id="checkpoints-${index}">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
                                 ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
