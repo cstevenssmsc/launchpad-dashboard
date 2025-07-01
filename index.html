@@ -581,7 +581,7 @@
         }
     </style>
 </head>
-<body>
+<body class="edit-mode">
     <div class="dashboard">
         <!-- Admin Panel -->
         <div class="admin-panel">
@@ -596,7 +596,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
+                    <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(220, 53, 69);">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -607,7 +607,7 @@
         </div>
 
         <!-- Edit Mode Indicator -->
-        <div class="edit-mode-indicator" id="editModeIndicator">
+        <div class="edit-mode-indicator active" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -624,7 +624,7 @@
                 </div>
             </div>
             <div class="tasks-info">
-                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">March 15, 2025</strong></span>
+                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">September 12, 2025</strong></span>
                 <span id="overallStatus">⚠️ Launch Preparation in Progress</span>
             </div>
         </div>
@@ -1542,7 +1542,7 @@
         let isEditMode = false;
         let isAdminAuthenticated = false;
         const adminPassword = "launchpad2025";
-        let launchDate = "March 15, 2025";
+        let launchDate = "September 12, 2025";
         
         // GitHub API settings
         let githubToken = "";
