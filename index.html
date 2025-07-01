@@ -172,7 +172,19 @@
             color: white;
         }
 
-        .edit-mode .threshold-label:hover {
+        .editable-date {
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+
+        .edit-mode .editable-date {
+            background: #ED0000;
+            color: white;
+        }
+
+        .edit-mode .editable-date:hover {
             background: #FF4444;
         }
 
@@ -607,7 +619,7 @@
                 </div>
             </div>
             <div class="tasks-info">
-                <span>Target Launch Date: <strong>March 15, 2025</strong></span>
+                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">March 15, 2025</strong></span>
                 <span id="overallStatus">Preparing for Launch...</span>
             </div>
         </div>
@@ -622,6 +634,7 @@
         let isEditMode = false;
         let isAdminAuthenticated = false;
         const adminPassword = "launchpad2025";
+        let launchDate = "March 15, 2025";
 
         const workstreams = [
             {
@@ -930,11 +943,17 @@
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             task.completed = !task.completed;
             
-            // Update completed tasks count
+            // Update completed tasks count to match checkpoint completion
             const workstream = workstreams[workstreamIndex];
             const completedCheckpoints = workstream.criticalCheckpoints.filter(cp => cp.completed).length;
-            const progressIncrease = completedCheckpoints / workstream.criticalCheckpoints.length * 100;
-            workstream.progress = Math.min(100, Math.round(progressIncrease * 0.7 + (workstream.completedTasks / workstream.totalTasks * 30)));
+            const totalCheckpoints = workstream.criticalCheckpoints.length;
+            
+            // Update completedTasks to reflect checkpoint progress
+            workstream.completedTasks = Math.round((completedCheckpoints / totalCheckpoints) * workstream.totalTasks);
+            
+            // Update progress percentage
+            const checkpointProgress = (completedCheckpoints / totalCheckpoints) * 100;
+            workstream.progress = Math.round(checkpointProgress);
             
             renderWorkstreams();
             updateOverallProgress();
@@ -989,6 +1008,16 @@
                 } else {
                     alert('Please enter a number between 0 and 100');
                 }
+            }
+        }
+
+        function editLaunchDate() {
+            if (!isEditMode) return;
+            
+            const newDate = prompt('Edit target launch date:', launchDate);
+            if (newDate && newDate.trim()) {
+                launchDate = newDate.trim();
+                document.getElementById('launchDate').textContent = launchDate;
             }
         }
 
