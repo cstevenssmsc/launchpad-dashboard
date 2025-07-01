@@ -1321,7 +1321,7 @@
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
             loadGitHubSettings();
-            loadDataFromGitHub(); // Load saved data first
+            // Don't load from GitHub on first load - keep default data
             renderWorkstreams();
             updateOverallProgress();
         });
