@@ -595,6 +595,7 @@
                         <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
+                        <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"></div>
                     <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
@@ -1185,8 +1186,11 @@
                 } else if (response.ok) {
                     autoSaveEnabled = true;
                     localStorage.setItem('githubToken', githubToken);
-                    document.getElementById('autoSaveStatus').innerHTML = 
-                        '<span style="color: #28a745;">✅ Auto-Save Connected!</span>';
+                    
+                    // Update status display immediately and persistently
+                    const statusElement = document.getElementById('autoSaveStatus');
+                    statusElement.innerHTML = '<span style="color: #28a745;">✅ Auto-Save Connected! Ready for edits.</span>';
+                    
                     alert('Auto-save setup successful! Your edits will now automatically save to GitHub.');
                 } else {
                     const errorData = await response.text();
@@ -1196,11 +1200,20 @@
                 console.error('GitHub setup error:', error);
                 alert('GitHub setup failed: ' + error.message + '\n\nPlease check:\n1. Token permissions (repo access)\n2. Repository name is correct\n3. Token is valid');
                 autoSaveEnabled = false;
+                document.getElementById('autoSaveStatus').innerHTML = 
+                    '<span style="color: #dc3545;">❌ Auto-Save Failed</span>';
             }
         }
 
         async function autoSaveToGitHub() {
-            if (!autoSaveEnabled || !githubToken) return;
+            if (!autoSaveEnabled || !githubToken) {
+                console.log('Auto-save not enabled or no token');
+                return;
+            }
+
+            console.log('Starting auto-save...');
+            const statusElement = document.getElementById('autoSaveStatus');
+            statusElement.innerHTML = '<span style="color: #ffc107;">⏳ Saving...</span>';
 
             try {
                 // Get current file content and SHA
@@ -1236,16 +1249,36 @@
                 });
 
                 if (updateResponse.ok) {
-                    document.getElementById('autoSaveStatus').innerHTML = 
-                        '<span style="color: #28a745;">✅ Auto-saved at ' + new Date().toLocaleTimeString() + '</span>';
+                    const saveTime = new Date().toLocaleTimeString();
+                    statusElement.innerHTML = 
+                        `<span style="color: #28a745;">✅ Auto-saved at ${saveTime}</span>`;
+                    console.log('Auto-save successful!');
+                    
+                    // Keep the message visible for longer
+                    setTimeout(() => {
+                        if (statusElement.innerHTML.includes('Auto-saved at')) {
+                            statusElement.innerHTML = 
+                                '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                        }
+                    }, 5000); // Show save time for 5 seconds, then show "Ready"
                 } else {
                     throw new Error('Failed to update file');
                 }
             } catch (error) {
-                document.getElementById('autoSaveStatus').innerHTML = 
+                statusElement.innerHTML = 
                     '<span style="color: #dc3545;">❌ Auto-save failed: ' + error.message + '</span>';
                 console.error('Auto-save error:', error);
             }
+        }
+
+        function manualSave() {
+            if (!autoSaveEnabled || !githubToken) {
+                alert('Auto-save not set up. Please setup auto-save first.');
+                return;
+            }
+            
+            console.log('Manual save triggered');
+            autoSaveToGitHub();
         }
 
         function generateUpdatedHtml() {
