@@ -639,10 +639,8 @@
         const workstreams = [
             {
                 title: 'Golf Operations',
-                progress: 92,
+                progress: 67, // 4/6 completed checkpoints
                 threshold: 85,
-                totalTasks: 48,
-                completedTasks: 44,
                 icon: '⛳',
                 criticalCheckpoints: [
                     { task: 'Golf Simulator Systems Installed & Tested', completed: true, isBlocker: true },
@@ -655,10 +653,8 @@
             },
             {
                 title: 'IT/Technology',
-                progress: 78,
+                progress: 50, // 3/6 completed checkpoints
                 threshold: 90,
-                totalTasks: 35,
-                completedTasks: 27,
                 icon: '💻',
                 criticalCheckpoints: [
                     { task: 'POS System Integration Complete', completed: true, isBlocker: true },
@@ -671,10 +667,8 @@
             },
             {
                 title: 'Food & Beverage',
-                progress: 88,
+                progress: 83, // 5/6 completed checkpoints
                 threshold: 80,
-                totalTasks: 42,
-                completedTasks: 37,
                 icon: '🍽️',
                 criticalCheckpoints: [
                     { task: 'Kitchen Equipment Installation Complete', completed: true, isBlocker: true },
@@ -687,10 +681,8 @@
             },
             {
                 title: 'Marketing & Communications',
-                progress: 95,
+                progress: 83, // 5/6 completed checkpoints
                 threshold: 75,
-                totalTasks: 28,
-                completedTasks: 27,
                 icon: '📢',
                 criticalCheckpoints: [
                     { task: 'Website Launch & Reservations Live', completed: true, isBlocker: true },
@@ -703,10 +695,8 @@
             },
             {
                 title: 'HR/Talent Acquisition',
-                progress: 65,
+                progress: 50, // 3/6 completed checkpoints
                 threshold: 85,
-                totalTasks: 32,
-                completedTasks: 21,
                 icon: '👥',
                 criticalCheckpoints: [
                     { task: 'General Manager Hired & Onboarded', completed: true, isBlocker: true },
@@ -782,8 +772,8 @@
                             </div>
                             
                             <div class="tasks-info">
-                                <span>Tasks: ${workstream.completedTasks}/${workstream.totalTasks}</span>
-                                <span>Checkpoints: ${completedCheckpoints}/${totalCheckpoints}</span>
+                                <span>Tasks: ${completedCheckpoints}/${totalCheckpoints}</span>
+                                <span>Remaining: ${totalCheckpoints - completedCheckpoints}</span>
                                 ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
                             </div>
                         </div>
@@ -943,17 +933,13 @@
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             task.completed = !task.completed;
             
-            // Update completed tasks count to match checkpoint completion
+            // Update progress percentage based on checkpoint completion
             const workstream = workstreams[workstreamIndex];
             const completedCheckpoints = workstream.criticalCheckpoints.filter(cp => cp.completed).length;
             const totalCheckpoints = workstream.criticalCheckpoints.length;
             
-            // Update completedTasks to reflect checkpoint progress
-            workstream.completedTasks = Math.round((completedCheckpoints / totalCheckpoints) * workstream.totalTasks);
-            
             // Update progress percentage
-            const checkpointProgress = (completedCheckpoints / totalCheckpoints) * 100;
-            workstream.progress = Math.round(checkpointProgress);
+            workstream.progress = Math.round((completedCheckpoints / totalCheckpoints) * 100);
             
             renderWorkstreams();
             updateOverallProgress();
