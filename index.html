@@ -1169,7 +1169,7 @@
 
         function toggleCheckpoints(index) {
             const panel = document.getElementById(`checkpoints-${index}`);
-            const button = panel.parentElement.querySelector('.toggle-checkpoints');
+            const button = document.querySelector(`[onclick="toggleCheckpoints(${index})"]`);
             
             if (panel && button) {
                 if (panel.classList.contains('checkpoints-hidden')) {
@@ -1183,6 +1183,11 @@
         }
 
         function editModeAction(action, ...args) {
+            // Allow viewing tasks without edit mode
+            if (action === 'viewTask') {
+                return true;
+            }
+            
             if (!isEditMode) {
                 alert('Please enter Edit Mode first to make changes.');
                 return;
@@ -1248,8 +1253,6 @@
 
         // Task Management Functions
         function editTask(workstreamIndex, checkpointIndex) {
-            if (!isEditMode) return;
-            
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             const newTask = prompt('Edit task name:', task.task);
             if (newTask && newTask.trim()) {
@@ -1264,8 +1267,6 @@
         }
 
         function toggleTaskCompletion(workstreamIndex, checkpointIndex) {
-            if (!isEditMode) return;
-            
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             task.completed = !task.completed;
             
@@ -1284,8 +1285,6 @@
         }
 
         function toggleTaskBlocker(workstreamIndex, checkpointIndex) {
-            if (!isEditMode) return;
-            
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             task.isBlocker = !task.isBlocker;
             renderWorkstreams();
@@ -1297,8 +1296,6 @@
         }
 
         function deleteTask(workstreamIndex, checkpointIndex) {
-            if (!isEditMode) return;
-            
             if (confirm('Are you sure you want to delete this task?')) {
                 workstreams[workstreamIndex].criticalCheckpoints.splice(checkpointIndex, 1);
                 
@@ -1318,8 +1315,6 @@
         }
 
         function addTask(workstreamIndex) {
-            if (!isEditMode) return;
-            
             const taskName = prompt('Enter new task name:');
             if (taskName && taskName.trim()) {
                 workstreams[workstreamIndex].criticalCheckpoints.push({
@@ -1344,7 +1339,10 @@
         }
 
         function editThreshold(workstreamIndex) {
-            if (!isEditMode) return;
+            if (!isEditMode) {
+                alert('Please enter Edit Mode first to make changes.');
+                return;
+            }
             
             const workstream = workstreams[workstreamIndex];
             const newThreshold = prompt(`Edit target percentage for ${workstream.title}:`, workstream.threshold);
@@ -1366,7 +1364,10 @@
         }
 
         function editLaunchDate() {
-            if (!isEditMode) return;
+            if (!isEditMode) {
+                alert('Please enter Edit Mode first to make changes.');
+                return;
+            }
             
             const newDate = prompt('Edit target launch date:', launchDate);
             if (newDate && newDate.trim()) {
