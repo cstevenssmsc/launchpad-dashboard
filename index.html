@@ -594,7 +594,7 @@
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-saved at 11:53:30 AM</span></div>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-saved at 11:53:34 AM</span></div>
                     <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
@@ -618,8 +618,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 79%;">
-                    <span id="overallPercent">79%</span>
+                <div class="overall-bar" id="overallBar" style="width: 72%;">
+                    <span id="overallPercent">72%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -646,21 +646,21 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>67%</strong> Complete</span>
+                                    <span><strong>38%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 67%">
-                                        67%
+                                    <div class="progress-bar progress-danger" style="width: 38%">
+                                        38%
                                     </div>
                                     <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                                 </div>
                             </div>
                             
                             <div class="tasks-info">
-                                <span>Tasks: 4/6</span>
-                                <span>Remaining: 2</span>
+                                <span>Tasks: 3/8</span>
+                                <span>Remaining: 5</span>
                                 <span class="blockers-count">🚫 2 Blockers</span>
                             </div>
                         </div>
@@ -678,7 +678,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 0)">
-                                            Golf Simulator Systems Installed &amp; Tested
+                                            Establish Pricing and Discounts
                                             
                                         </div>
                                         <div class="task-controls">
@@ -699,7 +699,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 1)">
-                                            Ball Tracking Technology Calibrated
+                                            Finalize Menus
                                             
                                         </div>
                                         <div class="task-controls">
@@ -720,7 +720,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 2)">
-                                            Suite Safety Equipment Installed
+                                            Finalize Training Schedule for Each Team
                                             
                                         </div>
                                         <div class="task-controls">
@@ -757,17 +757,17 @@
                                 </div>
                             
                                 <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="toggleTaskCompletion(0, 4)">
-                                        ✓
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(0, 4)">
+                                        ○
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 4)">
-                                            Staff Training on Golf Operations
+                                            Orientation Session 1
                                             
                                         </div>
                                         <div class="task-controls">
                                             <button class="task-btn" onclick="toggleTaskCompletion(0, 4)">
-                                                Mark Incomplete
+                                                Mark Complete
                                             </button>
                                             <button class="task-btn" onclick="toggleTaskBlocker(0, 4)">
                                                 Make Blocker
@@ -783,7 +783,7 @@
                                     </div>
                                     <div class="checkpoint-text checkpoint-blocker-text">
                                         <div class="editable-task" onclick="editTask(0, 5)">
-                                            Emergency Procedures Documented
+                                            Orientation Session 2
                                             <span class="blocker-badge">Must Complete</span>
                                         </div>
                                         <div class="task-controls">
@@ -798,13 +798,55 @@
                                     </div>
                                 </div>
                             
+                                <div class="checkpoint-item">
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(0, 6)">
+                                        ○
+                                    </div>
+                                    <div class="checkpoint-text ">
+                                        <div class="editable-task" onclick="editTask(0, 6)">
+                                            Keys and Access Setup
+                                            
+                                        </div>
+                                        <div class="task-controls">
+                                            <button class="task-btn" onclick="toggleTaskCompletion(0, 6)">
+                                                Mark Complete
+                                            </button>
+                                            <button class="task-btn" onclick="toggleTaskBlocker(0, 6)">
+                                                Make Blocker
+                                            </button>
+                                            <button class="task-btn delete" onclick="deleteTask(0, 6)">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="checkpoint-item">
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(0, 7)">
+                                        ○
+                                    </div>
+                                    <div class="checkpoint-text ">
+                                        <div class="editable-task" onclick="editTask(0, 7)">
+                                            Team Member Training
+                                            
+                                        </div>
+                                        <div class="task-controls">
+                                            <button class="task-btn" onclick="toggleTaskCompletion(0, 7)">
+                                                Mark Complete
+                                            </button>
+                                            <button class="task-btn" onclick="toggleTaskBlocker(0, 7)">
+                                                Make Blocker
+                                            </button>
+                                            <button class="task-btn delete" onclick="deleteTask(0, 7)">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             
                             <button class="add-task-btn" onclick="addTask(0)">
                                 ➕ Add New Task
                             </button>
                             
                             <div class="checkpoint-summary">
-                                <span class="completed-count">4/6 Complete</span>
+                                <span class="completed-count">3/8 Complete</span>
                                 <span><span class="blockers-count">2 Blocking Launch</span></span>
                             </div>
                         </div>
@@ -840,16 +882,16 @@
                             </div>
                             
                             <div class="tasks-info">
-                                <span>Tasks: 3/6</span>
-                                <span>Remaining: 3</span>
-                                <span class="blockers-count">🚫 3 Blockers</span>
+                                <span>Tasks: 3/8</span>
+                                <span>Remaining: 5</span>
+                                <span class="blockers-count">🚫 2 Blockers</span>
                             </div>
                         </div>
                         
                         <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
-                                <span class="blocker-badge">3 Blockers</span>
+                                <span class="blocker-badge">2 Blockers</span>
                             </div>
                             
                             
@@ -859,7 +901,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(1, 0)">
-                                            POS System Integration Complete
+                                            Reservation Kick-Off Meeting
                                             
                                         </div>
                                         <div class="task-controls">
@@ -880,7 +922,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(1, 1)">
-                                            WiFi Network Infrastructure Live
+                                            Finalize Menus
                                             
                                         </div>
                                         <div class="task-controls">
@@ -896,20 +938,20 @@
                                 </div>
                             
                                 <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="toggleTaskCompletion(1, 2)">
-                                        !
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(1, 2)">
+                                        ○
                                     </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(1, 2)">
-                                            Reservation System Tested
-                                            <span class="blocker-badge">Must Complete</span>
+                                            System (full tech stack) selection finalized
+                                            
                                         </div>
                                         <div class="task-controls">
                                             <button class="task-btn" onclick="toggleTaskCompletion(1, 2)">
                                                 Mark Complete
                                             </button>
                                             <button class="task-btn" onclick="toggleTaskBlocker(1, 2)">
-                                                Remove Blocker
+                                                Make Blocker
                                             </button>
                                             <button class="task-btn delete" onclick="deleteTask(1, 2)">Delete</button>
                                         </div>
@@ -922,7 +964,7 @@
                                     </div>
                                     <div class="checkpoint-text checkpoint-blocker-text">
                                         <div class="editable-task" onclick="editTask(1, 3)">
-                                            Payment Processing Certified
+                                            User Acceptance Testing
                                             <span class="blocker-badge">Must Complete</span>
                                         </div>
                                         <div class="task-controls">
@@ -943,7 +985,7 @@
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(1, 4)">
-                                            Backup Systems Configured
+                                            POS UAT
                                             
                                         </div>
                                         <div class="task-controls">
@@ -964,7 +1006,7 @@
                                     </div>
                                     <div class="checkpoint-text checkpoint-blocker-text">
                                         <div class="editable-task" onclick="editTask(1, 5)">
-                                            Security Cameras &amp; Access Control
+                                            End User Training
                                             <span class="blocker-badge">Must Complete</span>
                                         </div>
                                         <div class="task-controls">
@@ -979,14 +1021,56 @@
                                     </div>
                                 </div>
                             
+                                <div class="checkpoint-item">
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(1, 6)">
+                                        ○
+                                    </div>
+                                    <div class="checkpoint-text ">
+                                        <div class="editable-task" onclick="editTask(1, 6)">
+                                            POS End User Training
+                                            
+                                        </div>
+                                        <div class="task-controls">
+                                            <button class="task-btn" onclick="toggleTaskCompletion(1, 6)">
+                                                Mark Complete
+                                            </button>
+                                            <button class="task-btn" onclick="toggleTaskBlocker(1, 6)">
+                                                Make Blocker
+                                            </button>
+                                            <button class="task-btn delete" onclick="deleteTask(1, 6)">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="checkpoint-item">
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(1, 7)">
+                                        ○
+                                    </div>
+                                    <div class="checkpoint-text ">
+                                        <div class="editable-task" onclick="editTask(1, 7)">
+                                            In-Range Go-Live
+                                            
+                                        </div>
+                                        <div class="task-controls">
+                                            <button class="task-btn" onclick="toggleTaskCompletion(1, 7)">
+                                                Mark Complete
+                                            </button>
+                                            <button class="task-btn" onclick="toggleTaskBlocker(1, 7)">
+                                                Make Blocker
+                                            </button>
+                                            <button class="task-btn delete" onclick="deleteTask(1, 7)">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             
                             <button class="add-task-btn" onclick="addTask(1)">
                                 ➕ Add New Task
                             </button>
                             
                             <div class="checkpoint-summary">
-                                <span class="completed-count">3/6 Complete</span>
-                                <span><span class="blockers-count">3 Blocking Launch</span></span>
+                                <span class="completed-count">3/8 Complete</span>
+                                <span><span class="blockers-count">2 Blocking Launch</span></span>
                             </div>
                         </div>
                     </div>
@@ -1551,22 +1635,22 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 67,
+                    "progress": 38,
                     "threshold": 85,
                     "icon": "⛳",
                     "criticalCheckpoints": [
                               {
-                                        "task": "Golf Simulator Systems Installed & Tested",
+                                        "task": "Establish Pricing and Discounts",
                                         "completed": true,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Ball Tracking Technology Calibrated",
+                                        "task": "Finalize Menus",
                                         "completed": true,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Suite Safety Equipment Installed",
+                                        "task": "Finalize Training Schedule for Each Team",
                                         "completed": true,
                                         "isBlocker": true
                               },
@@ -1576,14 +1660,24 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Staff Training on Golf Operations",
-                                        "completed": true,
+                                        "task": "Orientation Session 1",
+                                        "completed": false,
                                         "isBlocker": false
                               },
                               {
-                                        "task": "Emergency Procedures Documented",
+                                        "task": "Orientation Session 2",
                                         "completed": false,
                                         "isBlocker": true
+                              },
+                              {
+                                        "task": "Keys and Access Setup",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Team Member Training",
+                                        "completed": false,
+                                        "isBlocker": false
                               }
                     ]
           },
@@ -1594,34 +1688,44 @@
                     "icon": "💻",
                     "criticalCheckpoints": [
                               {
-                                        "task": "POS System Integration Complete",
+                                        "task": "Reservation Kick-Off Meeting",
                                         "completed": true,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "WiFi Network Infrastructure Live",
+                                        "task": "Finalize Menus",
                                         "completed": true,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Reservation System Tested",
+                                        "task": "System (full tech stack) selection finalized",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "User Acceptance Testing",
                                         "completed": false,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Payment Processing Certified",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Backup Systems Configured",
+                                        "task": "POS UAT",
                                         "completed": true,
                                         "isBlocker": false
                               },
                               {
-                                        "task": "Security Cameras & Access Control",
+                                        "task": "End User Training",
                                         "completed": false,
                                         "isBlocker": true
+                              },
+                              {
+                                        "task": "POS End User Training",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "In-Range Go-Live",
+                                        "completed": false,
+                                        "isBlocker": false
                               }
                     ],
                     "completedTasks": null
