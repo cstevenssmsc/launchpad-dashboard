@@ -619,8 +619,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 78%;">
-                    <span id="overallPercent">78%</span>
+                <div class="overall-bar" id="overallBar" style="width: 73%;">
+                    <span id="overallPercent">73%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -1190,13 +1190,13 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>83%</strong> Complete</span>
+                                    <span><strong>84%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(3)">Target: 75%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-ready" style="width: 83%">
-                                        83%
+                                    <div class="progress-bar progress-ready" style="width: 84%">
+                                        84%
                                     </div>
                                     <div class="threshold-marker" style="left: 75%" data-threshold="75"></div>
                                 </div>
@@ -1363,7 +1363,7 @@
                                 </h3>
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <button class="toggle-checkpoints" onclick="toggleCheckpoints(4)">
-                                        View Tasks
+                                        Hide Tasks
                                     </button>
                                     <span class="status-badge status-danger">NEEDS ATTENTION</span>
                                 </div>
@@ -1371,26 +1371,26 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>50%</strong> Complete</span>
+                                    <span><strong>33%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(4)">Target: 85%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 50%">
-                                        50%
+                                    <div class="progress-bar progress-danger" style="width: 33%">
+                                        33%
                                     </div>
                                     <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                                 </div>
                             </div>
                             
                             <div class="tasks-info">
-                                <span>Tasks: 3/6</span>
-                                <span>Remaining: 3</span>
+                                <span>Tasks: 2/6</span>
+                                <span>Remaining: 4</span>
                                 <span class="blockers-count">🚫 3 Blockers</span>
                             </div>
                         </div>
                         
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-4">
+                        <div class="checkpoints-panel " id="checkpoints-4">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
                                 <span class="blocker-badge">3 Blockers</span>
@@ -1503,8 +1503,8 @@
                                 </div>
                             
                                 <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
-                                        ✓
+                                    <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
+                                        ○
                                     </div>
                                     <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editModeAction('editTask', 4, 5)">
@@ -1513,7 +1513,7 @@
                                         </div>
                                         <div class="task-controls">
                                             <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
-                                                Mark Incomplete
+                                                Mark Complete
                                             </button>
                                             <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 5)">
                                                 Make Blocker
@@ -1529,7 +1529,7 @@
                             </button>
                             
                             <div class="checkpoint-summary">
-                                <span class="completed-count">3/6 Complete</span>
+                                <span class="completed-count">2/6 Complete</span>
                                 <span><span class="blockers-count">3 Blocking Launch</span></span>
                             </div>
                         </div>
@@ -1667,7 +1667,7 @@
           },
           {
                     "title": "Marketing & Communications",
-                    "progress": 83,
+                    "progress": 84,
                     "threshold": 75,
                     "icon": "📢",
                     "criticalCheckpoints": [
@@ -1701,11 +1701,12 @@
                                         "completed": false,
                                         "isBlocker": true
                               }
-                    ]
+                    ],
+                    "completedTasks": null
           },
           {
                     "title": "HR/Talent Acquisition",
-                    "progress": 50,
+                    "progress": 33,
                     "threshold": 85,
                     "icon": "👥",
                     "criticalCheckpoints": [
@@ -1736,7 +1737,7 @@
                               },
                               {
                                         "task": "Employee Handbook Distributed",
-                                        "completed": true,
+                                        "completed": false,
                                         "isBlocker": false
                               }
                     ]
