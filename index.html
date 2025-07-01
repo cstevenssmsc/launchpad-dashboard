@@ -591,12 +591,17 @@
             <div class="admin-controls" id="adminControls">
                 <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)">
                 <div id="adminButtons" style="display: none;">
+                    <div style="margin-bottom: 10px;">
+                        <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
+                        <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
+                    </div>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"></div>
                     <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
-                    <button class="admin-button" onclick="saveData()">💾 Save</button>
-                    <button class="admin-button" onclick="loadData()">📂 Load</button>
+                    <button class="admin-button" onclick="saveData()">💾 Save Local</button>
+                    <button class="admin-button" onclick="loadData()">📂 Load Local</button>
                 </div>
             </div>
         </div>
@@ -635,6 +640,11 @@
         let isAdminAuthenticated = false;
         const adminPassword = "launchpad2025";
         let launchDate = "March 15, 2025";
+        
+        // GitHub API settings
+        let githubToken = "";
+        let githubRepo = "cstevensmsmc/launchpad-dashboard";
+        let autoSaveEnabled = false;
 
         const workstreams = [
             {
@@ -957,6 +967,11 @@
             
             renderWorkstreams();
             updateOverallProgress();
+            
+            // Auto-save to GitHub
+            if (autoSaveEnabled) {
+                setTimeout(autoSaveToGitHub, 1000);
+            }
         }
 
         function toggleTaskBlocker(workstreamIndex, checkpointIndex) {
@@ -1083,8 +1098,128 @@
             }
         }
 
+        // GitHub API functions
+        async function setupAutoSave() {
+            const token = document.getElementById('githubToken').value.trim();
+            if (!token) {
+                alert('Please enter your GitHub token');
+                return;
+            }
+
+            githubToken = token;
+            
+            // Test the token
+            try {
+                const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (response.ok) {
+                    autoSaveEnabled = true;
+                    localStorage.setItem('githubToken', githubToken);
+                    document.getElementById('autoSaveStatus').innerHTML = 
+                        '<span style="color: #28a745;">✅ Auto-Save Connected!</span>';
+                    alert('Auto-save setup successful! Your edits will now automatically save to GitHub.');
+                } else {
+                    throw new Error('Invalid token or repository access');
+                }
+            } catch (error) {
+                alert('GitHub setup failed: ' + error.message);
+                autoSaveEnabled = false;
+            }
+        }
+
+        async function autoSaveToGitHub() {
+            if (!autoSaveEnabled || !githubToken) return;
+
+            try {
+                // Get current file content and SHA
+                const getResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!getResponse.ok) throw new Error('Failed to get current file');
+                
+                const fileData = await getResponse.json();
+                const currentSha = fileData.sha;
+
+                // Generate updated HTML content
+                const updatedHtml = generateUpdatedHtml();
+                const encodedContent = btoa(unescape(encodeURIComponent(updatedHtml)));
+
+                // Update the file
+                const updateResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: `Auto-save dashboard updates - ${new Date().toLocaleString()}`,
+                        content: encodedContent,
+                        sha: currentSha
+                    })
+                });
+
+                if (updateResponse.ok) {
+                    document.getElementById('autoSaveStatus').innerHTML = 
+                        '<span style="color: #28a745;">✅ Auto-saved at ' + new Date().toLocaleTimeString() + '</span>';
+                } else {
+                    throw new Error('Failed to update file');
+                }
+            } catch (error) {
+                document.getElementById('autoSaveStatus').innerHTML = 
+                    '<span style="color: #dc3545;">❌ Auto-save failed: ' + error.message + '</span>';
+                console.error('Auto-save error:', error);
+            }
+        }
+
+        function generateUpdatedHtml() {
+            // Get the current HTML template and inject updated data
+            const htmlTemplate = document.documentElement.outerHTML;
+            
+            // Replace the workstreams data in the script section
+            const workstreamsJson = JSON.stringify(workstreams, null, 12);
+            const launchDateJson = JSON.stringify(launchDate);
+            
+            let updatedHtml = htmlTemplate.replace(
+                /const workstreams = \[[\s\S]*?\];/,
+                `const workstreams = ${workstreamsJson};`
+            );
+            
+            updatedHtml = updatedHtml.replace(
+                /let launchDate = "[^"]*";/,
+                `let launchDate = ${launchDateJson};`
+            );
+            
+            return updatedHtml;
+        }
+
+        // Load saved GitHub token on page load
+        function loadGitHubSettings() {
+            const savedToken = localStorage.getItem('githubToken');
+            if (savedToken) {
+                githubToken = savedToken;
+                autoSaveEnabled = true;
+                setTimeout(() => {
+                    if (document.getElementById('autoSaveStatus')) {
+                        document.getElementById('autoSaveStatus').innerHTML = 
+                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                    }
+                }, 1000);
+            }
+        }
+
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
+            loadGitHubSettings();
             renderWorkstreams();
             updateOverallProgress();
         });
