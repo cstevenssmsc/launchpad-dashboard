@@ -581,7 +581,7 @@
         }
     </style>
 </head>
-<body>
+<body class="edit-mode">
     <div class="dashboard">
         <!-- Admin Panel -->
         <div class="admin-panel">
@@ -596,7 +596,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
+                    <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(220, 53, 69);">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -607,7 +607,7 @@
         </div>
 
         <!-- Edit Mode Indicator -->
-        <div class="edit-mode-indicator" id="editModeIndicator">
+        <div class="edit-mode-indicator active" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -619,12 +619,12 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 78%;">
-                    <span id="overallPercent">78%</span>
+                <div class="overall-bar" id="overallBar" style="width: 79%;">
+                    <span id="overallPercent">79%</span>
                 </div>
             </div>
             <div class="tasks-info">
-                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">March 15, 2025</strong></span>
+                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">September 12, 2025</strong></span>
                 <span id="overallStatus">⚠️ Launch Preparation in Progress</span>
             </div>
         </div>
@@ -647,13 +647,13 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>67%</strong> Complete</span>
+                                    <span><strong>68%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 67%">
-                                        67%
+                                    <div class="progress-bar progress-danger" style="width: 68%">
+                                        68%
                                     </div>
                                     <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                                 </div>
@@ -1009,13 +1009,13 @@
                             
                             <div class="progress-container">
                                 <div class="progress-label">
-                                    <span><strong>83%</strong> Complete</span>
+                                    <span><strong>84%</strong> Complete</span>
                                     <span class="threshold-label" onclick="editThreshold(2)">Target: 80%</span>
                                 </div>
                                 
                                 <div class="progress-bar-container">
-                                    <div class="progress-bar progress-ready" style="width: 83%">
-                                        83%
+                                    <div class="progress-bar progress-ready" style="width: 84%">
+                                        84%
                                     </div>
                                     <div class="threshold-marker" style="left: 80%" data-threshold="80"></div>
                                 </div>
@@ -1542,7 +1542,7 @@
         let isEditMode = false;
         let isAdminAuthenticated = false;
         const adminPassword = "launchpad2025";
-        let launchDate = "March 15, 2025";
+        let launchDate = "September 12, 2025";
         
         // GitHub API settings
         let githubToken = "";
@@ -1552,7 +1552,7 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 67,
+                    "progress": 68,
                     "threshold": 85,
                     "icon": "⛳",
                     "criticalCheckpoints": [
@@ -1586,7 +1586,8 @@
                                         "completed": false,
                                         "isBlocker": true
                               }
-                    ]
+                    ],
+                    "completedTasks": null
           },
           {
                     "title": "IT/Technology",
@@ -1629,7 +1630,7 @@
           },
           {
                     "title": "Food & Beverage",
-                    "progress": 83,
+                    "progress": 84,
                     "threshold": 80,
                     "icon": "🍽️",
                     "criticalCheckpoints": [
@@ -1663,7 +1664,8 @@
                                         "completed": true,
                                         "isBlocker": false
                               }
-                    ]
+                    ],
+                    "completedTasks": null
           },
           {
                     "title": "Marketing & Communications",
