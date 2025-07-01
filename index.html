@@ -861,6 +861,7 @@
         let autoSaveEnabled = false;
         let dataFileName = "dashboard-data.json";
 
+        // Workstreams data
         const workstreams = [
             {
                 title: 'Golf Operations',
@@ -948,6 +949,90 @@
             }
         ];
 
+        // Admin Panel Functions
+        function toggleAdminPanel() {
+            console.log('toggleAdminPanel called');
+            const controls = document.getElementById('adminControls');
+            if (controls) {
+                controls.classList.toggle('active');
+                
+                // Reset password field when opening panel
+                if (controls.classList.contains('active')) {
+                    const passwordField = document.getElementById('adminPassword');
+                    const adminButtons = document.getElementById('adminButtons');
+                    if (passwordField) {
+                        passwordField.style.display = 'block';
+                        passwordField.value = '';
+                    }
+                    if (adminButtons) {
+                        adminButtons.style.display = 'none';
+                    }
+                    isAdminAuthenticated = false;
+                }
+            }
+        }
+
+        function checkAdminPassword(event) {
+            if (event.key === 'Enter') {
+                const password = document.getElementById('adminPassword').value;
+                if (password === adminPassword) {
+                    isAdminAuthenticated = true;
+                    document.getElementById('adminButtons').style.display = 'block';
+                    document.getElementById('adminPassword').style.display = 'none';
+                    
+                    // Reset edit mode
+                    isEditMode = false;
+                    document.body.classList.remove('edit-mode');
+                    const indicator = document.getElementById('editModeIndicator');
+                    if (indicator) indicator.classList.remove('active');
+                    const editBtn = document.getElementById('editModeBtn');
+                    if (editBtn) {
+                        editBtn.classList.remove('active');
+                        editBtn.textContent = '📝 Edit Mode';
+                        editBtn.style.background = '';
+                    }
+                } else {
+                    alert('Incorrect password');
+                    document.getElementById('adminPassword').value = '';
+                }
+            }
+        }
+
+        function toggleEditMode() {
+            if (!isAdminAuthenticated) {
+                alert('Please authenticate as admin first');
+                return false;
+            }
+            
+            isEditMode = !isEditMode;
+            const indicator = document.getElementById('editModeIndicator');
+            const editBtn = document.getElementById('editModeBtn');
+            const body = document.body;
+            
+            if (isEditMode) {
+                body.classList.add('edit-mode');
+                if (indicator) indicator.classList.add('active');
+                if (editBtn) {
+                    editBtn.classList.add('active');
+                    editBtn.textContent = '✅ Exit Edit';
+                    editBtn.style.background = 'linear-gradient(135deg, #dc3545 0%, #e4606d 100%)';
+                }
+            } else {
+                body.classList.remove('edit-mode');
+                if (indicator) indicator.classList.remove('active');
+                if (editBtn) {
+                    editBtn.classList.remove('active');
+                    editBtn.textContent = '📝 Edit Mode';
+                    editBtn.style.background = '';
+                }
+            }
+            
+            renderWorkstreams();
+            updateOverallProgress();
+            return true;
+        }
+
+        // Utility Functions
         function getStatusInfo(progress, threshold) {
             if (progress >= threshold) {
                 return { status: 'ready', text: 'READY TO LAUNCH', class: 'status-ready' };
@@ -964,10 +1049,16 @@
             return 'progress-danger';
         }
 
+        // Main Render Function
         function renderWorkstreams() {
+            console.log('renderWorkstreams called, workstreams:', workstreams.length);
             const container = document.getElementById('workstreams');
+            if (!container) {
+                console.error('workstreams container not found');
+                return;
+            }
             
-            // Store which panels are currently open
+            // Store open panels
             const openPanels = [];
             const existingPanels = container.querySelectorAll('.checkpoints-panel:not(.checkpoints-hidden)');
             existingPanels.forEach((panel) => {
@@ -989,7 +1080,6 @@
                 const workstreamElement = document.createElement('div');
                 workstreamElement.className = 'workstream';
                 
-                // Check if this panel should be open
                 const isOpen = openPanels.includes(index);
                 const panelClass = isOpen ? '' : 'checkpoints-hidden';
                 const buttonText = isOpen ? 'Hide Tasks' : 'View Tasks';
@@ -1065,6 +1155,134 @@
                         `).join('')}
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', ${index})">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
+                            <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(workstreamElement);
+            });
+        }
+
+        function toggleCheckpoints(index) {
+            const panel = document.getElementById(`checkpoints-${index}`);
+            const button = panel.parentElement.querySelector('.toggle-checkpoints');
+            
+            if (panel && button) {
+                if (panel.classList.contains('checkpoints-hidden')) {
+                    panel.classList.remove('checkpoints-hidden');
+                    button.textContent = 'Hide Tasks';
+                } else {
+                    panel.classList.add('checkpoints-hidden');
+                    button.textContent = 'View Tasks';
+                }
+            }
+        }
+
+        function editModeAction(action, ...args) {
+            if (!isEditMode) {
+                alert('Please enter Edit Mode first to make changes.');
+                return;
+            }
+            
+            switch(action) {
+                case 'toggleTaskCompletion':
+                    toggleTaskCompletion(args[0], args[1]);
+                    break;
+                case 'editTask':
+                    editTask(args[0], args[1]);
+                    break;
+                case 'toggleTaskBlocker':
+                    toggleTaskBlocker(args[0], args[1]);
+                    break;
+                case 'deleteTask':
+                    deleteTask(args[0], args[1]);
+                    break;
+                case 'addTask':
+                    addTask(args[0]);
+                    break;
+            }
+        }
+
+        function calculateOverallProgress() {
+            let totalWeight = 0;
+            let achievedWeight = 0;
+            
+            workstreams.forEach(workstream => {
+                const weight = workstream.threshold / 100;
+                totalWeight += weight;
+                
+                if (workstream.progress >= workstream.threshold) {
+                    achievedWeight += weight;
+                } else {
+                    achievedWeight += weight * (workstream.progress / workstream.threshold);
+                }
+            });
+            
+            return Math.round((achievedWeight / totalWeight) * 100);
+        }
+
+        function updateOverallProgress() {
+            const overallProgress = calculateOverallProgress();
+            const overallBar = document.getElementById('overallBar');
+            const overallPercent = document.getElementById('overallPercent');
+            const overallStatus = document.getElementById('overallStatus');
+            
+            if (overallBar) overallBar.style.width = overallProgress + '%';
+            if (overallPercent) overallPercent.textContent = overallProgress + '%';
+            
+            if (overallStatus) {
+                if (overallProgress >= 85) {
+                    overallStatus.innerHTML = '🚀 <strong>READY FOR LAUNCH!</strong>';
+                    if (overallBar) overallBar.parentElement.parentElement.classList.add('ready-to-launch');
+                } else if (overallProgress >= 70) {
+                    overallStatus.innerHTML = '⚠️ <strong>Launch Preparation in Progress</strong>';
+                } else {
+                    overallStatus.innerHTML = '🔧 <strong>Active Development Phase</strong>';
+                }
+            }
+        }
+
+        // Placeholder functions for all the other features
+        function editTask(workstreamIndex, checkpointIndex) { /* Implementation */ }
+        function toggleTaskCompletion(workstreamIndex, checkpointIndex) { /* Implementation */ }
+        function toggleTaskBlocker(workstreamIndex, checkpointIndex) { /* Implementation */ }
+        function deleteTask(workstreamIndex, checkpointIndex) { /* Implementation */ }
+        function addTask(workstreamIndex) { /* Implementation */ }
+        function editThreshold(workstreamIndex) { /* Implementation */ }
+        function editLaunchDate() { /* Implementation */ }
+        function testGitHubConnection() { /* Implementation */ }
+        function setupAutoSave() { /* Implementation */ }
+        function manualSave() { /* Implementation */ }
+        function exportData() { /* Implementation */ }
+        function importData() { /* Implementation */ }
+        function saveData() { /* Implementation */ }
+        function loadData() { /* Implementation */ }
+        function loadGitHubSettings() { /* Implementation */ }
+
+        // Initialize when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing...');
+            console.log('Workstreams available:', workstreams.length);
+            
+            isEditMode = false;
+            document.body.classList.remove('edit-mode');
+            
+            const indicator = document.getElementById('editModeIndicator');
+            if (indicator) indicator.classList.remove('active');
+            
+            loadGitHubSettings();
+            renderWorkstreams();
+            updateOverallProgress();
+            
+            console.log('Initialization complete');
+        });
+    </script>ModeAction('addTask', ${index})">
                             ➕ Add New Task
                         </button>
                         
