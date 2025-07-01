@@ -1108,8 +1108,9 @@
 
             githubToken = token;
             
-            // Test the token
+            // Test the token with more detailed error handling
             try {
+                console.log('Testing GitHub connection...');
                 const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -1117,17 +1118,25 @@
                     }
                 });
 
-                if (response.ok) {
+                console.log('Response status:', response.status);
+                
+                if (response.status === 401) {
+                    throw new Error('Invalid GitHub token. Please check your token has the correct permissions.');
+                } else if (response.status === 404) {
+                    throw new Error(`Repository not found. Please verify the repository name: ${githubRepo}`);
+                } else if (response.ok) {
                     autoSaveEnabled = true;
                     localStorage.setItem('githubToken', githubToken);
                     document.getElementById('autoSaveStatus').innerHTML = 
                         '<span style="color: #28a745;">✅ Auto-Save Connected!</span>';
                     alert('Auto-save setup successful! Your edits will now automatically save to GitHub.');
                 } else {
-                    throw new Error('Invalid token or repository access');
+                    const errorData = await response.text();
+                    throw new Error(`GitHub API error (${response.status}): ${errorData}`);
                 }
             } catch (error) {
-                alert('GitHub setup failed: ' + error.message);
+                console.error('GitHub setup error:', error);
+                alert('GitHub setup failed: ' + error.message + '\n\nPlease check:\n1. Token permissions (repo access)\n2. Repository name is correct\n3. Token is valid');
                 autoSaveEnabled = false;
             }
         }
