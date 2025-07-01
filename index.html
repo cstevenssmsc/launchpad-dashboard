@@ -594,7 +594,7 @@
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-saved at 11:53:34 AM</span></div>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Auto-saved at 12:00:16 PM</span></div>
                     <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
@@ -661,14 +661,14 @@
                             <div class="tasks-info">
                                 <span>Tasks: 3/8</span>
                                 <span>Remaining: 5</span>
-                                <span class="blockers-count">🚫 2 Blockers</span>
+                                <span class="blockers-count">🚫 1 Blocker</span>
                             </div>
                         </div>
                         
                         <div class="checkpoints-panel " id="checkpoints-0">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
-                                <span class="blocker-badge">2 Blockers</span>
+                                <span class="blocker-badge">1 Blocker</span>
                             </div>
                             
                             
@@ -778,20 +778,20 @@
                                 </div>
                             
                                 <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="toggleTaskCompletion(0, 5)">
-                                        !
+                                    <div class="checkpoint-status checkpoint-pending" onclick="toggleTaskCompletion(0, 5)">
+                                        ○
                                     </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="checkpoint-text ">
                                         <div class="editable-task" onclick="editTask(0, 5)">
                                             Orientation Session 2
-                                            <span class="blocker-badge">Must Complete</span>
+                                            
                                         </div>
                                         <div class="task-controls">
                                             <button class="task-btn" onclick="toggleTaskCompletion(0, 5)">
                                                 Mark Complete
                                             </button>
                                             <button class="task-btn" onclick="toggleTaskBlocker(0, 5)">
-                                                Remove Blocker
+                                                Make Blocker
                                             </button>
                                             <button class="task-btn delete" onclick="deleteTask(0, 5)">Delete</button>
                                         </div>
@@ -847,7 +847,7 @@
                             
                             <div class="checkpoint-summary">
                                 <span class="completed-count">3/8 Complete</span>
-                                <span><span class="blockers-count">2 Blocking Launch</span></span>
+                                <span><span class="blockers-count">1 Blocking Launch</span></span>
                             </div>
                         </div>
                     </div>
@@ -1667,7 +1667,7 @@
                               {
                                         "task": "Orientation Session 2",
                                         "completed": false,
-                                        "isBlocker": true
+                                        "isBlocker": false
                               },
                               {
                                         "task": "Keys and Access Setup",
