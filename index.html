@@ -1,4 +1,6 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaunchPad Golf - Opening Readiness Dashboard</title>
@@ -10,474 +12,552 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0A0A0A 0%, #181818 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
             color: #FFFFFF;
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(237, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(237, 0, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .dashboard {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
             text-align: center;
             margin-bottom: 40px;
+            background: rgba(44, 43, 43, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(237, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .title {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(237, 0, 0, 0.3);
+        }
+
+        .logo::before {
+            content: '🏌️';
             font-size: 2.5rem;
-            font-weight: bold;
-            color: #FFFFFF;
-            margin-bottom: 10px;
+            transform: rotate(-15deg);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border-radius: 50%;
+            top: 15px;
+            right: 15px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .brand-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF 0%, #ED0000 50%, #FFFFFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #B0B0B0;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .overall-progress {
+            background: linear-gradient(135deg, rgba(44, 43, 43, 0.9) 0%, rgba(24, 24, 24, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid #ED0000;
+            box-shadow: 0 12px 40px rgba(237, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overall-progress::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(237, 0, 0, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .overall-title {
+            font-size: 2rem;
+            color: #ED0000;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #5A5A5A;
-            margin-bottom: 30px;
-        }
-
-        .overall-progress {
-            background: #2C2B2B;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border: 2px solid #ED0000;
-        }
-
-        .overall-title {
-            font-size: 1.8rem;
-            color: #ED0000;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: bold;
-        }
-
         .overall-bar-container {
-            background: #121212;
-            height: 40px;
-            border-radius: 20px;
+            background: rgba(18, 18, 18, 0.8);
+            height: 50px;
+            border-radius: 25px;
             overflow: hidden;
-            margin-bottom: 15px;
-            border: 1px solid #5A5A5A;
+            margin-bottom: 20px;
+            border: 2px solid rgba(90, 90, 90, 0.3);
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .overall-bar {
             height: 100%;
-            background: linear-gradient(90deg, #ED0000 0%, #FF4444 100%);
-            transition: width 0.8s ease;
+            background: linear-gradient(90deg, #ED0000 0%, #FF6B6B 50%, #ED0000 100%);
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(237, 0, 0, 0.4);
+        }
+
+        .overall-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            border-radius: 25px 25px 0 0;
         }
 
         .workstreams {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
         }
 
         .workstream {
-            background: #2C2B2B;
-            border-radius: 12px;
-            padding: 25px;
-            border-left: 5px solid #ED0000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, rgba(44, 43, 43, 0.9) 0%, rgba(24, 24, 24, 0.9) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            padding: 30px;
+            border-left: 6px solid #ED0000;
+            border: 1px solid rgba(237, 0, 0, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .workstream::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(237, 0, 0, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .workstream:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(237, 0, 0, 0.2);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(237, 0, 0, 0.3);
+            border-color: rgba(237, 0, 0, 0.5);
         }
 
-        .workstream-content {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 25px;
-            align-items: start;
-        }
-
-        .workstream-main {
-            min-width: 0;
+        .workstream:hover::before {
+            opacity: 1;
         }
 
         .workstream-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .workstream-title {
-            font-size: 1.3rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .workstream-icon {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(237, 0, 0, 0.3);
         }
 
         .status-badge {
-            padding: 6px 12px;
-            border-radius: 20px;
+            padding: 8px 16px;
+            border-radius: 25px;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .status-ready {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
             color: white;
         }
 
         .status-warning {
-            background: #ffc107;
+            background: linear-gradient(135deg, #ffc107 0%, #ffcd39 100%);
             color: #000;
         }
 
         .status-danger {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #e4606d 100%);
             color: white;
         }
 
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .toggle-checkpoints {
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(237, 0, 0, 0.3);
+        }
+
+        .toggle-checkpoints:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4);
+        }
+
         .progress-container {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .progress-label {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
         .threshold-label {
-            color: #5A5A5A;
+            color: #B0B0B0;
             cursor: pointer;
-            padding: 2px 6px;
-            border-radius: 4px;
-            transition: background 0.2s ease;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .edit-mode .threshold-label {
-            background: #ED0000;
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
             color: white;
-        }
-
-        .editable-date {
-            cursor: pointer;
-            padding: 2px 6px;
-            border-radius: 4px;
-            transition: background 0.2s ease;
-        }
-
-        .edit-mode .editable-date {
-            background: #ED0000;
-            color: white;
-        }
-
-        .edit-mode .editable-date:hover {
-            background: #FF4444;
+            box-shadow: 0 2px 8px rgba(237, 0, 0, 0.3);
         }
 
         .progress-bar-container {
-            background: #121212;
-            height: 25px;
-            border-radius: 12px;
+            background: rgba(18, 18, 18, 0.8);
+            height: 30px;
+            border-radius: 15px;
             overflow: hidden;
             position: relative;
-            border: 1px solid #5A5A5A;
+            border: 1px solid rgba(90, 90, 90, 0.3);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
         .progress-bar {
             height: 100%;
-            transition: width 0.8s ease;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 0.9rem;
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .progress-ready {
+            background: linear-gradient(90deg, #28a745 0%, #34ce57 50%, #28a745 100%);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .progress-warning {
+            background: linear-gradient(90deg, #ffc107 0%, #ffcd39 50%, #ffc107 100%);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+
+        .progress-danger {
+            background: linear-gradient(90deg, #dc3545 0%, #e4606d 50%, #dc3545 100%);
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
         }
 
         .threshold-marker {
             position: absolute;
             top: 0;
             height: 100%;
-            width: 3px;
-            background: #FFFFFF;
+            width: 4px;
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.7) 100%);
             z-index: 2;
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
         }
 
         .threshold-marker::after {
             content: attr(data-threshold) '%';
             position: absolute;
-            top: -25px;
-            left: -15px;
-            font-size: 0.7rem;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
             color: #FFFFFF;
-            background: #ED0000;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .progress-ready {
-            background: linear-gradient(90deg, #28a745 0%, #34ce57 100%);
-        }
-
-        .progress-warning {
-            background: linear-gradient(90deg, #ffc107 0%, #ffcd39 100%);
-        }
-
-        .progress-danger {
-            background: linear-gradient(90deg, #dc3545 0%, #e4606d 100%);
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            padding: 4px 8px;
+            border-radius: 6px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(237, 0, 0, 0.3);
         }
 
         .tasks-info {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
-            color: #5A5A5A;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #B0B0B0;
+            font-weight: 500;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .golf-ball {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            margin-right: 10px;
-            position: relative;
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
         }
 
-        .golf-ball::after {
-            content: '';
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            right: 2px;
-            bottom: 2px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #e0e0e0);
+        .blockers-count {
+            color: #FF6B6B;
+            font-weight: 700;
+        }
+
+        .completed-count {
+            color: #4CAF50;
+            font-weight: 700;
         }
 
         .checkpoints-panel {
-            width: 350px;
-            background: #181818;
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid #5A5A5A;
+            margin-top: 25px;
+            background: rgba(24, 24, 24, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(90, 90, 90, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .checkpoints-title {
-            font-size: 1rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            font-weight: 700;
             color: #ED0000;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .checkpoint-item {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding: 8px;
-            border-radius: 6px;
-            transition: background 0.2s ease;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
         }
 
         .checkpoint-item:hover {
-            background: #2C2B2B;
+            background: rgba(44, 43, 43, 0.5);
+            border-color: rgba(237, 0, 0, 0.2);
         }
 
         .checkpoint-status {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
+            font-size: 0.9rem;
+            font-weight: 700;
             flex-shrink: 0;
             margin-top: 2px;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
         .checkpoint-completed {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
         }
 
         .checkpoint-pending {
-            background: #5A5A5A;
+            background: linear-gradient(135deg, #6c757d 0%, #8a9196 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
         }
 
         .checkpoint-blocker {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #e4606d 100%);
             color: white;
             animation: pulse-red 2s infinite;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.6);
+        }
+
+        @keyframes pulse-red {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.6);
+            }
+            50% { 
+                transform: scale(1.1); 
+                box-shadow: 0 6px 20px rgba(220, 53, 69, 0.8);
+            }
+            100% { 
+                transform: scale(1); 
+                box-shadow: 0 4px 15px rgba(220, 53, 69, 0.6);
+            }
         }
 
         .checkpoint-text {
-            font-size: 0.9rem;
-            line-height: 1.4;
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.5;
             color: #FFFFFF;
-        }
-
-        .checkpoint-blocker-text {
-            color: #FF6B6B;
             font-weight: 500;
-        }
-
-        .blocker-badge {
-            background: #dc3545;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-left: 8px;
-        }
-
-        .checkpoint-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 15px;
-            border-top: 1px solid #5A5A5A;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
-
-        .blockers-count {
-            color: #dc3545;
-            font-weight: bold;
-        }
-
-        .completed-count {
-            color: #28a745;
-            font-weight: bold;
-        }
-
-        .toggle-checkpoints {
-            background: #ED0000;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-left: auto;
-            transition: background 0.3s ease;
-        }
-
-        .toggle-checkpoints:hover {
-            background: #FF4444;
-        }
-
-        .checkpoints-hidden {
-            display: none;
-        }
-
-        /* Admin Interface Styles */
-        .admin-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #2C2B2B;
-            border: 2px solid #ED0000;
-            border-radius: 10px;
-            padding: 15px;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .admin-toggle {
-            background: #ED0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .admin-toggle:hover {
-            background: #FF4444;
-        }
-
-        .admin-controls {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #5A5A5A;
-        }
-
-        .admin-controls.active {
-            display: block;
-        }
-
-        .admin-button {
-            background: #5A5A5A;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 0.9rem;
-        }
-
-        .admin-button:hover {
-            background: #ED0000;
-        }
-
-        .admin-button.active {
-            background: #28a745;
-        }
-
-        .password-input {
-            background: #181818;
-            border: 1px solid #5A5A5A;
-            color: white;
-            padding: 8px;
-            border-radius: 4px;
-            margin: 5px;
-            width: 150px;
         }
 
         .editable-task {
             cursor: pointer;
-            padding: 4px;
-            border-radius: 4px;
-            transition: background 0.2s ease;
+            padding: 6px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .editable-task:hover {
-            background: #2C2B2B;
-            outline: 1px dashed #ED0000;
+            background: rgba(237, 0, 0, 0.1);
         }
 
         .edit-mode .editable-task {
-            border: 1px dashed #ED0000;
+            border: 2px dashed #ED0000;
+            background: rgba(237, 0, 0, 0.05);
+        }
+
+        .blocker-badge {
+            background: linear-gradient(135deg, #dc3545 0%, #e4606d 100%);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 8px;
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.4);
         }
 
         .task-controls {
             display: none;
-            margin-top: 8px;
-            gap: 8px;
+            margin-top: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .edit-mode .task-controls {
@@ -485,33 +565,40 @@
         }
 
         .task-btn {
-            background: #5A5A5A;
+            background: linear-gradient(135deg, #6c757d 0%, #8a9196 100%);
             color: white;
             border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .task-btn:hover {
-            background: #ED0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .task-btn.delete {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #e4606d 100%);
         }
 
         .add-task-btn {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             width: 100%;
+            font-weight: 700;
             display: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
 
         .edit-mode .add-task-btn {
@@ -519,87 +606,207 @@
         }
 
         .add-task-btn:hover {
-            background: #34ce57;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
         }
 
-        .export-data {
-            background: #ffc107;
-            color: #000;
+        .checkpoint-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid rgba(90, 90, 90, 0.3);
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .import-data {
-            background: #17a2b8;
-            color: white;
-        }
-
-        .file-input {
+        .checkpoints-hidden {
             display: none;
+        }
+
+        /* Admin Interface */
+        .admin-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, rgba(44, 43, 43, 0.95) 0%, rgba(24, 24, 24, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            border: 2px solid #ED0000;
+            border-radius: 15px;
+            padding: 20px;
+            z-index: 1000;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            min-width: 300px;
+        }
+
+        .admin-toggle {
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(237, 0, 0, 0.3);
+        }
+
+        .admin-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4);
+        }
+
+        .admin-controls {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(90, 90, 90, 0.3);
+        }
+
+        .admin-controls.active {
+            display: block;
+        }
+
+        .admin-button {
+            background: linear-gradient(135deg, #6c757d 0%, #8a9196 100%);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .admin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .admin-button.active {
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+        }
+
+        .password-input {
+            background: rgba(24, 24, 24, 0.8);
+            border: 2px solid rgba(90, 90, 90, 0.3);
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 5px;
+            width: calc(100% - 10px);
+            font-size: 0.9rem;
         }
 
         .edit-mode-indicator {
             position: fixed;
             top: 50%;
             left: 20px;
-            background: #ED0000;
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
             color: white;
-            padding: 10px 20px;
+            padding: 15px 25px;
             border-radius: 0 25px 25px 0;
-            font-weight: bold;
+            font-weight: 700;
             z-index: 999;
             display: none;
             animation: pulse 2s infinite;
+            box-shadow: 0 8px 25px rgba(237, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
         }
 
         .edit-mode-indicator.active {
             display: block;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .editable-date {
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
-        @keyframes pulse-red {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
+        .edit-mode .editable-date {
+            background: linear-gradient(135deg, #ED0000 0%, #FF4444 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(237, 0, 0, 0.3);
         }
 
-        .ready-to-launch {
-            animation: pulse 2s infinite;
-        }
-
-        @media (max-width: 1000px) {
-            .workstream-content {
-                grid-template-columns: 1fr;
+        @media (max-width: 768px) {
+            .dashboard {
+                padding: 10px;
             }
             
-            .checkpoints-panel {
+            .workstreams {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .workstream {
+                padding: 20px;
+            }
+            
+            .admin-panel {
+                position: relative;
+                margin-bottom: 20px;
                 width: 100%;
+                right: auto;
+                top: auto;
+            }
+            
+            .brand-text {
+                font-size: 2rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .workstream-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .controls-row {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .tasks-info {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
-<body class="edit-mode">
+<body>
     <div class="dashboard">
         <!-- Admin Panel -->
         <div class="admin-panel">
-            <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
-            <div class="admin-controls active" id="adminControls">
-                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)" style="display: none;">
-                <div id="adminButtons" style="display: block;">
-                    <div style="margin-bottom: 10px;">
+            <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin Controls</button>
+            <div class="admin-controls" id="adminControls">
+                <input type="password" class="password-input" id="adminPassword" placeholder="Enter admin password" onkeypress="checkAdminPassword(event)">
+                <div id="adminButtons" style="display: none;">
+                    <div style="margin-bottom: 15px;">
                         <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
                         <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(220, 53, 69);">✅ Exit Edit</button>
-                    <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
-                    <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
-                    <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
+                    <div id="autoSaveStatus" style="margin-bottom: 15px; font-size: 0.9rem; color: #B0B0B0;"></div>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
+                    <button class="admin-button export-data" onclick="exportData()" style="background: linear-gradient(135deg, #ffc107 0%, #ffcd39 100%); color: #000;">📤 Export</button>
+                    <button class="admin-button import-data" onclick="document.getElementById('importFile').click()" style="background: linear-gradient(135deg, #17a2b8 0%, #20c997 100%);">📥 Import</button>
+                    <input type="file" id="importFile" style="display: none;" accept=".json" onchange="importData(event)">
                     <button class="admin-button" onclick="saveData()">💾 Save Local</button>
                     <button class="admin-button" onclick="loadData()">📂 Load Local</button>
                 </div>
@@ -607,934 +814,38 @@
         </div>
 
         <!-- Edit Mode Indicator -->
-        <div class="edit-mode-indicator active" id="editModeIndicator">
+        <div class="edit-mode-indicator" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
         <div class="header">
-            <h1 class="title">LaunchPad Golf</h1>
+            <div class="logo-container">
+                <div class="logo"></div>
+                <div class="brand-text">LaunchPad Golf</div>
+            </div>
             <p class="subtitle">Opening Readiness Dashboard</p>
         </div>
 
         <div class="overall-progress">
-            <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
+            <h2 class="overall-title">🏌️ Overall Readiness to Launch</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 73%;">
-                    <span id="overallPercent">73%</span>
+                <div class="overall-bar" id="overallBar">
+                    <span id="overallPercent">0%</span>
                 </div>
             </div>
             <div class="tasks-info">
-                <span>Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">September 12, 2025</strong></span>
-                <span id="overallStatus">⚠️ Launch Preparation in Progress</span>
+                <div class="info-item">
+                    <span>🎯 Target Launch Date: <strong id="launchDate" onclick="editLaunchDate()" class="editable-date">September 12, 2025</strong></span>
+                </div>
+                <div class="info-item">
+                    <span id="overallStatus">Preparing for Launch...</span>
+                </div>
             </div>
         </div>
 
-        <div class="workstreams" id="workstreams"><div class="workstream">
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    ⛳ Golf Operations
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
-                                        View Tasks
-                                    </button>
-                                    <span class="status-badge status-danger">NEEDS ATTENTION</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>67%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 67%">
-                                        67%
-                                    </div>
-                                    <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: 4/6</span>
-                                <span>Remaining: 2</span>
-                                <span class="blockers-count">🚫 2 Blockers</span>
-                            </div>
-                        </div>
-                        
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-0">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                <span class="blocker-badge">2 Blockers</span>
-                            </div>
-                            
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 0)">
-                                            Golf Simulator Systems Installed &amp; Tested
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 0)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 0)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 1)">
-                                            Ball Tracking Technology Calibrated
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 1)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 1)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 2)">
-                                            Suite Safety Equipment Installed
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 2)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 2)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 3)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 3)">
-                                            Golf Club Inventory Stocked
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 3)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 3)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 3)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 4)">
-                                            Staff Training on Golf Operations
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 4)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 4)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 0, 5)">
-                                            Emergency Procedures Documented
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 5)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 5)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', 0)">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">4/6 Complete</span>
-                                <span><span class="blockers-count">2 Blocking Launch</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="workstream">
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    💻 IT/Technology
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                        View Tasks
-                                    </button>
-                                    <span class="status-badge status-danger">NEEDS ATTENTION</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>50%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(1)">Target: 90%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 50%">
-                                        50%
-                                    </div>
-                                    <div class="threshold-marker" style="left: 90%" data-threshold="90"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: 3/6</span>
-                                <span>Remaining: 3</span>
-                                <span class="blockers-count">🚫 3 Blockers</span>
-                            </div>
-                        </div>
-                        
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                <span class="blocker-badge">3 Blockers</span>
-                            </div>
-                            
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 0)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 0)">
-                                            POS System Integration Complete
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 0)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 0)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 0)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 1)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 1)">
-                                            WiFi Network Infrastructure Live
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 1)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 1)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 1)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 2)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 2)">
-                                            Reservation System Tested
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 2)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 2)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 2)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 3)">
-                                            Payment Processing Certified
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 3)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 3)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 4)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 4)">
-                                            Backup Systems Configured
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 4)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 4)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 4)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 5)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 1, 5)">
-                                            Security Cameras &amp; Access Control
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 5)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 5)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 5)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', 1)">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">3/6 Complete</span>
-                                <span><span class="blockers-count">3 Blocking Launch</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="workstream">
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    🍽️ Food &amp; Beverage
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(2)">
-                                        View Tasks
-                                    </button>
-                                    <span class="status-badge status-ready">READY TO LAUNCH</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>83%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(2)">Target: 80%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar progress-ready" style="width: 83%">
-                                        83%
-                                    </div>
-                                    <div class="threshold-marker" style="left: 80%" data-threshold="80"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: 5/6</span>
-                                <span>Remaining: 1</span>
-                                <span class="blockers-count">🚫 1 Blocker</span>
-                            </div>
-                        </div>
-                        
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-2">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                <span class="blocker-badge">1 Blocker</span>
-                            </div>
-                            
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 0)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 0)">
-                                            Kitchen Equipment Installation Complete
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 0)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 0)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 0)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 1)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 1)">
-                                            Liquor License Approved
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 1)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 1)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 1)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 2)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 2)">
-                                            Food Safety Certification Obtained
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 2)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 2)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 2)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 3)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 3)">
-                                            Initial Inventory Delivered
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 3)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 3)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 3)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 4)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 4)">
-                                            Menu Finalized &amp; Printed
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 4)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 4)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 4)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 5)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 2, 5)">
-                                            Staff Food Handler Certifications
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 5)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 5)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 5)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', 2)">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">5/6 Complete</span>
-                                <span><span class="blockers-count">1 Blocking Launch</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="workstream">
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    📢 Marketing &amp; Communications
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(3)">
-                                        View Tasks
-                                    </button>
-                                    <span class="status-badge status-ready">READY TO LAUNCH</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>84%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(3)">Target: 75%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar progress-ready" style="width: 84%">
-                                        84%
-                                    </div>
-                                    <div class="threshold-marker" style="left: 75%" data-threshold="75"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: 5/6</span>
-                                <span>Remaining: 1</span>
-                                <span class="blockers-count">🚫 1 Blocker</span>
-                            </div>
-                        </div>
-                        
-                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-3">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                <span class="blocker-badge">1 Blocker</span>
-                            </div>
-                            
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 0)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 0)">
-                                            Website Launch &amp; Reservations Live
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 0)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 0)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 0)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 1)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 1)">
-                                            Grand Opening Marketing Campaign
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 1)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 1)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 1)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 2)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 2)">
-                                            Social Media Accounts Active
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 2)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 2)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 2)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 3)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 3)">
-                                            Staff Communication Training
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 3)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 3)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 3)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 4)">
-                                            Media Kit &amp; Press Release Ready
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 4)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 4)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 3, 5)">
-                                            Signage Installation Complete
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 5)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 5)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', 3)">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">5/6 Complete</span>
-                                <span><span class="blockers-count">1 Blocking Launch</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="workstream">
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    👥 HR/Talent Acquisition
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(4)">
-                                        Hide Tasks
-                                    </button>
-                                    <span class="status-badge status-danger">NEEDS ATTENTION</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>33%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(4)">Target: 85%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar progress-danger" style="width: 33%">
-                                        33%
-                                    </div>
-                                    <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: 2/6</span>
-                                <span>Remaining: 4</span>
-                                <span class="blockers-count">🚫 3 Blockers</span>
-                            </div>
-                        </div>
-                        
-                        <div class="checkpoints-panel " id="checkpoints-4">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                <span class="blocker-badge">3 Blockers</span>
-                            </div>
-                            
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 0)">
-                                            General Manager Hired &amp; Onboarded
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 0)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 0)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 1)">
-                                        ✓
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 1)">
-                                            Kitchen Manager Hired &amp; Trained
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 1)">
-                                                Mark Incomplete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 1)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 1)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 2)">
-                                            Minimum Staffing Levels Met
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 2)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 2)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 3)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 3)">
-                                            All Staff Background Checks Complete
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 3)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 3)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 3)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 4)">
-                                        !
-                                    </div>
-                                    <div class="checkpoint-text checkpoint-blocker-text">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 4)">
-                                            Opening Team Training Completed
-                                            <span class="blocker-badge">Must Complete</span>
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 4)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 4)">
-                                                Remove Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 4)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
-                                        ○
-                                    </div>
-                                    <div class="checkpoint-text ">
-                                        <div class="editable-task" onclick="editModeAction('editTask', 4, 5)">
-                                            Employee Handbook Distributed
-                                            
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
-                                                Mark Complete
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 5)">
-                                                Make Blocker
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 5)">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', 4)">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">2/6 Complete</span>
-                                <span><span class="blockers-count">3 Blocking Launch</span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div></div>
+        <div class="workstreams" id="workstreams">
+            <!-- Workstreams will be populated by JavaScript -->
+        </div>
     </div>
 
     <script>
@@ -1551,198 +862,91 @@
         let dataFileName = "dashboard-data.json";
 
         const workstreams = [
-          {
-                    "title": "Golf Operations",
-                    "progress": 67,
-                    "threshold": 85,
-                    "icon": "⛳",
-                    "criticalCheckpoints": [
-                              {
-                                        "task": "Golf Simulator Systems Installed & Tested",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Ball Tracking Technology Calibrated",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Suite Safety Equipment Installed",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Golf Club Inventory Stocked",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Staff Training on Golf Operations",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Emergency Procedures Documented",
-                                        "completed": false,
-                                        "isBlocker": true
-                              }
-                    ]
-          },
-          {
-                    "title": "IT/Technology",
-                    "progress": 50,
-                    "threshold": 90,
-                    "icon": "💻",
-                    "criticalCheckpoints": [
-                              {
-                                        "task": "POS System Integration Complete",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "WiFi Network Infrastructure Live",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Reservation System Tested",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Payment Processing Certified",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Backup Systems Configured",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Security Cameras & Access Control",
-                                        "completed": false,
-                                        "isBlocker": true
-                              }
-                    ]
-          },
-          {
-                    "title": "Food & Beverage",
-                    "progress": 83,
-                    "threshold": 80,
-                    "icon": "🍽️",
-                    "criticalCheckpoints": [
-                              {
-                                        "task": "Kitchen Equipment Installation Complete",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Liquor License Approved",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Food Safety Certification Obtained",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Initial Inventory Delivered",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Menu Finalized & Printed",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Staff Food Handler Certifications",
-                                        "completed": true,
-                                        "isBlocker": false
-                              }
-                    ]
-          },
-          {
-                    "title": "Marketing & Communications",
-                    "progress": 84,
-                    "threshold": 75,
-                    "icon": "📢",
-                    "criticalCheckpoints": [
-                              {
-                                        "task": "Website Launch & Reservations Live",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Grand Opening Marketing Campaign",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Social Media Accounts Active",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Staff Communication Training",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Media Kit & Press Release Ready",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Signage Installation Complete",
-                                        "completed": false,
-                                        "isBlocker": true
-                              }
-                    ],
-                    "completedTasks": null
-          },
-          {
-                    "title": "HR/Talent Acquisition",
-                    "progress": 33,
-                    "threshold": 85,
-                    "icon": "👥",
-                    "criticalCheckpoints": [
-                              {
-                                        "task": "General Manager Hired & Onboarded",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Kitchen Manager Hired & Trained",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Minimum Staffing Levels Met",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "All Staff Background Checks Complete",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Opening Team Training Completed",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Employee Handbook Distributed",
-                                        "completed": false,
-                                        "isBlocker": false
-                              }
-                    ]
-          }
-];
+            {
+                title: 'Golf Operations',
+                progress: 67,
+                threshold: 85,
+                icon: '⛳',
+                criticalCheckpoints: [
+                    { task: 'Golf Simulator Systems Installed & Tested', completed: true, isBlocker: true },
+                    { task: 'Ball Tracking Technology Calibrated', completed: true, isBlocker: true },
+                    { task: 'Suite Safety Equipment Installed', completed: true, isBlocker: true },
+                    { task: 'Golf Club Inventory Stocked', completed: false, isBlocker: true },
+                    { task: 'Staff Training on Golf Operations', completed: true, isBlocker: false },
+                    { task: 'Emergency Procedures Documented', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'IT/Technology',
+                progress: 50,
+                threshold: 90,
+                icon: '💻',
+                criticalCheckpoints: [
+                    { task: 'POS System Integration Complete', completed: true, isBlocker: true },
+                    { task: 'WiFi Network Infrastructure Live', completed: true, isBlocker: true },
+                    { task: 'Reservation System Tested', completed: false, isBlocker: true },
+                    { task: 'Payment Processing Certified', completed: false, isBlocker: true },
+                    { task: 'Backup Systems Configured', completed: true, isBlocker: false },
+                    { task: 'Security Cameras & Access Control', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'Food & Beverage',
+                progress: 83,
+                threshold: 80,
+                icon: '🍽️',
+                criticalCheckpoints: [
+                    { task: 'Kitchen Equipment Installation Complete', completed: true, isBlocker: true },
+                    { task: 'Liquor License Approved', completed: true, isBlocker: true },
+                    { task: 'Food Safety Certification Obtained', completed: true, isBlocker: true },
+                    { task: 'Initial Inventory Delivered', completed: false, isBlocker: true },
+                    { task: 'Menu Finalized & Printed', completed: true, isBlocker: false },
+                    { task: 'Staff Food Handler Certifications', completed: true, isBlocker: false }
+                ]
+            },
+            {
+                title: 'Marketing & Communications',
+                progress: 84,
+                threshold: 75,
+                icon: '📢',
+                criticalCheckpoints: [
+                    { task: 'Website Launch & Reservations Live', completed: true, isBlocker: true },
+                    { task: 'Grand Opening Marketing Campaign', completed: true, isBlocker: false },
+                    { task: 'Social Media Accounts Active', completed: true, isBlocker: false },
+                    { task: 'Staff Communication Training', completed: true, isBlocker: false },
+                    { task: 'Media Kit & Press Release Ready', completed: true, isBlocker: false },
+                    { task: 'Signage Installation Complete', completed: false, isBlocker: true }
+                ]
+            },
+            {
+                title: 'HR/Talent Acquisition',
+                progress: 33,
+                threshold: 85,
+                icon: '👥',
+                criticalCheckpoints: [
+                    { task: 'General Manager Hired & Onboarded', completed: true, isBlocker: true },
+                    { task: 'Kitchen Manager Hired & Trained', completed: true, isBlocker: true },
+                    { task: 'Minimum Staffing Levels Met', completed: false, isBlocker: true },
+                    { task: 'All Staff Background Checks Complete', completed: false, isBlocker: true },
+                    { task: 'Opening Team Training Completed', completed: false, isBlocker: true },
+                    { task: 'Employee Handbook Distributed', completed: false, isBlocker: false }
+                ]
+            },
+            {
+                title: 'Finance',
+                progress: 75,
+                threshold: 90,
+                icon: '💰',
+                criticalCheckpoints: [
+                    { task: 'Operating Budget Approved', completed: true, isBlocker: true },
+                    { task: 'Insurance Policies Active', completed: true, isBlocker: true },
+                    { task: 'Banking & Merchant Accounts Setup', completed: true, isBlocker: true },
+                    { task: 'Financial Reporting Systems Live', completed: false, isBlocker: true },
+                    { task: 'Cash Management Procedures', completed: true, isBlocker: false },
+                    { task: 'Audit & Compliance Framework', completed: false, isBlocker: true }
+                ]
+            }
+        ];
 
         function getStatusInfo(progress, threshold) {
             if (progress >= threshold) {
@@ -1766,7 +970,7 @@
             // Store which panels are currently open
             const openPanels = [];
             const existingPanels = container.querySelectorAll('.checkpoints-panel:not(.checkpoints-hidden)');
-            existingPanels.forEach((panel, index) => {
+            existingPanels.forEach((panel) => {
                 const panelId = panel.id.split('-')[1];
                 openPanels.push(parseInt(panelId));
             });
@@ -1791,80 +995,82 @@
                 const buttonText = isOpen ? 'Hide Tasks' : 'View Tasks';
                 
                 workstreamElement.innerHTML = `
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    ${workstream.icon} ${workstream.title}
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
-                                        ${buttonText}
-                                    </button>
-                                    <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>${workstream.progress}%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(${index})">Target: ${workstream.threshold}%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar ${progressClass}" style="width: ${workstream.progress}%">
-                                        ${workstream.progress >= 20 ? workstream.progress + '%' : ''}
-                                    </div>
-                                    <div class="threshold-marker" style="left: ${workstream.threshold}%" data-threshold="${workstream.threshold}"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: ${completedCheckpoints}/${totalCheckpoints}</span>
-                                <span>Remaining: ${totalCheckpoints - completedCheckpoints}</span>
-                                ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
-                            </div>
+                    <div class="workstream-header">
+                        <div class="workstream-title">
+                            <div class="workstream-icon">${workstream.icon}</div>
+                            ${workstream.title}
+                        </div>
+                        <div class="controls-row">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
+                                ${buttonText}
+                            </button>
+                            <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>${workstream.progress}%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(${index})">Target: ${workstream.threshold}%</span>
                         </div>
                         
-                        <div class="checkpoints-panel ${panelClass}" id="checkpoints-${index}">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
+                        <div class="progress-bar-container">
+                            <div class="progress-bar ${progressClass}" style="width: ${workstream.progress}%">
+                                ${workstream.progress >= 20 ? workstream.progress + '%' : ''}
                             </div>
-                            
-                            ${workstream.criticalCheckpoints.map((checkpoint, cpIndex) => `
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status ${checkpoint.completed ? 'checkpoint-completed' : (checkpoint.isBlocker ? 'checkpoint-blocker' : 'checkpoint-pending')}" 
-                                         onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
-                                        ${checkpoint.completed ? '✓' : (checkpoint.isBlocker ? '!' : '○')}
+                            <div class="threshold-marker" style="left: ${workstream.threshold}%" data-threshold="${workstream.threshold}"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <div class="info-item">
+                            <span>📋 Tasks: ${completedCheckpoints}/${totalCheckpoints}</span>
+                        </div>
+                        <div class="info-item">
+                            <span>⏳ Remaining: ${totalCheckpoints - completedCheckpoints}</span>
+                        </div>
+                        <div class="info-item">
+                            ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
+                        </div>
+                    </div>
+                    
+                    <div class="checkpoints-panel ${panelClass}" id="checkpoints-${index}">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
+                        </div>
+                        
+                        ${workstream.criticalCheckpoints.map((checkpoint, cpIndex) => `
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status ${checkpoint.completed ? 'checkpoint-completed' : (checkpoint.isBlocker ? 'checkpoint-blocker' : 'checkpoint-pending')}" 
+                                     onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
+                                    ${checkpoint.completed ? '✓' : (checkpoint.isBlocker ? '!' : '○')}
+                                </div>
+                                <div class="checkpoint-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', ${index}, ${cpIndex})">
+                                        ${checkpoint.task}
+                                        ${(!checkpoint.completed && checkpoint.isBlocker) ? '<span class="blocker-badge">Must Complete</span>' : ''}
                                     </div>
-                                    <div class="checkpoint-text ${(!checkpoint.completed && checkpoint.isBlocker) ? 'checkpoint-blocker-text' : ''}">
-                                        <div class="editable-task" onclick="editModeAction('editTask', ${index}, ${cpIndex})">
-                                            ${checkpoint.task}
-                                            ${(!checkpoint.completed && checkpoint.isBlocker) ? '<span class="blocker-badge">Must Complete</span>' : ''}
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
-                                                ${checkpoint.completed ? 'Mark Incomplete' : 'Mark Complete'}
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', ${index}, ${cpIndex})">
-                                                ${checkpoint.isBlocker ? 'Remove Blocker' : 'Make Blocker'}
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', ${index}, ${cpIndex})">Delete</button>
-                                        </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
+                                            ${checkpoint.completed ? 'Mark Incomplete' : 'Mark Complete'}
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', ${index}, ${cpIndex})">
+                                            ${checkpoint.isBlocker ? 'Remove Blocker' : 'Make Blocker'}
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', ${index}, ${cpIndex})">Delete</button>
                                     </div>
                                 </div>
-                            `).join('')}
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', ${index})">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
-                                <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
                             </div>
+                        `).join('')}
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', ${index})">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
+                            <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
                         </div>
                     </div>
                 `;
@@ -1927,12 +1133,12 @@
             overallPercent.textContent = overallProgress + '%';
             
             if (overallProgress >= 85) {
-                overallStatus.textContent = '🚀 READY FOR LAUNCH!';
+                overallStatus.innerHTML = '🚀 <strong>READY FOR LAUNCH!</strong>';
                 overallBar.parentElement.parentElement.classList.add('ready-to-launch');
             } else if (overallProgress >= 70) {
-                overallStatus.textContent = '⚠️ Launch Preparation in Progress';
+                overallStatus.innerHTML = '⚠️ <strong>Launch Preparation in Progress</strong>';
             } else {
-                overallStatus.textContent = '🔧 Active Development Phase';
+                overallStatus.innerHTML = '🔧 <strong>Active Development Phase</strong>';
             }
         }
 
@@ -1978,7 +1184,7 @@
                     const editBtn = document.getElementById('editModeBtn');
                     editBtn.classList.remove('active');
                     editBtn.textContent = '📝 Edit Mode';
-                    editBtn.style.background = '#5A5A5A';
+                    editBtn.style.background = '';
                 } else {
                     alert('Incorrect password');
                     document.getElementById('adminPassword').value = '';
@@ -2002,19 +1208,13 @@
                 indicator.classList.add('active');
                 editBtn.classList.add('active');
                 editBtn.textContent = '✅ Exit Edit';
-                editBtn.style.background = '#dc3545'; // Red background for exit
-                
-                // Save edit mode state
-                sessionStorage.setItem('editMode', 'true');
+                editBtn.style.background = 'linear-gradient(135deg, #dc3545 0%, #e4606d 100%)';
             } else {
                 body.classList.remove('edit-mode');
                 indicator.classList.remove('active');
                 editBtn.classList.remove('active');
                 editBtn.textContent = '📝 Edit Mode';
-                editBtn.style.background = '#5A5A5A'; // Reset to default background
-                
-                // Clear edit mode state
-                sessionStorage.removeItem('editMode');
+                editBtn.style.background = '';
             }
             
             // Force re-render to update edit mode UI
@@ -2033,6 +1233,11 @@
                 task.task = newTask.trim();
                 renderWorkstreams();
                 updateOverallProgress();
+                
+                // Auto-save to GitHub
+                if (autoSaveEnabled) {
+                    setTimeout(autoSaveToGitHub, 1000);
+                }
             }
         }
 
@@ -2066,6 +1271,11 @@
             task.isBlocker = !task.isBlocker;
             renderWorkstreams();
             updateOverallProgress();
+            
+            // Auto-save to GitHub
+            if (autoSaveEnabled) {
+                setTimeout(autoSaveToGitHub, 1000);
+            }
         }
 
         function deleteTask(workstreamIndex, checkpointIndex) {
@@ -2075,6 +1285,11 @@
                 workstreams[workstreamIndex].criticalCheckpoints.splice(checkpointIndex, 1);
                 renderWorkstreams();
                 updateOverallProgress();
+                
+                // Auto-save to GitHub
+                if (autoSaveEnabled) {
+                    setTimeout(autoSaveToGitHub, 1000);
+                }
             }
         }
 
@@ -2090,6 +1305,11 @@
                 });
                 renderWorkstreams();
                 updateOverallProgress();
+                
+                // Auto-save to GitHub
+                if (autoSaveEnabled) {
+                    setTimeout(autoSaveToGitHub, 1000);
+                }
             }
         }
 
@@ -2105,6 +1325,11 @@
                     workstream.threshold = threshold;
                     renderWorkstreams();
                     updateOverallProgress();
+                    
+                    // Auto-save to GitHub
+                    if (autoSaveEnabled) {
+                        setTimeout(autoSaveToGitHub, 1000);
+                    }
                 } else {
                     alert('Please enter a number between 0 and 100');
                 }
@@ -2118,12 +1343,18 @@
             if (newDate && newDate.trim()) {
                 launchDate = newDate.trim();
                 document.getElementById('launchDate').textContent = launchDate;
+                
+                // Auto-save to GitHub
+                if (autoSaveEnabled) {
+                    setTimeout(autoSaveToGitHub, 1000);
+                }
             }
         }
 
         function exportData() {
             const data = {
                 workstreams: workstreams,
+                launchDate: launchDate,
                 exportDate: new Date().toISOString(),
                 version: "1.0"
             };
@@ -2149,6 +1380,10 @@
                         if (confirm('This will replace all current tasks. Continue?')) {
                             workstreams.length = 0;
                             workstreams.push(...data.workstreams);
+                            if (data.launchDate) {
+                                launchDate = data.launchDate;
+                                document.getElementById('launchDate').textContent = launchDate;
+                            }
                             renderWorkstreams();
                             updateOverallProgress();
                             alert('Tasks imported successfully!');
@@ -2164,7 +1399,11 @@
         }
 
         function saveData() {
-            localStorage.setItem('launchpadTasks', JSON.stringify(workstreams));
+            const data = {
+                workstreams: workstreams,
+                launchDate: launchDate
+            };
+            localStorage.setItem('launchpadTasks', JSON.stringify(data));
             alert('Tasks saved to browser storage!');
         }
 
@@ -2172,8 +1411,13 @@
             const saved = localStorage.getItem('launchpadTasks');
             if (saved) {
                 if (confirm('This will replace current tasks with saved data. Continue?')) {
+                    const data = JSON.parse(saved);
                     workstreams.length = 0;
-                    workstreams.push(...JSON.parse(saved));
+                    workstreams.push(...data.workstreams);
+                    if (data.launchDate) {
+                        launchDate = data.launchDate;
+                        document.getElementById('launchDate').textContent = launchDate;
+                    }
                     renderWorkstreams();
                     updateOverallProgress();
                     alert('Tasks loaded from browser storage!');
@@ -2192,7 +1436,6 @@
             }
 
             try {
-                // Test 1: Check if token is valid
                 const userResponse = await fetch('https://api.github.com/user', {
                     headers: {
                         'Authorization': `token ${token}`,
@@ -2206,9 +1449,6 @@
                 }
 
                 const userData = await userResponse.json();
-                console.log('User data:', userData);
-
-                // Test 2: Check repository access
                 const repoResponse = await fetch(`https://api.github.com/repos/${githubRepo}`, {
                     headers: {
                         'Authorization': `token ${token}`,
@@ -2222,8 +1462,6 @@
                 }
 
                 const repoData = await repoResponse.json();
-                console.log('Repository data:', repoData);
-
                 alert(`✅ Connection successful!\nUser: ${userData.login}\nRepository: ${repoData.full_name}\nNow try "Setup Auto-Save"`);
 
             } catch (error) {
@@ -2241,9 +1479,7 @@
 
             githubToken = token;
             
-            // Test the token with more detailed error handling
             try {
-                console.log('Testing GitHub connection...');
                 const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -2251,28 +1487,20 @@
                     }
                 });
 
-                console.log('Response status:', response.status);
-                
-                if (response.status === 401) {
-                    throw new Error('Invalid GitHub token. Please check your token has the correct permissions.');
-                } else if (response.status === 404) {
-                    throw new Error(`Repository not found. Please verify the repository name: ${githubRepo}`);
-                } else if (response.ok) {
+                if (response.ok) {
                     autoSaveEnabled = true;
                     localStorage.setItem('githubToken', githubToken);
                     
-                    // Update status display immediately and persistently
                     const statusElement = document.getElementById('autoSaveStatus');
-                    statusElement.innerHTML = '<span style="color: #28a745;">✅ Auto-Save Connected! Ready for edits.</span>';
+                    statusElement.innerHTML = '<span style="color: #4CAF50;">✅ Auto-Save Connected! Ready for edits.</span>';
                     
                     alert('Auto-save setup successful! Your edits will now automatically save to GitHub.');
                 } else {
-                    const errorData = await response.text();
-                    throw new Error(`GitHub API error (${response.status}): ${errorData}`);
+                    throw new Error('Failed to connect to repository');
                 }
             } catch (error) {
                 console.error('GitHub setup error:', error);
-                alert('GitHub setup failed: ' + error.message + '\n\nPlease check:\n1. Token permissions (repo access)\n2. Repository name is correct\n3. Token is valid');
+                alert('GitHub setup failed: ' + error.message);
                 autoSaveEnabled = false;
                 document.getElementById('autoSaveStatus').innerHTML = 
                     '<span style="color: #dc3545;">❌ Auto-Save Failed</span>';
@@ -2290,151 +1518,64 @@
             statusElement.innerHTML = '<span style="color: #ffc107;">⏳ Saving...</span>';
 
             try {
-                // Get current file content and SHA
-                const getResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
-                    headers: {
-                        'Authorization': `token ${githubToken}`,
-                        'Accept': 'application/vnd.github.v3+json'
+                // Create data object to save
+                const dataToSave = {
+                    workstreams: workstreams,
+                    launchDate: launchDate,
+                    lastUpdated: new Date().toISOString(),
+                    version: "1.0"
+                };
+
+                // Check if data file exists
+                let currentSha = null;
+                try {
+                    const getResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/${dataFileName}`, {
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+
+                    if (getResponse.ok) {
+                        const fileData = await getResponse.json();
+                        currentSha = fileData.sha;
                     }
-                });
+                } catch (e) {
+                    console.log('Data file does not exist yet, will create new one');
+                }
 
-                if (!getResponse.ok) throw new Error('Failed to get current file');
-                
-                const fileData = await getResponse.json();
-                const currentSha = fileData.sha;
+                // Save data as JSON
+                const jsonContent = JSON.stringify(dataToSave, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(jsonContent)));
 
-                // Generate updated HTML content
-                const updatedHtml = generateUpdatedHtml();
-                const encodedContent = btoa(unescape(encodeURIComponent(updatedHtml)));
+                const savePayload = {
+                    message: `Auto-save dashboard data - ${new Date().toLocaleString()}`,
+                    content: encodedContent
+                };
 
-                // Update the file
-                const updateResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
+                if (currentSha) {
+                    savePayload.sha = currentSha;
+                }
+
+                const updateResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/${dataFileName}`, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `token ${githubToken}`,
                         'Accept': 'application/vnd.github.v3+json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        message: `Auto-save dashboard updates - ${new Date().toLocaleString()}`,
-                        content: encodedContent,
-                        sha: currentSha
-                    })
+                    body: JSON.stringify(savePayload)
                 });
 
                 if (updateResponse.ok) {
                     const saveTime = new Date().toLocaleTimeString();
                     statusElement.innerHTML = 
-                        `<span style="color: #28a745;">✅ Auto-saved at ${saveTime}</span>`;
+                        `<span style="color: #4CAF50;">✅ Auto-saved at ${saveTime}</span>`;
                     console.log('Auto-save successful!');
                     
-                    // Keep the message visible for longer
                     setTimeout(() => {
                         if (statusElement.innerHTML.includes('Auto-saved at')) {
                             statusElement.innerHTML = 
-                                '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                                '<span style="color: #4CAF50;">✅ Auto-Save Ready</span>';
                         }
-                    }, 5000); // Show save time for 5 seconds, then show "Ready"
-                } else {
-                    throw new Error('Failed to update file');
-                }
-            } catch (error) {
-                statusElement.innerHTML = 
-                    '<span style="color: #dc3545;">❌ Auto-save failed: ' + error.message + '</span>';
-                console.error('Auto-save error:', error);
-            }
-        }
-
-        function manualSave() {
-            if (!autoSaveEnabled || !githubToken) {
-                alert('Auto-save not set up. Please setup auto-save first.');
-                return;
-            }
-            
-            console.log('Manual save triggered');
-            autoSaveToGitHub();
-        }
-
-        function generateUpdatedHtml() {
-            // Get the current HTML template and inject updated data
-            const htmlTemplate = document.documentElement.outerHTML;
-            
-            // Replace the workstreams data in the script section
-            const workstreamsJson = JSON.stringify(workstreams, null, 12);
-            const launchDateJson = JSON.stringify(launchDate);
-            
-            let updatedHtml = htmlTemplate.replace(
-                /const workstreams = \[[\s\S]*?\];/,
-                `const workstreams = ${workstreamsJson};`
-            );
-            
-            updatedHtml = updatedHtml.replace(
-                /let launchDate = "[^"]*";/,
-                `let launchDate = ${launchDateJson};`
-            );
-            
-            return updatedHtml;
-        }
-
-        // Load saved GitHub token on page load
-        function loadGitHubSettings() {
-            const savedToken = localStorage.getItem('githubToken');
-            if (savedToken) {
-                githubToken = savedToken;
-                autoSaveEnabled = true;
-                setTimeout(() => {
-                    if (document.getElementById('autoSaveStatus')) {
-                        document.getElementById('autoSaveStatus').innerHTML = 
-                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
-                    }
-                }, 1000);
-            }
-            
-            // Clear any stuck states but don't reset authentication here
-            sessionStorage.removeItem('editMode');
-        }
-
-        // Initialize dashboard
-        document.addEventListener('DOMContentLoaded', function() {
-            // Clear edit mode but allow admin login
-            isEditMode = false;
-            
-            // Clear any stuck CSS classes
-            document.body.classList.remove('edit-mode');
-            
-            // Reset edit mode indicator
-            const indicator = document.getElementById('editModeIndicator');
-            if (indicator) {
-                indicator.classList.remove('active');
-            }
-            
-            // Clear session storage
-            sessionStorage.removeItem('editMode');
-            
-            console.log('Page loaded - Edit Mode:', isEditMode);
-            
-            loadGitHubSettings();
-            renderWorkstreams();
-            updateOverallProgress();
-        });
-
-        // Auto-update simulation (optional - remove if not needed)
-        setInterval(() => {
-            if (!isEditMode) {
-                const randomIndex = Math.floor(Math.random() * workstreams.length);
-                const workstream = workstreams[randomIndex];
-                
-                if (workstream.progress < 100 && Math.random() > 0.8) {
-                    workstream.progress = Math.min(100, workstream.progress + 1);
-                    workstream.completedTasks = Math.min(workstream.totalTasks, 
-                        Math.round((workstream.progress / 100) * workstream.totalTasks));
-                    
-                    renderWorkstreams();
-                    updateOverallProgress();
-                }
-            }
-        }, 5000);
-    </script>
-
-
-</body></html>
+                    }, 5000);
