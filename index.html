@@ -593,6 +593,7 @@
                 <div id="adminButtons" style="display: none;">
                     <div style="margin-bottom: 10px;">
                         <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
+                        <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"></div>
@@ -1099,6 +1100,54 @@
         }
 
         // GitHub API functions
+        async function testGitHubConnection() {
+            const token = document.getElementById('githubToken').value.trim();
+            if (!token) {
+                alert('Please enter your GitHub token first');
+                return;
+            }
+
+            try {
+                // Test 1: Check if token is valid
+                const userResponse = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!userResponse.ok) {
+                    alert(`Token test failed: ${userResponse.status} - ${userResponse.statusText}\nPlease check your token is valid.`);
+                    return;
+                }
+
+                const userData = await userResponse.json();
+                console.log('User data:', userData);
+
+                // Test 2: Check repository access
+                const repoResponse = await fetch(`https://api.github.com/repos/${githubRepo}`, {
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (!repoResponse.ok) {
+                    alert(`Repository test failed: ${repoResponse.status} - ${repoResponse.statusText}\nRepository: ${githubRepo}\nPlease check the repository name and token permissions.`);
+                    return;
+                }
+
+                const repoData = await repoResponse.json();
+                console.log('Repository data:', repoData);
+
+                alert(`✅ Connection successful!\nUser: ${userData.login}\nRepository: ${repoData.full_name}\nNow try "Setup Auto-Save"`);
+
+            } catch (error) {
+                alert(`Connection test failed: ${error.message}`);
+                console.error('Test error:', error);
+            }
+        }
+
         async function setupAutoSave() {
             const token = document.getElementById('githubToken').value.trim();
             if (!token) {
