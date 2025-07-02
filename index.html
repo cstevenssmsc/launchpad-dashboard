@@ -1562,9 +1562,7 @@
                             💰 Finance &amp; Operations
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">
-                                Hide Tasks
-                            </button>
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">View Tasks</button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
                     </div>
@@ -1582,15 +1580,15 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 3/12</span>
-                        <span>Remaining: 9</span>
-                        <span class="blockers-count">🚫 7 Blockers</span>
+                        <span>Tasks: 0/6</span>
+                        <span>Remaining: 6</span>
+                        <span class="blockers-count">🚫 5 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-5">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-5">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">7 Blockers</span>
+                            <span class="blocker-badge">5 Blockers</span>
                         </div>
                         
                         
@@ -1663,7 +1661,7 @@
                                 </div>
                                 <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 5, 3)">
-                                        Accounting System Implementation
+                                        BI Reporting Overview
                                         <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
@@ -1679,17 +1677,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 5, 4)">
-                                    ✓
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 4)">
+                                    !
                                 </div>
-                                <div class="checkpoint-text ">
+                                <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 5, 4)">
-                                        Opening Budget Approved &amp; Funded
-                                        
+                                        InRange PO and ETF Net 10-Day Terms
+                                        <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 4)">
-                                            Mark Incomplete
+                                            Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 4)">
                                             Remove Blocker
@@ -1700,148 +1698,22 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 5)">
-                                    !
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 5, 5)">
+                                    ○
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 5, 5)">
-                                        Cash Management Procedures Established
-                                        <span class="blocker-badge">Must Complete</span>
+                                        Gift Cards Process &amp; Product
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 5)">
                                             Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 5)">
-                                            Remove Blocker
+                                            Make Blocker
                                         </button>
                                         <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 5)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 6)">
-                                    !
-                                </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 6)">
-                                        Revenue Tracking System Tested
-                                        <span class="blocker-badge">Must Complete</span>
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 6)">
-                                            Mark Complete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 6)">
-                                            Remove Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 6)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 5, 7)">
-                                    ○
-                                </div>
-                                <div class="checkpoint-text ">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 7)">
-                                        Tax Registration &amp; Filing Setup
-                                        
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 7)">
-                                            Mark Complete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 7)">
-                                            Make Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 7)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 5, 8)">
-                                    ○
-                                </div>
-                                <div class="checkpoint-text ">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 8)">
-                                        Financial Reporting Framework Ready
-                                        
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 8)">
-                                            Mark Complete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 8)">
-                                            Make Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 8)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 5, 9)">
-                                    ✓
-                                </div>
-                                <div class="checkpoint-text ">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 9)">
-                                        Vendor Payment Systems Configured
-                                        
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 9)">
-                                            Mark Incomplete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 9)">
-                                            Make Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 9)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 10)">
-                                    !
-                                </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 10)">
-                                        Pricing Strategy Finalized
-                                        <span class="blocker-badge">Must Complete</span>
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 10)">
-                                            Mark Complete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 10)">
-                                            Remove Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 10)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 5, 11)">
-                                    ✓
-                                </div>
-                                <div class="checkpoint-text ">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 11)">
-                                        Initial Float &amp; Operating Capital Ready
-                                        
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 11)">
-                                            Mark Incomplete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 11)">
-                                            Remove Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 11)">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -1852,8 +1724,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">3/12 Complete</span>
-                            <span><span class="blockers-count">7 Blocking Launch</span></span>
+                            <span class="completed-count">0/6 Complete</span>
+                            <span><span class="blockers-count">5 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div></div>
@@ -2082,49 +1954,19 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Accounting System Implementation",
+                                        "task": "BI Reporting Overview",
                                         "completed": false,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Opening Budget Approved & Funded",
-                                        "completed": true,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Cash Management Procedures Established",
+                                        "task": "InRange PO and ETF Net 10-Day Terms",
                                         "completed": false,
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Revenue Tracking System Tested",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Tax Registration & Filing Setup",
+                                        "task": "Gift Cards Process & Product",
                                         "completed": false,
                                         "isBlocker": false
-                              },
-                              {
-                                        "task": "Financial Reporting Framework Ready",
-                                        "completed": false,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Vendor Payment Systems Configured",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Pricing Strategy Finalized",
-                                        "completed": false,
-                                        "isBlocker": true
-                              },
-                              {
-                                        "task": "Initial Float & Operating Capital Ready",
-                                        "completed": true,
-                                        "isBlocker": true
                               }
                     ]
           }
