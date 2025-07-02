@@ -1,212 +1,6 @@
-.admin-button {
-            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .admin-button:hover {
-            background: linear-gradient(135deg, #ED0000 0%, #dc3545 100%);
-            transform: translateY(-1px);
-        }
-
-        .admin-button.active {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-        }
-
-        .password-input {
-            background: #0A0A0A;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 10px 12px;
-            border-radius: 6px;
-            margin: 6px;
-            width: 180px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .password-input:focus {
-            outline: none;
-            border-color: #ED0000;
-            box-shadow: 0 0 0 2px rgba(237, 0, 0, 0.2);
-        }
-
-        .editable-task {
-            cursor: pointer;
-            padding: 6px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .editable-task:hover {
-            background: rgba(255, 255, 255, 0.05);
-            outline: 1px dashed rgba(237, 0, 0, 0.5);
-        }
-
-        .edit-mode .editable-task {
-            border: 1px dashed rgba(237, 0, 0, 0.4);
-            background: rgba(237, 0, 0, 0.05);
-        }
-
-        .task-controls {
-            display: none;
-            margin-top: 12px;
-            gap: 8px;
-        }
-
-        .edit-mode .task-controls {
-            display: flex;
-        }
-
-        .task-btn {
-            background: linear-gradient(135deg, #495057 0%, #343a40 100%);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .task-btn:hover {
-            background: linear-gradient(135deg, #ED0000 0%, #dc3545 100%);
-        }
-
-        .task-btn.delete {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-        }
-
-        .add-task-btn {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-            width: 100%;
-            display: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-        }
-
-        .edit-mode .add-task-btn {
-            display: block;
-        }
-
-        .add-task-btn:hover {
-            background: linear-gradient(135deg, #218838 0%, #1dc2a7 100%);
-            transform: translateY(-1px);
-        }
-
-        .export-data {
-            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
-            color: #000;
-        }
-
-        .import-data {
-            background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
-            color: white;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .edit-mode-indicator {
-            position: fixed;
-            top: 50%;
-            left: 30px;
-            background: linear-gradient(135deg, #ED0000 0%, #dc3545 100%);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 0 30px 30px 0;
-            font-weight: 600;
-            z-index: 999;
-            display: none;
-            animation: pulse 2s infinite;
-            box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4);
-        }
-
-        .edit-mode-indicator.active {
-            display: block;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(237, 0, 0, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4); }
-        }
-
-        @keyframes pulse-red {
-            0% { transform: scale(1); box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4); }
-            70% { transform: scale(1.05); box-shadow: 0 4px 12px rgba(220, 53, 69, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4); }
-        }
-
-        .ready-to-launch {
-            animation: pulse 2s infinite;
-        }
-
-        @media (max-width: 1400px) {
-            .workstreams {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .checkpoints-panel {
-                width: 100%;
-                margin-top: 20px;
-            }
-            
-            .admin-panel {
-                top: 20px;
-                right: 20px;
-                left: 20px;
-                position: relative;
-                margin-bottom: 30px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 15px;
-            }
-            
-            .dashboard {
-                padding: 0;
-            }
-            
-            .title {
-                font-size: 2.2rem;
-                letter-spacing: 2px;
-            }
-            
-            .workstream {
-                padding: 25px 20px;
-            }
-            
-            .overall-progress {
-                padding: 30px 25px;
-            }
-            
-            .workstreams {
-                gap: 20px;
-                grid-template-columns: 1fr;
-            }
-        }<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaunchPad Golf - Opening Readiness Dashboard</title>
@@ -332,15 +126,6 @@
             border-color: rgba(237, 0, 0, 0.2);
         }
 
-        .workstream-content {
-            display: block;
-        }
-
-        .workstream-main {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
         .workstream-header {
             display: flex;
             justify-content: space-between;
@@ -422,10 +207,6 @@
             border: 1px solid rgba(237, 0, 0, 0.3);
         }
 
-        .edit-mode .editable-date:hover {
-            background: rgba(237, 0, 0, 0.3);
-        }
-
         .progress-bar-container {
             background: #0D0D0D;
             height: 10px;
@@ -439,13 +220,6 @@
         .progress-bar {
             height: 100%;
             transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
             border-radius: 8px;
         }
 
@@ -656,7 +430,6 @@
             display: none;
         }
 
-        /* Admin Interface Styles */
         .admin-panel {
             position: fixed;
             top: 30px;
@@ -680,11 +453,6 @@
             font-weight: 600;
             box-shadow: 0 4px 12px rgba(237, 0, 0, 0.3);
             transition: all 0.3s ease;
-        }
-
-        .admin-toggle:hover {
-            background: linear-gradient(135deg, #FF2020 0%, #e74c3c 100%);
-            transform: translateY(-1px);
         }
 
         .admin-controls {
@@ -730,7 +498,6 @@
             margin: 6px;
             width: 180px;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
         }
 
         .password-input:focus {
@@ -744,11 +511,6 @@
             padding: 6px;
             border-radius: 6px;
             transition: all 0.2s ease;
-        }
-
-        .editable-task:hover {
-            background: rgba(255, 255, 255, 0.05);
-            outline: 1px dashed rgba(237, 0, 0, 0.5);
         }
 
         .edit-mode .editable-task {
@@ -805,11 +567,6 @@
             display: block;
         }
 
-        .add-task-btn:hover {
-            background: linear-gradient(135deg, #218838 0%, #1dc2a7 100%);
-            transform: translateY(-1px);
-        }
-
         .export-data {
             background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
             color: #000;
@@ -844,19 +601,15 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(237, 0, 0, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 6px 20px rgba(237, 0, 0, 0.4); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @keyframes pulse-red {
-            0% { transform: scale(1); box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4); }
-            70% { transform: scale(1.05); box-shadow: 0 4px 12px rgba(220, 53, 69, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 2px 6px rgba(220, 53, 69, 0.4); }
-        }
-
-        .ready-to-launch {
-            animation: pulse 2s infinite;
+            0% { transform: scale(1); }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
         @media (max-width: 1400px) {
@@ -865,28 +618,9 @@
             }
         }
 
-        @media (max-width: 1200px) {
-            .checkpoints-panel {
-                width: 100%;
-                margin-top: 20px;
-            }
-            
-            .admin-panel {
-                top: 20px;
-                right: 20px;
-                left: 20px;
-                position: relative;
-                margin-bottom: 30px;
-            }
-        }
-
         @media (max-width: 768px) {
             body {
                 padding: 20px 15px;
-            }
-            
-            .dashboard {
-                padding: 0;
             }
             
             .title {
@@ -901,670 +635,32 @@
             .overall-progress {
                 padding: 30px 25px;
             }
-            
-            .workstreams {
-                gap: 20px;
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-        .dashboard {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(237, 0, 0, 0.2);
-        }
-
-        .title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 10px rgba(237, 0, 0, 0.3);
-        }
-
-        .subtitle {
-            font-size: 1.3rem;
-            color: #B0B0B0;
-            margin-bottom: 30px;
-            font-weight: 300;
-        }
-
-        .overall-progress {
-            background: linear-gradient(145deg, #2A2A2A 0%, #1F1F1F 100%);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 50px;
-            border: 1px solid rgba(237, 0, 0, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(10px);
-        }
-
-        .overall-title {
-            font-size: 2rem;
-            color: #ED0000;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .overall-bar-container {
-            background: #0D0D0D;
-            height: 14px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
-        }
-
-        .overall-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ED0000 0%, #FF3030 50%, #ED0000 100%);
-            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.9rem;
-            box-shadow: 0 0 20px rgba(237, 0, 0, 0.4);
-            border-radius: 10px;
-        }
-
-        .workstreams {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-            gap: 30px;
-        }
-
-        .workstream {
-            background: linear-gradient(145deg, #242424 0%, #1A1A1A 100%);
-            border-radius: 20px;
-            padding: 35px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .workstream::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #ED0000 0%, #FF3030 50%, #ED0000 100%);
-        }
-
-        .workstream:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(237, 0, 0, 0.1);
-            border-color: rgba(237, 0, 0, 0.2);
-        }
-
-        .workstream-content {
-            display: block;
-        }
-
-        .workstream-main {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .checkpoints-panel {
-            width: 100%;
-            background: linear-gradient(145deg, #1E1E1E 0%, #161616 100%);
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-            margin-top: 15px;
-        }
-
-        .workstream-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .workstream-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #FFFFFF;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .status-badge {
-            padding: 8px 16px;
-            border-radius: 25px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .status-ready {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-        }
-
-        .status-warning {
-            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
-            color: #000;
-        }
-
-        .status-danger {
-            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
-            color: white;
-        }
-
-        .progress-container {
-            margin-bottom: 20px;
-        }
-
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-
-        .threshold-label {
-            color: #B0B0B0;
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            font-size: 0.85rem;
-        }
-
-        .edit-mode .threshold-label {
-            background: rgba(237, 0, 0, 0.2);
-            color: #ED0000;
-            border: 1px solid rgba(237, 0, 0, 0.3);
-        }
-
-        .editable-date {
-            cursor: pointer;
-            padding: 4px 8px;
-            border-radius: 6px;
-            transition: all 0.2s ease;
-        }
-
-        .edit-mode .editable-date {
-            background: rgba(237, 0, 0, 0.2);
-            color: #ED0000;
-            border: 1px solid rgba(237, 0, 0, 0.3);
-        }
-
-        .edit-mode .editable-date:hover {
-            background: rgba(237, 0, 0, 0.3);
-        }
-
-        .progress-bar-container {
-            background: #0D0D0D;
-            height: 10px;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
-        }
-
-        .progress-bar {
-            height: 100%;
-            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.75rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-        }
-
-        .threshold-marker {
-            position: absolute;
-            top: -2px;
-            height: calc(100% + 4px);
-            width: 2px;
-            background: #FFFFFF;
-            z-index: 2;
-            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
-        }
-
-        .threshold-marker::after {
-            content: attr(data-threshold) '%';
-            position: absolute;
-            top: -28px;
-            left: -12px;
-            font-size: 0.65rem;
-            color: #FFFFFF;
-            background: #ED0000;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .progress-ready {
-            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
-            box-shadow: 0 0 12px rgba(40, 167, 69, 0.4);
-        }
-
-        .progress-warning {
-            background: linear-gradient(90deg, #ffc107 0%, #fd7e14 100%);
-            box-shadow: 0 0 12px rgba(255, 193, 7, 0.4);
-        }
-
-        .progress-danger {
-            background: linear-gradient(90deg, #dc3545 0%, #e74c3c 100%);
-            box-shadow: 0 0 12px rgba(220, 53, 69, 0.4);
-        }
-
-        .tasks-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #B0B0B0;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .golf-ball {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            background: linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%);
-            border-radius: 50%;
-            position: relative;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .golf-ball::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            right: 3px;
-            bottom: 3px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, #ffffff, #e0e0e0);
-        }
-
-        .checkpoints-panel {
-            width: 380px;
-            background: linear-gradient(145deg, #222222 0%, #1A1A1A 100%);
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .checkpoints-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #ED0000;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .checkpoint-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 12px;
-            padding: 10px;
-            border-radius: 10px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-
-        .checkpoint-item:hover {
-            background: rgba(255, 255, 255, 0.03);
-            border-color: rgba(237, 0, 0, 0.15);
-        }
-
-        .checkpoint-status {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            flex-shrink: 0;
-            margin-top: 2px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .checkpoint-completed {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            color: white;
-        }
-
-        .checkpoint-pending {
-            background: linear-gradient(135deg, #6c757d 0%, #495057 100%);
-            color: white;
-        }
-
-        .checkpoint-blocker {
-            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
-            color: white;
-            animation: pulse-red 2s infinite;
-        }
-
-        .checkpoint-text {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #FFFFFF;
-            flex: 1;
-        }
-
-        .checkpoint-blocker-text {
-            color: #FF6B6B;
-            font-weight: 500;
-        }
-
-        .blocker-badge {
-            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-left: 8px;
-            box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
-        }
-
-        .checkpoint-summary {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .blockers-count {
-            color: #dc3545;
-            font-weight: 600;
-        }
-
-        .completed-count {
-            color: #28a745;
-            font-weight: 600;
-        }
-
-        .toggle-checkpoints {
-            background: linear-gradient(135deg, #ED0000 0%, #dc3545 100%);
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-left: auto;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(237, 0, 0, 0.3);
-        }
-
-        .toggle-checkpoints:hover {
-            background: linear-gradient(135deg, #FF2020 0%, #e74c3c 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(237, 0, 0, 0.4);
-        }
-
-        .checkpoints-hidden {
-            display: none;
-        }
-
-        /* Admin Interface Styles */
-        .admin-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #2C2B2B;
-            border: 2px solid #ED0000;
-            border-radius: 10px;
-            padding: 15px;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .admin-toggle {
-            background: #ED0000;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .admin-toggle:hover {
-            background: #FF4444;
-        }
-
-        .admin-controls {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #5A5A5A;
-        }
-
-        .admin-controls.active {
-            display: block;
-        }
-
-        .admin-button {
-            background: #5A5A5A;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 0.9rem;
-        }
-
-        .admin-button:hover {
-            background: #ED0000;
-        }
-
-        .admin-button.active {
-            background: #28a745;
-        }
-
-        .password-input {
-            background: #181818;
-            border: 1px solid #5A5A5A;
-            color: white;
-            padding: 8px;
-            border-radius: 4px;
-            margin: 5px;
-            width: 150px;
-        }
-
-        .editable-task {
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 4px;
-            transition: background 0.2s ease;
-        }
-
-        .editable-task:hover {
-            background: #2C2B2B;
-            outline: 1px dashed #ED0000;
-        }
-
-        .edit-mode .editable-task {
-            border: 1px dashed #ED0000;
-        }
-
-        .task-controls {
-            display: none;
-            margin-top: 8px;
-            gap: 8px;
-        }
-
-        .edit-mode .task-controls {
-            display: flex;
-        }
-
-        .task-btn {
-            background: #5A5A5A;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .task-btn:hover {
-            background: #ED0000;
-        }
-
-        .task-btn.delete {
-            background: #dc3545;
-        }
-
-        .add-task-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 10px;
-            width: 100%;
-            display: none;
-        }
-
-        .edit-mode .add-task-btn {
-            display: block;
-        }
-
-        .add-task-btn:hover {
-            background: #34ce57;
-        }
-
-        .export-data {
-            background: #ffc107;
-            color: #000;
-        }
-
-        .import-data {
-            background: #17a2b8;
-            color: white;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .edit-mode-indicator {
-            position: fixed;
-            top: 50%;
-            left: 20px;
-            background: #ED0000;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 0 25px 25px 0;
-            font-weight: bold;
-            z-index: 999;
-            display: none;
-            animation: pulse 2s infinite;
-        }
-
-        .edit-mode-indicator.active {
-            display: block;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes pulse-red {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); }
-        }
-
-        .ready-to-launch {
-            animation: pulse 2s infinite;
-        }
-
-        @media (max-width: 1000px) {
-            .workstream-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .checkpoints-panel {
-                width: 100%;
-            }
         }
     </style>
 </head>
-<body class="edit-mode">
+<body>
     <div class="dashboard">
-        <!-- Admin Panel -->
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
-            <div class="admin-controls active" id="adminControls">
-                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)" style="display: none;">
-                <div id="adminButtons" style="display: block;">
+            <div class="admin-controls" id="adminControls">
+                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)">
+                <div id="adminButtons" style="display: none;">
                     <div style="margin-bottom: 10px;">
                         <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
-                        <button class="admin-button" onclick="testGitHubConnection()">🧪 Test Connection</button>
-                        <button class="admin-button" onclick="setupAutoSave()">🔗 Setup Auto-Save</button>
-                        <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
+                        <button class="admin-button" onclick="testGitHubConnection()">🧪 Test</button>
+                        <button class="admin-button" onclick="setupAutoSave()">🔗 Setup</button>
+                        <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(220, 53, 69);">✅ Exit Edit</button>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;">Ready</div>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
-                    <button class="admin-button" onclick="saveData()">💾 Save Local</button>
-                    <button class="admin-button" onclick="loadData()">📂 Load Local</button>
                 </div>
             </div>
         </div>
 
-        <!-- Edit Mode Indicator -->
-        <div class="edit-mode-indicator active" id="editModeIndicator">
+        <div class="edit-mode-indicator" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -1590,17 +686,14 @@
     </div>
 
     <script>
-        // Global variables
         let isEditMode = false;
         let isAdminAuthenticated = false;
         const adminPassword = "launchpad2025";
         let launchDate = "September 12, 2025";
         
-        // GitHub API settings
         let githubToken = "";
         let githubRepo = "cstevenssmsc/launchpad-dashboard";
         let autoSaveEnabled = false;
-        let dataFileName = "dashboard-data.json";
 
         const workstreams = [
             {
@@ -1609,36 +702,12 @@
                 "threshold": 85,
                 "icon": "⛳",
                 "criticalCheckpoints": [
-                    {
-                        "task": "Golf Simulator Systems Installed & Tested",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Ball Tracking Technology Calibrated",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Suite Safety Equipment Installed",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Golf Club Inventory Stocked",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Staff Training on Golf Operations",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Emergency Procedures Documented",
-                        "completed": false,
-                        "isBlocker": true
-                    }
+                    {"task": "Golf Simulator Systems Installed & Tested", "completed": true, "isBlocker": true},
+                    {"task": "Ball Tracking Technology Calibrated", "completed": true, "isBlocker": true},
+                    {"task": "Suite Safety Equipment Installed", "completed": true, "isBlocker": true},
+                    {"task": "Golf Club Inventory Stocked", "completed": false, "isBlocker": true},
+                    {"task": "Staff Training on Golf Operations", "completed": true, "isBlocker": false},
+                    {"task": "Emergency Procedures Documented", "completed": false, "isBlocker": true}
                 ]
             },
             {
@@ -1647,36 +716,12 @@
                 "threshold": 90,
                 "icon": "💻",
                 "criticalCheckpoints": [
-                    {
-                        "task": "POS System Integration Complete",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "WiFi Network Infrastructure Live",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Reservation System Tested",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Payment Processing Certified",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Backup Systems Configured",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Security Cameras & Access Control",
-                        "completed": false,
-                        "isBlocker": true
-                    }
+                    {"task": "POS System Integration Complete", "completed": true, "isBlocker": true},
+                    {"task": "WiFi Network Infrastructure Live", "completed": true, "isBlocker": true},
+                    {"task": "Reservation System Tested", "completed": false, "isBlocker": true},
+                    {"task": "Payment Processing Certified", "completed": false, "isBlocker": true},
+                    {"task": "Backup Systems Configured", "completed": true, "isBlocker": false},
+                    {"task": "Security Cameras & Access Control", "completed": false, "isBlocker": true}
                 ]
             },
             {
@@ -1685,36 +730,12 @@
                 "threshold": 80,
                 "icon": "🍽️",
                 "criticalCheckpoints": [
-                    {
-                        "task": "Kitchen Equipment Installation Complete",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Liquor License Approved",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Food Safety Certification Obtained",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Initial Inventory Delivered",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Menu Finalized & Printed",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Staff Food Handler Certifications",
-                        "completed": true,
-                        "isBlocker": false
-                    }
+                    {"task": "Kitchen Equipment Installation Complete", "completed": true, "isBlocker": true},
+                    {"task": "Liquor License Approved", "completed": true, "isBlocker": true},
+                    {"task": "Food Safety Certification Obtained", "completed": true, "isBlocker": true},
+                    {"task": "Initial Inventory Delivered", "completed": false, "isBlocker": true},
+                    {"task": "Menu Finalized & Printed", "completed": true, "isBlocker": false},
+                    {"task": "Staff Food Handler Certifications", "completed": true, "isBlocker": false}
                 ]
             },
             {
@@ -1723,36 +744,12 @@
                 "threshold": 75,
                 "icon": "📢",
                 "criticalCheckpoints": [
-                    {
-                        "task": "Website Launch & Reservations Live",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Grand Opening Marketing Campaign",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Social Media Accounts Active",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Staff Communication Training",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Media Kit & Press Release Ready",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Signage Installation Complete",
-                        "completed": false,
-                        "isBlocker": true
-                    }
+                    {"task": "Website Launch & Reservations Live", "completed": true, "isBlocker": true},
+                    {"task": "Grand Opening Marketing Campaign", "completed": true, "isBlocker": false},
+                    {"task": "Social Media Accounts Active", "completed": true, "isBlocker": false},
+                    {"task": "Staff Communication Training", "completed": true, "isBlocker": false},
+                    {"task": "Media Kit & Press Release Ready", "completed": true, "isBlocker": false},
+                    {"task": "Signage Installation Complete", "completed": false, "isBlocker": true}
                 ]
             },
             {
@@ -1761,36 +758,12 @@
                 "threshold": 85,
                 "icon": "👥",
                 "criticalCheckpoints": [
-                    {
-                        "task": "General Manager Hired & Onboarded",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Kitchen Manager Hired & Trained",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Minimum Staffing Levels Met",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "All Staff Background Checks Complete",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Opening Team Training Completed",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Employee Handbook Distributed",
-                        "completed": false,
-                        "isBlocker": false
-                    }
+                    {"task": "General Manager Hired & Onboarded", "completed": true, "isBlocker": true},
+                    {"task": "Kitchen Manager Hired & Trained", "completed": true, "isBlocker": true},
+                    {"task": "Minimum Staffing Levels Met", "completed": false, "isBlocker": true},
+                    {"task": "All Staff Background Checks Complete", "completed": false, "isBlocker": true},
+                    {"task": "Opening Team Training Completed", "completed": false, "isBlocker": true},
+                    {"task": "Employee Handbook Distributed", "completed": false, "isBlocker": false}
                 ]
             },
             {
@@ -1799,66 +772,18 @@
                 "threshold": 90,
                 "icon": "💰",
                 "criticalCheckpoints": [
-                    {
-                        "task": "Business License & Permits Approved",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Insurance Policies Active",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Banking & Merchant Services Setup",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Accounting System Implementation",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Opening Budget Approved & Funded",
-                        "completed": true,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Cash Management Procedures Established",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Revenue Tracking System Tested",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Tax Registration & Filing Setup",
-                        "completed": false,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Financial Reporting Framework Ready",
-                        "completed": false,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Vendor Payment Systems Configured",
-                        "completed": true,
-                        "isBlocker": false
-                    },
-                    {
-                        "task": "Pricing Strategy Finalized",
-                        "completed": false,
-                        "isBlocker": true
-                    },
-                    {
-                        "task": "Initial Float & Operating Capital Ready",
-                        "completed": true,
-                        "isBlocker": true
-                    }
+                    {"task": "Business License & Permits Approved", "completed": true, "isBlocker": true},
+                    {"task": "Insurance Policies Active", "completed": true, "isBlocker": true},
+                    {"task": "Banking & Merchant Services Setup", "completed": true, "isBlocker": true},
+                    {"task": "Accounting System Implementation", "completed": false, "isBlocker": true},
+                    {"task": "Opening Budget Approved & Funded", "completed": true, "isBlocker": true},
+                    {"task": "Cash Management Procedures Established", "completed": false, "isBlocker": true},
+                    {"task": "Revenue Tracking System Tested", "completed": false, "isBlocker": true},
+                    {"task": "Tax Registration & Filing Setup", "completed": false, "isBlocker": false},
+                    {"task": "Financial Reporting Framework Ready", "completed": false, "isBlocker": false},
+                    {"task": "Vendor Payment Systems Configured", "completed": true, "isBlocker": false},
+                    {"task": "Pricing Strategy Finalized", "completed": false, "isBlocker": true},
+                    {"task": "Initial Float & Operating Capital Ready", "completed": true, "isBlocker": true}
                 ]
             }
         ];
@@ -1881,8 +806,6 @@
 
         function renderWorkstreams() {
             const container = document.getElementById('workstreams');
-            
-            // Store which panels are currently open
             const openPanels = [];
             const existingPanels = container.querySelectorAll('.checkpoints-panel:not(.checkpoints-hidden)');
             existingPanels.forEach((panel, index) => {
@@ -1904,86 +827,79 @@
                 const workstreamElement = document.createElement('div');
                 workstreamElement.className = 'workstream';
                 
-                // Check if this panel should be open
                 const isOpen = openPanels.includes(index);
                 const panelClass = isOpen ? '' : 'checkpoints-hidden';
                 const buttonText = isOpen ? 'Hide Tasks' : 'View Tasks';
                 
                 workstreamElement.innerHTML = `
-                    <div class="workstream-content">
-                        <div class="workstream-main">
-                            <div class="workstream-header">
-                                <h3 class="workstream-title">
-                                    <span class="golf-ball"></span>
-                                    ${workstream.icon} ${workstream.title}
-                                </h3>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
-                                        ${buttonText}
-                                    </button>
-                                    <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
-                                </div>
-                            </div>
-                            
-                            <div class="progress-container">
-                                <div class="progress-label">
-                                    <span><strong>${workstream.progress}%</strong> Complete</span>
-                                    <span class="threshold-label" onclick="editThreshold(${index})">Target: ${workstream.threshold}%</span>
-                                </div>
-                                
-                                <div class="progress-bar-container">
-                                    <div class="progress-bar ${progressClass}" style="width: ${workstream.progress}%">
-                                        ${workstream.progress >= 20 ? workstream.progress + '%' : ''}
-                                    </div>
-                                    <div class="threshold-marker" style="left: ${workstream.threshold}%" data-threshold="${workstream.threshold}"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="tasks-info">
-                                <span>Tasks: ${completedCheckpoints}/${totalCheckpoints}</span>
-                                <span>Remaining: ${totalCheckpoints - completedCheckpoints}</span>
-                                ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
-                            </div>
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            ${workstream.icon} ${workstream.title}
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(${index})">
+                                ${buttonText}
+                            </button>
+                            <span class="status-badge ${statusInfo.class}">${statusInfo.text}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>${workstream.progress}%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(${index})">Target: ${workstream.threshold}%</span>
                         </div>
                         
-                        <div class="checkpoints-panel ${panelClass}" id="checkpoints-${index}">
-                            <div class="checkpoints-title">
-                                🎯 Critical Checkpoints
-                                ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
-                            </div>
-                            
-                            ${workstream.criticalCheckpoints.map((checkpoint, cpIndex) => `
-                                <div class="checkpoint-item">
-                                    <div class="checkpoint-status ${checkpoint.completed ? 'checkpoint-completed' : (checkpoint.isBlocker ? 'checkpoint-blocker' : 'checkpoint-pending')}" 
-                                         onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
-                                        ${checkpoint.completed ? '✓' : (checkpoint.isBlocker ? '!' : '○')}
+                        <div class="progress-bar-container">
+                            <div class="progress-bar ${progressClass}" style="width: ${workstream.progress}%"></div>
+                            <div class="threshold-marker" style="left: ${workstream.threshold}%" data-threshold="${workstream.threshold}"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: ${completedCheckpoints}/${totalCheckpoints}</span>
+                        <span>Remaining: ${totalCheckpoints - completedCheckpoints}</span>
+                        ${blockersCount > 0 ? `<span class="blockers-count">🚫 ${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : '<span class="completed-count">✅ No Blockers</span>'}
+                    </div>
+                    
+                    <div class="checkpoints-panel ${panelClass}" id="checkpoints-${index}">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            ${blockersCount > 0 ? `<span class="blocker-badge">${blockersCount} Blocker${blockersCount > 1 ? 's' : ''}</span>` : ''}
+                        </div>
+                        
+                        ${workstream.criticalCheckpoints.map((checkpoint, cpIndex) => `
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status ${checkpoint.completed ? 'checkpoint-completed' : (checkpoint.isBlocker ? 'checkpoint-blocker' : 'checkpoint-pending')}" 
+                                     onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
+                                    ${checkpoint.completed ? '✓' : (checkpoint.isBlocker ? '!' : '○')}
+                                </div>
+                                <div class="checkpoint-text ${(!checkpoint.completed && checkpoint.isBlocker) ? 'checkpoint-blocker-text' : ''}">
+                                    <div class="editable-task" onclick="editModeAction('editTask', ${index}, ${cpIndex})">
+                                        ${checkpoint.task}
+                                        ${(!checkpoint.completed && checkpoint.isBlocker) ? '<span class="blocker-badge">Must Complete</span>' : ''}
                                     </div>
-                                    <div class="checkpoint-text ${(!checkpoint.completed && checkpoint.isBlocker) ? 'checkpoint-blocker-text' : ''}">
-                                        <div class="editable-task" onclick="editModeAction('editTask', ${index}, ${cpIndex})">
-                                            ${checkpoint.task}
-                                            ${(!checkpoint.completed && checkpoint.isBlocker) ? '<span class="blocker-badge">Must Complete</span>' : ''}
-                                        </div>
-                                        <div class="task-controls">
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
-                                                ${checkpoint.completed ? 'Mark Incomplete' : 'Mark Complete'}
-                                            </button>
-                                            <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', ${index}, ${cpIndex})">
-                                                ${checkpoint.isBlocker ? 'Remove Blocker' : 'Make Blocker'}
-                                            </button>
-                                            <button class="task-btn delete" onclick="editModeAction('deleteTask', ${index}, ${cpIndex})">Delete</button>
-                                        </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', ${index}, ${cpIndex})">
+                                            ${checkpoint.completed ? 'Mark Incomplete' : 'Mark Complete'}
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', ${index}, ${cpIndex})">
+                                            ${checkpoint.isBlocker ? 'Remove Blocker' : 'Make Blocker'}
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', ${index}, ${cpIndex})">Delete</button>
                                     </div>
                                 </div>
-                            `).join('')}
-                            
-                            <button class="add-task-btn" onclick="editModeAction('addTask', ${index})">
-                                ➕ Add New Task
-                            </button>
-                            
-                            <div class="checkpoint-summary">
-                                <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
-                                <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
                             </div>
+                        `).join('')}
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', ${index})">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">${completedCheckpoints}/${totalCheckpoints} Complete</span>
+                            <span>${blockersCount > 0 ? `<span class="blockers-count">${blockersCount} Blocking Launch</span>` : '<span class="completed-count">Ready to Launch!</span>'}</span>
                         </div>
                     </div>
                 `;
@@ -1992,7 +908,6 @@
             });
         }
 
-        // Wrapper function to check edit mode before allowing actions
         function editModeAction(action, ...args) {
             if (!isEditMode) {
                 alert('Please enter Edit Mode first to make changes.');
@@ -2047,7 +962,6 @@
             
             if (overallProgress >= 85) {
                 overallStatus.textContent = '🚀 READY FOR LAUNCH!';
-                overallBar.parentElement.parentElement.classList.add('ready-to-launch');
             } else if (overallProgress >= 70) {
                 overallStatus.textContent = '⚠️ Launch Preparation in Progress';
             } else {
@@ -2068,12 +982,10 @@
             }
         }
 
-        // Admin functions
         function toggleAdminPanel() {
             const controls = document.getElementById('adminControls');
             controls.classList.toggle('active');
             
-            // Reset password field when opening panel
             if (controls.classList.contains('active')) {
                 document.getElementById('adminPassword').style.display = 'block';
                 document.getElementById('adminPassword').value = '';
@@ -2089,15 +1001,6 @@
                     isAdminAuthenticated = true;
                     document.getElementById('adminButtons').style.display = 'block';
                     document.getElementById('adminPassword').style.display = 'none';
-                    
-                    // Make sure edit mode is properly reset
-                    isEditMode = false;
-                    document.body.classList.remove('edit-mode');
-                    document.getElementById('editModeIndicator').classList.remove('active');
-                    const editBtn = document.getElementById('editModeBtn');
-                    editBtn.classList.remove('active');
-                    editBtn.textContent = '📝 Edit Mode';
-                    editBtn.style.background = '#5A5A5A';
                 } else {
                     alert('Incorrect password');
                     document.getElementById('adminPassword').value = '';
@@ -2119,24 +1022,15 @@
             if (isEditMode) {
                 body.classList.add('edit-mode');
                 indicator.classList.add('active');
-                editBtn.classList.add('active');
                 editBtn.textContent = '✅ Exit Edit';
-                editBtn.style.background = '#dc3545'; // Red background for exit
-                
-                // Save edit mode state
-                sessionStorage.setItem('editMode', 'true');
+                editBtn.style.background = 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)';
             } else {
                 body.classList.remove('edit-mode');
                 indicator.classList.remove('active');
-                editBtn.classList.remove('active');
                 editBtn.textContent = '📝 Edit Mode';
-                editBtn.style.background = '#5A5A5A'; // Reset to default background
-                
-                // Clear edit mode state
-                sessionStorage.removeItem('editMode');
+                editBtn.style.background = 'linear-gradient(135deg, #495057 0%, #343a40 100%)';
             }
             
-            // Force re-render to update edit mode UI
             renderWorkstreams();
             updateOverallProgress();
             
@@ -2161,18 +1055,15 @@
             const task = workstreams[workstreamIndex].criticalCheckpoints[checkpointIndex];
             task.completed = !task.completed;
             
-            // Update progress percentage based on checkpoint completion
             const workstream = workstreams[workstreamIndex];
             const completedCheckpoints = workstream.criticalCheckpoints.filter(cp => cp.completed).length;
             const totalCheckpoints = workstream.criticalCheckpoints.length;
             
-            // Update progress percentage
             workstream.progress = Math.round((completedCheckpoints / totalCheckpoints) * 100);
             
             renderWorkstreams();
             updateOverallProgress();
             
-            // Auto-save to GitHub
             if (autoSaveEnabled) {
                 setTimeout(autoSaveToGitHub, 1000);
             }
@@ -2287,36 +1178,6 @@
             reader.readAsText(file);
         }
 
-        function saveData() {
-            const data = {
-                workstreams: workstreams,
-                launchDate: launchDate
-            };
-            localStorage.setItem('launchpadTasks', JSON.stringify(data));
-            alert('Tasks saved to browser storage!');
-        }
-
-        function loadData() {
-            const saved = localStorage.getItem('launchpadTasks');
-            if (saved) {
-                if (confirm('This will replace current tasks with saved data. Continue?')) {
-                    const data = JSON.parse(saved);
-                    workstreams.length = 0;
-                    workstreams.push(...data.workstreams);
-                    if (data.launchDate) {
-                        launchDate = data.launchDate;
-                        document.getElementById('launchDate').textContent = launchDate;
-                    }
-                    renderWorkstreams();
-                    updateOverallProgress();
-                    alert('Tasks loaded from browser storage!');
-                }
-            } else {
-                alert('No saved data found in browser storage.');
-            }
-        }
-
-        // GitHub API functions
         async function testGitHubConnection() {
             const token = document.getElementById('githubToken').value.trim();
             if (!token) {
@@ -2325,43 +1186,20 @@
             }
 
             try {
-                // Test 1: Check if token is valid
-                const userResponse = await fetch('https://api.github.com/user', {
+                const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
                     headers: {
                         'Authorization': `token ${token}`,
                         'Accept': 'application/vnd.github.v3+json'
                     }
                 });
 
-                if (!userResponse.ok) {
-                    alert(`Token test failed: ${userResponse.status} - ${userResponse.statusText}\nPlease check your token is valid.`);
-                    return;
+                if (response.ok) {
+                    alert('✅ Connection successful!');
+                } else {
+                    alert('❌ Connection failed');
                 }
-
-                const userData = await userResponse.json();
-                console.log('User data:', userData);
-
-                // Test 2: Check repository access
-                const repoResponse = await fetch(`https://api.github.com/repos/${githubRepo}`, {
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    }
-                });
-
-                if (!repoResponse.ok) {
-                    alert(`Repository test failed: ${repoResponse.status} - ${repoResponse.statusText}\nRepository: ${githubRepo}\nPlease check the repository name and token permissions.`);
-                    return;
-                }
-
-                const repoData = await repoResponse.json();
-                console.log('Repository data:', repoData);
-
-                alert(`✅ Connection successful!\nUser: ${userData.login}\nRepository: ${repoData.full_name}\nNow try "Setup Auto-Save"`);
-
             } catch (error) {
-                alert(`Connection test failed: ${error.message}`);
-                console.error('Test error:', error);
+                alert('❌ Connection failed: ' + error.message);
             }
         }
 
@@ -2374,9 +1212,7 @@
 
             githubToken = token;
             
-            // Test the token with more detailed error handling
             try {
-                console.log('Testing GitHub connection...');
                 const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -2384,46 +1220,39 @@
                     }
                 });
 
-                console.log('Response status:', response.status);
-                
-                if (response.status === 401) {
-                    throw new Error('Invalid GitHub token. Please check your token has the correct permissions.');
-                } else if (response.status === 404) {
-                    throw new Error(`Repository not found. Please verify the repository name: ${githubRepo}`);
-                } else if (response.ok) {
+                if (response.ok) {
                     autoSaveEnabled = true;
                     localStorage.setItem('githubToken', githubToken);
-                    
-                    // Update status display immediately and persistently
-                    const statusElement = document.getElementById('autoSaveStatus');
-                    statusElement.innerHTML = '<span style="color: #28a745;">✅ Auto-Save Connected! Ready for edits.</span>';
-                    
-                    alert('Auto-save setup successful! Your edits will now automatically save to GitHub.');
+                    document.getElementById('autoSaveStatus').innerHTML = 
+                        '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                    alert('Auto-save setup successful!');
                 } else {
-                    const errorData = await response.text();
-                    throw new Error(`GitHub API error (${response.status}): ${errorData}`);
+                    throw new Error('Failed to connect to repository');
                 }
             } catch (error) {
-                console.error('GitHub setup error:', error);
-                alert('GitHub setup failed: ' + error.message + '\n\nPlease check:\n1. Token permissions (repo access)\n2. Repository name is correct\n3. Token is valid');
                 autoSaveEnabled = false;
                 document.getElementById('autoSaveStatus').innerHTML = 
                     '<span style="color: #dc3545;">❌ Auto-Save Failed</span>';
+                alert('Setup failed: ' + error.message);
             }
         }
 
-        async function autoSaveToGitHub() {
+        async function manualSave() {
             if (!autoSaveEnabled || !githubToken) {
-                console.log('Auto-save not enabled or no token');
+                alert('Auto-save not set up. Please setup auto-save first.');
                 return;
             }
+            
+            await autoSaveToGitHub();
+        }
 
-            console.log('Starting auto-save...');
+        async function autoSaveToGitHub() {
+            if (!autoSaveEnabled || !githubToken) return;
+
             const statusElement = document.getElementById('autoSaveStatus');
             statusElement.innerHTML = '<span style="color: #ffc107;">⏳ Saving...</span>';
 
             try {
-                // Get current file content and SHA
                 const getResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -2436,11 +1265,9 @@
                 const fileData = await getResponse.json();
                 const currentSha = fileData.sha;
 
-                // Generate updated HTML content
                 const updatedHtml = generateUpdatedHtml();
                 const encodedContent = btoa(unescape(encodeURIComponent(updatedHtml)));
 
-                // Update the file
                 const updateResponse = await fetch(`https://api.github.com/repos/${githubRepo}/contents/index.html`, {
                     method: 'PUT',
                     headers: {
@@ -2458,41 +1285,24 @@
                 if (updateResponse.ok) {
                     const saveTime = new Date().toLocaleTimeString();
                     statusElement.innerHTML = 
-                        `<span style="color: #28a745;">✅ Auto-saved at ${saveTime}</span>`;
-                    console.log('Auto-save successful!');
+                        `<span style="color: #28a745;">✅ Saved at ${saveTime}</span>`;
                     
-                    // Keep the message visible for longer
                     setTimeout(() => {
-                        if (statusElement.innerHTML.includes('Auto-saved at')) {
-                            statusElement.innerHTML = 
-                                '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
-                        }
-                    }, 5000); // Show save time for 5 seconds, then show "Ready"
+                        statusElement.innerHTML = 
+                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                    }, 5000);
                 } else {
                     throw new Error('Failed to update file');
                 }
             } catch (error) {
                 statusElement.innerHTML = 
-                    '<span style="color: #dc3545;">❌ Auto-save failed: ' + error.message + '</span>';
+                    '<span style="color: #dc3545;">❌ Save failed</span>';
                 console.error('Auto-save error:', error);
             }
         }
 
-        function manualSave() {
-            if (!autoSaveEnabled || !githubToken) {
-                alert('Auto-save not set up. Please setup auto-save first.');
-                return;
-            }
-            
-            console.log('Manual save triggered');
-            autoSaveToGitHub();
-        }
-
         function generateUpdatedHtml() {
-            // Get the current HTML template and inject updated data
             const htmlTemplate = document.documentElement.outerHTML;
-            
-            // Replace the workstreams data in the script section
             const workstreamsJson = JSON.stringify(workstreams, null, 12);
             const launchDateJson = JSON.stringify(launchDate);
             
@@ -2509,64 +1319,23 @@
             return updatedHtml;
         }
 
-        // Load saved GitHub token on page load
         function loadGitHubSettings() {
             const savedToken = localStorage.getItem('githubToken');
             if (savedToken) {
                 githubToken = savedToken;
                 autoSaveEnabled = true;
                 setTimeout(() => {
-                    if (document.getElementById('autoSaveStatus')) {
-                        document.getElementById('autoSaveStatus').innerHTML = 
-                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
-                    }
+                    document.getElementById('autoSaveStatus').innerHTML = 
+                        '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
                 }, 1000);
             }
-            
-            // Clear any stuck states but don't reset authentication here
-            sessionStorage.removeItem('editMode');
         }
 
-        // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
-            // Clear edit mode but allow admin login
-            isEditMode = false;
-            
-            // Clear any stuck CSS classes
-            document.body.classList.remove('edit-mode');
-            
-            // Reset edit mode indicator
-            const indicator = document.getElementById('editModeIndicator');
-            if (indicator) {
-                indicator.classList.remove('active');
-            }
-            
-            // Clear session storage
-            sessionStorage.removeItem('editMode');
-            
-            console.log('Page loaded - Edit Mode:', isEditMode);
-            
             loadGitHubSettings();
             renderWorkstreams();
             updateOverallProgress();
         });
-
-        // Auto-update simulation (optional - remove if not needed)
-        setInterval(() => {
-            if (!isEditMode) {
-                const randomIndex = Math.floor(Math.random() * workstreams.length);
-                const workstream = workstreams[randomIndex];
-                
-                if (workstream.progress < 100 && Math.random() > 0.8) {
-                    workstream.progress = Math.min(100, workstream.progress + 1);
-                    workstream.completedTasks = Math.min(workstream.totalTasks, 
-                        Math.round((workstream.progress / 100) * workstream.totalTasks));
-                    
-                    renderWorkstreams();
-                    updateOverallProgress();
-                }
-            }
-        }, 5000);
     </script>
-
-</body></html>
+</body>
+</html>
