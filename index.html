@@ -159,11 +159,13 @@
             animation: pulse 2s infinite;
         }
 
-        @media (max-width: 1200px) {
-            .workstream-content {
+        @media (max-width: 1400px) {
+            .workstreams {
                 grid-template-columns: 1fr;
             }
-            
+        }
+
+        @media (max-width: 1200px) {
             .checkpoints-panel {
                 width: 100%;
                 margin-top: 20px;
@@ -179,20 +181,30 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
             .dashboard {
-                padding: 0 15px;
+                padding: 0;
             }
             
             .title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                letter-spacing: 2px;
             }
             
             .workstream {
-                padding: 20px;
+                padding: 25px 20px;
             }
             
             .overall-progress {
-                padding: 30px 20px;
+                padding: 30px 25px;
+            }
+            
+            .workstreams {
+                gap: 20px;
+                grid-template-columns: 1fr;
             }
         }<html lang="en"><head>
     <meta charset="UTF-8">
@@ -263,42 +275,45 @@
         }
 
         .overall-bar-container {
-            background: #0A0A0A;
-            height: 12px;
-            border-radius: 6px;
+            background: #0D0D0D;
+            height: 14px;
+            border-radius: 10px;
             overflow: hidden;
             margin-bottom: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
         }
 
         .overall-bar {
             height: 100%;
             background: linear-gradient(90deg, #ED0000 0%, #FF3030 50%, #ED0000 100%);
-            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
-            box-shadow: 0 0 20px rgba(237, 0, 0, 0.5);
+            box-shadow: 0 0 20px rgba(237, 0, 0, 0.4);
+            border-radius: 10px;
         }
 
         .workstreams {
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
             gap: 30px;
         }
 
         .workstream {
-            background: linear-gradient(145deg, #262626 0%, #1A1A1A 100%);
-            border-radius: 16px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: linear-gradient(145deg, #242424 0%, #1A1A1A 100%);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
         }
 
         .workstream::before {
@@ -306,27 +321,34 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, #ED0000 0%, #FF3030 100%);
-            border-radius: 0 2px 2px 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ED0000 0%, #FF3030 50%, #ED0000 100%);
         }
 
         .workstream:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(237, 0, 0, 0.15);
-            border-color: rgba(237, 0, 0, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(237, 0, 0, 0.1);
+            border-color: rgba(237, 0, 0, 0.2);
         }
 
         .workstream-content {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 35px;
-            align-items: start;
+            display: block;
         }
 
         .workstream-main {
-            min-width: 0;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .checkpoints-panel {
+            width: 100%;
+            background: linear-gradient(145deg, #1E1E1E 0%, #161616 100%);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            margin-top: 15px;
         }
 
         .workstream-header {
@@ -415,25 +437,26 @@
         }
 
         .progress-bar-container {
-            background: #0A0A0A;
-            height: 8px;
-            border-radius: 4px;
+            background: #0D0D0D;
+            height: 10px;
+            border-radius: 8px;
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
         }
 
         .progress-bar {
             height: 100%;
-            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 600;
-            font-size: 0.7rem;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            font-size: 0.75rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
         }
 
         .threshold-marker {
@@ -529,17 +552,17 @@
         .checkpoint-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 15px;
-            padding: 12px;
-            border-radius: 8px;
+            gap: 14px;
+            margin-bottom: 12px;
+            padding: 10px;
+            border-radius: 10px;
             transition: all 0.2s ease;
             border: 1px solid transparent;
         }
 
         .checkpoint-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(237, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(237, 0, 0, 0.15);
         }
 
         .checkpoint-status {
