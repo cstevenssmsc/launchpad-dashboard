@@ -640,7 +640,7 @@
     <div class="dashboard">
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
-            <div class="admin-controls" id="adminControls">
+            <div class="admin-controls active" id="adminControls">
                 <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)" style="display: none;">
                 <div id="adminButtons" style="display: block;">
                     <div style="margin-bottom: 10px;">
@@ -1316,15 +1316,15 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 1/4</span>
-                        <span>Remaining: 3</span>
-                        <span class="blockers-count">🚫 1 Blocker</span>
+                        <span>Tasks: 1/6</span>
+                        <span>Remaining: 5</span>
+                        <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-3">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">1 Blocker</span>
+                            <span class="blocker-badge">2 Blockers</span>
                         </div>
                         
                         
@@ -1412,14 +1412,56 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 4)">
+                                        Pricing on Website
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 5)">
+                                        Reservations Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 5)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 3)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">1/4 Complete</span>
-                            <span><span class="blockers-count">1 Blocking Launch</span></span>
+                            <span class="completed-count">1/6 Complete</span>
+                            <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -1903,6 +1945,16 @@
                                         "task": "Signage Installation Complete",
                                         "completed": false,
                                         "isBlocker": true
+                              },
+                              {
+                                        "task": "Pricing on Website",
+                                        "completed": false,
+                                        "isBlocker": true
+                              },
+                              {
+                                        "task": "Reservations Live",
+                                        "completed": false,
+                                        "isBlocker": false
                               }
                     ]
           },
