@@ -581,7 +581,7 @@
         }
     </style>
 </head>
-<body class="edit-mode">
+<body class="">
     <div class="dashboard">
         <!-- Admin Panel -->
         <div class="admin-panel">
@@ -596,7 +596,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Manual Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button active" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(220, 53, 69);">✅ Exit Edit</button>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: rgb(90, 90, 90);">📝 Edit Mode</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -607,7 +607,7 @@
         </div>
 
         <!-- Edit Mode Indicator -->
-        <div class="edit-mode-indicator active" id="editModeIndicator">
+        <div class="edit-mode-indicator" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -639,7 +639,7 @@
                                 </h3>
                                 <div style="display: flex; align-items: center; gap: 10px;">
                                     <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
-                                        Hide Tasks
+                                        View Tasks
                                     </button>
                                     <span class="status-badge status-danger">NEEDS ATTENTION</span>
                                 </div>
@@ -666,7 +666,7 @@
                             </div>
                         </div>
                         
-                        <div class="checkpoints-panel " id="checkpoints-0">
+                        <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-0">
                             <div class="checkpoints-title">
                                 🎯 Critical Checkpoints
                                 <span class="blocker-badge">4 Blockers</span>
@@ -819,9 +819,7 @@
                                     💻 IT/Technology
                                 </h3>
                                 <div style="display: flex; align-items: center; gap: 10px;">
-                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                        View Tasks
-                                    </button>
+                                    <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">View Tasks</button>
                                     <span class="status-badge status-danger">NEEDS ATTENTION</span>
                                 </div>
                             </div>
