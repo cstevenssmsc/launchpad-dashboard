@@ -1316,7 +1316,7 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 4/6</span>
+                        <span>Tasks: 3/5</span>
                         <span>Remaining: 2</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
@@ -1413,43 +1413,22 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
-                                    ✓
-                                </div>
-                                <div class="checkpoint-text ">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 4)">
-                                        Media Kit &amp; Press Release Ready
-                                        
-                                    </div>
-                                    <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
-                                            Mark Incomplete
-                                        </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 4)">
-                                            Make Blocker
-                                        </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 4)">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
                                     !
                                 </div>
                                 <div class="checkpoint-text checkpoint-blocker-text">
-                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 5)">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 4)">
                                         Signage Installation Complete
                                         <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
                                             Mark Complete
                                         </button>
-                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 5)">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 4)">
                                             Remove Blocker
                                         </button>
-                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 5)">Delete</button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 4)">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -1460,7 +1439,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">4/6 Complete</span>
+                            <span class="completed-count">3/5 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -1943,11 +1922,6 @@
                               },
                               {
                                         "task": "Staff Communication Training",
-                                        "completed": true,
-                                        "isBlocker": false
-                              },
-                              {
-                                        "task": "Media Kit & Press Release Ready",
                                         "completed": true,
                                         "isBlocker": false
                               },
