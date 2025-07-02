@@ -739,8 +739,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 42%;">
-                    <span id="overallPercent">42%</span>
+                <div class="overall-bar" id="overallBar" style="width: 40%;">
+                    <span id="overallPercent">40%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -1374,19 +1374,19 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>38%</strong> Complete</span>
+                            <span><strong>25%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(3)">Target: 75%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 38%"></div>
+                            <div class="progress-bar progress-danger" style="width: 25%"></div>
                             <div class="threshold-marker" style="left: 75%" data-threshold="75"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 3/8</span>
-                        <span>Remaining: 5</span>
+                        <span>Tasks: 2/8</span>
+                        <span>Remaining: 6</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
                     
@@ -1524,8 +1524,8 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
-                                    ✓
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
+                                    ○
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 3, 6)">
@@ -1534,7 +1534,7 @@
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
-                                            Mark Incomplete
+                                            Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 6)">
                                             Make Blocker
@@ -1550,7 +1550,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 3, 7)">
-                                        Email Sign Up Form Created
+                                        Email Sign Up Active
                                         
                                     </div>
                                     <div class="task-controls">
@@ -1571,7 +1571,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">3/8 Complete</span>
+                            <span class="completed-count">2/8 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -2033,7 +2033,7 @@
           },
           {
                     "title": "Marketing & Communications",
-                    "progress": 38,
+                    "progress": 25,
                     "threshold": 75,
                     "icon": "📢",
                     "criticalCheckpoints": [
@@ -2069,11 +2069,11 @@
                               },
                               {
                                         "task": "Events Page Live",
-                                        "completed": true,
+                                        "completed": false,
                                         "isBlocker": false
                               },
                               {
-                                        "task": "Email Sign Up Form Created",
+                                        "task": "Email Sign Up Active",
                                         "completed": true,
                                         "isBlocker": false
                               }
