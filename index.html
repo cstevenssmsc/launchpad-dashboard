@@ -670,8 +670,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 67%;">
-                    <span id="overallPercent">67%</span>
+                <div class="overall-bar" id="overallBar" style="width: 65%;">
+                    <span id="overallPercent">65%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -1571,26 +1571,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>33%</strong> Complete</span>
+                            <span><strong>25%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(5)">Target: 90%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 33%"></div>
+                            <div class="progress-bar progress-danger" style="width: 25%"></div>
                             <div class="threshold-marker" style="left: 90%" data-threshold="90"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 4/12</span>
-                        <span>Remaining: 8</span>
-                        <span class="blockers-count">🚫 6 Blockers</span>
+                        <span>Tasks: 3/12</span>
+                        <span>Remaining: 9</span>
+                        <span class="blockers-count">🚫 7 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-5">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">6 Blockers</span>
+                            <span class="blocker-badge">7 Blockers</span>
                         </div>
                         
                         
@@ -1637,17 +1637,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 5, 2)">
-                                    ✓
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 2)">
+                                    !
                                 </div>
-                                <div class="checkpoint-text ">
+                                <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 5, 2)">
-                                        Banking &amp; Merchant Services Setup
-                                        
+                                        GL Code Mapping
+                                        <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 2)">
-                                            Mark Incomplete
+                                            Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 2)">
                                             Remove Blocker
@@ -1852,8 +1852,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">4/12 Complete</span>
-                            <span><span class="blockers-count">6 Blocking Launch</span></span>
+                            <span class="completed-count">3/12 Complete</span>
+                            <span><span class="blockers-count">7 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div></div>
@@ -2062,7 +2062,7 @@
           },
           {
                     "title": "Finance & Operations",
-                    "progress": 33,
+                    "progress": 25,
                     "threshold": 90,
                     "icon": "💰",
                     "criticalCheckpoints": [
@@ -2077,8 +2077,8 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Banking & Merchant Services Setup",
-                                        "completed": true,
+                                        "task": "GL Code Mapping",
+                                        "completed": false,
                                         "isBlocker": true
                               },
                               {
