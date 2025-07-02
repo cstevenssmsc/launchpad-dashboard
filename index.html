@@ -670,8 +670,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 56%;">
-                    <span id="overallPercent">56%</span>
+                <div class="overall-bar" id="overallBar" style="width: 53%;">
+                    <span id="overallPercent">53%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -696,26 +696,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>33%</strong> Complete</span>
+                            <span><strong>17%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 33%"></div>
+                            <div class="progress-bar progress-danger" style="width: 17%"></div>
                             <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 2/6</span>
-                        <span>Remaining: 4</span>
-                        <span class="blockers-count">🚫 4 Blockers</span>
+                        <span>Tasks: 1/6</span>
+                        <span>Remaining: 5</span>
+                        <span class="blockers-count">🚫 5 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">4 Blockers</span>
+                            <span class="blocker-badge">5 Blockers</span>
                         </div>
                         
                         
@@ -762,17 +762,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                    ✓
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
+                                    !
                                 </div>
-                                <div class="checkpoint-text ">
+                                <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 2)">
                                         Suite Safety Equipment Installed
-                                        
+                                        <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                            Mark Incomplete
+                                            Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 2)">
                                             Remove Blocker
@@ -851,8 +851,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">2/6 Complete</span>
-                            <span><span class="blockers-count">4 Blocking Launch</span></span>
+                            <span class="completed-count">1/6 Complete</span>
+                            <span><span class="blockers-count">5 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -1788,7 +1788,7 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 33,
+                    "progress": 17,
                     "threshold": 85,
                     "icon": "⛳",
                     "criticalCheckpoints": [
@@ -1804,7 +1804,7 @@
                               },
                               {
                                         "task": "Suite Safety Equipment Installed",
-                                        "completed": true,
+                                        "completed": false,
                                         "isBlocker": true
                               },
                               {
