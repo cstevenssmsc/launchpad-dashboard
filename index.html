@@ -1374,18 +1374,18 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>25%</strong> Complete</span>
+                            <span><strong>29%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(3)">Target: 75%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 25%"></div>
+                            <div class="progress-bar progress-danger" style="width: 29%"></div>
                             <div class="threshold-marker" style="left: 75%" data-threshold="75"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 1/6</span>
+                        <span>Tasks: 2/7</span>
                         <span>Remaining: 5</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
@@ -1523,13 +1523,34 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 6)">
+                                        Events Page Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 6)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 3)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">1/6 Complete</span>
+                            <span class="completed-count">2/7 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -1991,7 +2012,7 @@
           },
           {
                     "title": "Marketing & Communications",
-                    "progress": 25,
+                    "progress": 29,
                     "threshold": 75,
                     "icon": "📢",
                     "criticalCheckpoints": [
@@ -2023,6 +2044,11 @@
                               {
                                         "task": "Reservations Live",
                                         "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Events Page Live",
+                                        "completed": true,
                                         "isBlocker": false
                               }
                     ]
@@ -2644,6 +2670,7 @@
             updateOverallProgress();
         });
     </script>
+
 
 
 </body></html>
