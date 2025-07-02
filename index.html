@@ -707,8 +707,8 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 1/6</span>
-                        <span>Remaining: 5</span>
+                        <span>Tasks: 1/9</span>
+                        <span>Remaining: 8</span>
                         <span class="blockers-count">🚫 5 Blockers</span>
                     </div>
                     
@@ -767,7 +767,7 @@
                                 </div>
                                 <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 2)">
-                                        Suite Safety Equipment Installed
+                                        Establish Pricing and Discounts
                                         <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
@@ -809,7 +809,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 4)">
-                                        Staff Training on Golf Operations
+                                        Staff Training
                                         
                                     </div>
                                     <div class="task-controls">
@@ -830,7 +830,7 @@
                                 </div>
                                 <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 5)">
-                                        Emergency Procedures Documented
+                                        Finalize Training Schedule For Each Team Member
                                         <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
@@ -845,13 +845,76 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 6)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 6)">
+                                        Orientation Session 1
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 6)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 6)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 7)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 7)">
+                                        Orientation Session 2
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 7)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 7)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 8)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 8)">
+                                        Team Member Training Begins
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 8)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 0)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">1/6 Complete</span>
+                            <span class="completed-count">1/9 Complete</span>
                             <span><span class="blockers-count">5 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -1803,7 +1866,7 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Suite Safety Equipment Installed",
+                                        "task": "Establish Pricing and Discounts",
                                         "completed": false,
                                         "isBlocker": true
                               },
@@ -1813,14 +1876,29 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "Staff Training on Golf Operations",
+                                        "task": "Staff Training",
                                         "completed": true,
                                         "isBlocker": false
                               },
                               {
-                                        "task": "Emergency Procedures Documented",
+                                        "task": "Finalize Training Schedule For Each Team Member",
                                         "completed": false,
                                         "isBlocker": true
+                              },
+                              {
+                                        "task": "Orientation Session 1",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Orientation Session 2",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Team Member Training Begins",
+                                        "completed": false,
+                                        "isBlocker": false
                               }
                     ]
           },
