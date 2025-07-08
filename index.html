@@ -704,7 +704,7 @@
         }
     </style>
 </head>
-<body class="">
+<body class="edit-mode">
     <div class="dashboard">
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
@@ -718,7 +718,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(73, 80, 87) 0%, rgb(52, 58, 64) 100%);">📝 Edit Mode</button>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(220, 53, 69) 0%, rgb(200, 35, 51) 100%);">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -726,7 +726,7 @@
             </div>
         </div>
 
-        <div class="edit-mode-indicator" id="editModeIndicator">
+        <div class="edit-mode-indicator active" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -994,7 +994,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                View Tasks
+                                Hide Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -1013,12 +1013,12 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 18/56</span>
-                        <span>Remaining: 38</span>
+                        <span>Tasks: 18/57</span>
+                        <span>Remaining: 39</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
+                    <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">2 Blockers</span>
@@ -2060,7 +2060,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 49)">
-                                        Target System Go-Live
+                                        Target System Testing
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2081,7 +2081,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 50)">
-                                        TM Scheduling System Contract
+                                        Target System Go-Live
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2102,7 +2102,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 51)">
-                                        TM Scheduling System Configuration
+                                        TM Scheduling System Contract
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2123,7 +2123,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 52)">
-                                        TM Scheduling Super User Training
+                                        TM Scheduling System Configuration
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2144,7 +2144,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 53)">
-                                        TM Scheduling User Acceptance Training
+                                        TM Scheduling Super User Training
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2165,7 +2165,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 54)">
-                                        TM Scheduling End User Training
+                                        TM Scheduling User Acceptance Training
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2186,7 +2186,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 55)">
-                                        TM Scheduling Go-Live
+                                        TM Scheduling End User Training
                                         
                                     </div>
                                     <div class="task-controls">
@@ -2201,13 +2201,34 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 1, 56)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 56)">
+                                        TM Scheduling Go-Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 56)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 56)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 56)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 1)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">18/56 Complete</span>
+                            <span class="completed-count">18/57 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -3184,6 +3205,11 @@
                               },
                               {
                                         "task": "Target System Training",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Target System Testing",
                                         "completed": false,
                                         "isBlocker": false
                               },
