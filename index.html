@@ -1013,8 +1013,8 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 14/33</span>
-                        <span>Remaining: 19</span>
+                        <span>Tasks: 15/35</span>
+                        <span>Remaining: 20</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
                     
@@ -1698,8 +1698,8 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 1, 32)">
-                                    ○
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 32)">
+                                    ✓
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 32)">
@@ -1708,12 +1708,54 @@
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 32)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 32)">
                                             Make Blocker
                                         </button>
                                         <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 32)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 33)">
+                                        RAS System Configuration
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 33)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 33)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 1, 34)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 34)">
+                                        RAS Testing
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 34)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 34)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 34)">Delete</button>
                                     </div>
                                 </div>
                             </div>
@@ -1724,7 +1766,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">14/33 Complete</span>
+                            <span class="completed-count">15/35 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -2621,6 +2663,16 @@
                               },
                               {
                                         "task": "RAS Install",
+                                        "completed": true,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "RAS System Configuration",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "RAS Testing",
                                         "completed": false,
                                         "isBlocker": false
                               }
