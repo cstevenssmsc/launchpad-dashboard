@@ -1002,18 +1002,18 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>55%</strong> Complete</span>
+                            <span><strong>58%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 90%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 55%"></div>
+                            <div class="progress-bar progress-danger" style="width: 58%"></div>
                             <div class="threshold-marker" style="left: 90%" data-threshold="90"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 6/11</span>
+                        <span>Tasks: 7/12</span>
                         <span>Remaining: 5</span>
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
@@ -1256,13 +1256,34 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 11)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 11)">
+                                        IT Test Lab
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 11)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 11)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 11)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 1)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">6/11 Complete</span>
+                            <span class="completed-count">7/12 Complete</span>
                             <span><span class="blockers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -1993,7 +2014,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 55,
+                    "progress": 58,
                     "threshold": 90,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -2049,6 +2070,11 @@
                               },
                               {
                                         "task": "IT Hardware Cost Budget",
+                                        "completed": true,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "IT Test Lab",
                                         "completed": true,
                                         "isBlocker": false
                               }
