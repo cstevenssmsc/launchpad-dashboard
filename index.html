@@ -704,7 +704,7 @@
         }
     </style>
 </head>
-<body class="edit-mode">
+<body class="">
     <div class="dashboard">
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
@@ -718,7 +718,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(220, 53, 69) 0%, rgb(200, 35, 51) 100%);">✅ Exit Edit</button>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(73, 80, 87) 0%, rgb(52, 58, 64) 100%);">📝 Edit Mode</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -726,7 +726,7 @@
             </div>
         </div>
 
-        <div class="edit-mode-indicator active" id="editModeIndicator">
+        <div class="edit-mode-indicator" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -994,7 +994,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                Hide Tasks
+                                View Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -1018,7 +1018,7 @@
                         <span class="blockers-count">🚫 2 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-1">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">2 Blockers</span>
