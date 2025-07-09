@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 39%;">
-                    <span id="overallPercent">39%</span>
+                <div class="overall-bar" id="overallBar" style="width: 42%;">
+                    <span id="overallPercent">42%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -764,19 +764,19 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>0%</strong> Complete</span>
+                            <span><strong>10%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(0)">Target: 85%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 0%"></div>
+                            <div class="progress-bar progress-danger" style="width: 10%"></div>
                             <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 0/10</span>
-                        <span>Remaining: 10</span>
+                        <span>Tasks: 1/10</span>
+                        <span>Remaining: 9</span>
                         <span class="showstoppers-count">🚫 7 Blockers</span>
                     </div>
                     
@@ -830,17 +830,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 2)">
                                         Establish Pricing and Discounts
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 2)">
                                             Remove Blocker
@@ -872,20 +872,20 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
-                                    ○
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
+                                    !
                                 </div>
-                                <div class="checkpoint-text ">
+                                <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 4)">
                                         Staff Training
-                                        
+                                        <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
                                             Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 4)">
-                                            Make Blocker
+                                            Remove Blocker
                                         </button>
                                         <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 4)">Delete</button>
                                     </div>
@@ -1003,7 +1003,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">0/10 Complete</span>
+                            <span class="completed-count">1/10 Complete</span>
                             <span><span class="showstoppers-count">7 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -3053,7 +3053,7 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 0,
+                    "progress": 10,
                     "threshold": 85,
                     "icon": "⛳",
                     "criticalCheckpoints": [
@@ -3069,7 +3069,7 @@
                               },
                               {
                                         "task": "Establish Pricing and Discounts",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
@@ -3080,7 +3080,7 @@
                               {
                                         "task": "Staff Training",
                                         "completed": false,
-                                        "isBlocker": false
+                                        "isBlocker": true
                               },
                               {
                                         "task": "Finalize Training Schedule For Each Team Member",
