@@ -755,9 +755,7 @@
                             ⛳ Golf Operations
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
-                                Hide Tasks
-                            </button>
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">View Tasks</button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
                     </div>
@@ -775,12 +773,12 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 3/15</span>
-                        <span>Remaining: 12</span>
+                        <span>Tasks: 3/16</span>
+                        <span>Remaining: 13</span>
                         <span class="showstoppers-count">🚫 9 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-0">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">9 Blockers</span>
@@ -1102,13 +1100,34 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 15)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 15)">
+                                        Readiness Training Event(s) Planning
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 15)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 15)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 15)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 0)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">3/15 Complete</span>
+                            <span class="completed-count">3/16 Complete</span>
                             <span><span class="showstoppers-count">9 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -2366,7 +2385,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(2)">
-                                Hide Tasks
+                                View Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -2390,7 +2409,7 @@
                         <span class="showstoppers-count">🚫 10 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-2">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-2">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">10 Blockers</span>
@@ -2770,8 +2789,8 @@
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 4/8</span>
-                        <span>Remaining: 4</span>
+                        <span>Tasks: 4/10</span>
+                        <span>Remaining: 6</span>
                         <span class="showstoppers-count">🚫 3 Blockers</span>
                     </div>
                     
@@ -2950,13 +2969,55 @@
                                 </div>
                             </div>
                         
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 8)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 8)">
+                                        Grand Opening Event Planning
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 8)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 9)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 9)">
+                                        Community Member Opening Event Planning
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 9)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 9)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
                         
                         <button class="add-task-btn" onclick="editModeAction('addTask', 3)">
                             ➕ Add New Task
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">4/8 Complete</span>
+                            <span class="completed-count">4/10 Complete</span>
                             <span><span class="showstoppers-count">3 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -3100,9 +3161,7 @@
                             💰 Finance &amp; Operations
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">
-                                View Tasks
-                            </button>
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">Hide Tasks</button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
                     </div>
@@ -3125,7 +3184,7 @@
                         <span class="showstoppers-count">🚫 5 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-5">
+                    <div class="checkpoints-panel" id="checkpoints-5">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">5 Blockers</span>
@@ -3362,6 +3421,11 @@
                                         "task": "Order Retail Merchandise",
                                         "completed": false,
                                         "isBlocker": true
+                              },
+                              {
+                                        "task": "Readiness Training Event(s) Planning",
+                                        "completed": false,
+                                        "isBlocker": false
                               }
                     ]
           },
@@ -3790,6 +3854,16 @@
                               {
                                         "task": "Email Sign Up Active",
                                         "completed": true,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Grand Opening Event Planning",
+                                        "completed": false,
+                                        "isBlocker": false
+                              },
+                              {
+                                        "task": "Community Member Opening Event Planning",
+                                        "completed": false,
                                         "isBlocker": false
                               }
                     ]
