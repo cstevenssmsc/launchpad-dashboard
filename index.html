@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 40%;">
-                    <span id="overallPercent">40%</span>
+                <div class="overall-bar" id="overallBar" style="width: 42%;">
+                    <span id="overallPercent">42%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -2374,19 +2374,19 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>27%</strong> Complete</span>
+                            <span><strong>33%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(2)">Target: 80%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 27%"></div>
+                            <div class="progress-bar progress-danger" style="width: 33%"></div>
                             <div class="threshold-marker" style="left: 80%" data-threshold="80"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 3/12</span>
-                        <span>Remaining: 9</span>
+                        <span>Tasks: 4/12</span>
+                        <span>Remaining: 8</span>
                         <span class="showstoppers-count">🚫 2 Blockers</span>
                     </div>
                     
@@ -2621,7 +2621,7 @@
                                             Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 10)">
-                                            Make Blocker
+                                            Remove Blocker
                                         </button>
                                         <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 10)">Delete</button>
                                     </div>
@@ -2629,8 +2629,8 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 2, 11)">
-                                    ○
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 11)">
+                                    ✓
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 2, 11)">
@@ -2639,7 +2639,7 @@
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 11)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 11)">
                                             Make Blocker
@@ -2655,7 +2655,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">3/12 Complete</span>
+                            <span class="completed-count">4/12 Complete</span>
                             <span><span class="showstoppers-count">2 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -3576,7 +3576,7 @@
           },
           {
                     "title": "Food & Beverage",
-                    "progress": 27,
+                    "progress": 33,
                     "threshold": 80,
                     "icon": "🍽️",
                     "criticalCheckpoints": [
@@ -3633,11 +3633,11 @@
                               {
                                         "task": "Order Dishware",
                                         "completed": true,
-                                        "isBlocker": false
+                                        "isBlocker": true
                               },
                               {
                                         "task": "Order Glassware",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": false
                               }
                     ]
