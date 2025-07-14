@@ -1141,7 +1141,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                Hide Tasks
+                                View Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -1150,12 +1150,12 @@
                     <div class="progress-container">
                         <div class="progress-label">
                             <span><strong>39%</strong> Complete</span>
-                            <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
+                            <span class="threshold-label" onclick="editThreshold(1)">Target: 85%</span>
                         </div>
                         
                         <div class="progress-bar-container">
                             <div class="progress-bar progress-danger" style="width: 39%"></div>
-                            <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
+                            <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
                         </div>
                     </div>
                     
@@ -1165,7 +1165,7 @@
                         <span class="showstoppers-count">🚫 38 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-1">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             <span class="blocker-badge">38 Blockers</span>
@@ -1199,7 +1199,7 @@
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 1)">
-                                        InRange Implentation Planning
+                                        InRange Implmentation Planning
                                         
                                     </div>
                                     <div class="task-controls">
@@ -3730,7 +3730,7 @@
           {
                     "title": "IT/Technology",
                     "progress": 39,
-                    "threshold": 87,
+                    "threshold": 85,
                     "icon": "💻",
                     "criticalCheckpoints": [
                               {
@@ -3739,7 +3739,7 @@
                                         "isBlocker": true
                               },
                               {
-                                        "task": "InRange Implentation Planning",
+                                        "task": "InRange Implmentation Planning",
                                         "completed": true,
                                         "isBlocker": false
                               },
@@ -4503,10 +4503,12 @@
             controls.classList.toggle('active');
             
             if (controls.classList.contains('active')) {
+                // Reset authentication when opening
+                isAdminAuthenticated = false;
                 document.getElementById('adminPassword').style.display = 'block';
                 document.getElementById('adminPassword').value = '';
+                document.getElementById('adminPassword').focus();
                 document.getElementById('adminButtons').style.display = 'none';
-                isAdminAuthenticated = false;
             }
         }
 
@@ -4712,7 +4714,7 @@
                 if (response.ok) {
                     alert('✅ Connection successful!');
                 } else {
-                    alert('❌ Connection failed');
+                    alert('❌ Connection failed: ' + response.status + ' ' + response.statusText);
                 }
             } catch (error) {
                 alert('❌ Connection failed: ' + error.message);
@@ -4737,13 +4739,19 @@
                 });
 
                 if (response.ok) {
-                    autoSaveEnabled = true;
-                    localStorage.setItem('githubToken', githubToken);
-                    document.getElementById('autoSaveStatus').innerHTML = 
-                        '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
-                    alert('Auto-save setup successful!');
+                    const repoData = await response.json();
+                    // Check if user has write access
+                    if (repoData.permissions && repoData.permissions.push) {
+                        autoSaveEnabled = true;
+                        localStorage.setItem('githubToken', githubToken);
+                        document.getElementById('autoSaveStatus').innerHTML = 
+                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                        alert('Auto-save setup successful!');
+                    } else {
+                        throw new Error('You do not have write access to this repository');
+                    }
                 } else {
-                    throw new Error('Failed to connect to repository');
+                    throw new Error('Failed to connect to repository: ' + response.status);
                 }
             } catch (error) {
                 autoSaveEnabled = false;
@@ -4776,7 +4784,7 @@
                     }
                 });
 
-                if (!getResponse.ok) throw new Error('Failed to get current file');
+                if (!getResponse.ok) throw new Error('Failed to get current file: ' + getResponse.status);
                 
                 const fileData = await getResponse.json();
                 const currentSha = fileData.sha;
@@ -4808,7 +4816,7 @@
                             '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
                     }, 5000);
                 } else {
-                    throw new Error('Failed to update file');
+                    throw new Error('Failed to update file: ' + updateResponse.status);
                 }
             } catch (error) {
                 statusElement.innerHTML = 
@@ -4839,11 +4847,38 @@
             const savedToken = localStorage.getItem('githubToken');
             if (savedToken) {
                 githubToken = savedToken;
-                autoSaveEnabled = true;
-                setTimeout(() => {
+                document.getElementById('githubToken').value = savedToken;
+                // Silently test if the token still works (no popups)
+                silentTestGitHubConnection();
+            }
+        }
+
+        async function silentTestGitHubConnection() {
+            try {
+                const response = await fetch(`https://api.github.com/repos/${githubRepo}`, {
+                    headers: {
+                        'Authorization': `token ${githubToken}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (response.ok) {
+                    const repoData = await response.json();
+                    if (repoData.permissions && repoData.permissions.push) {
+                        autoSaveEnabled = true;
+                        document.getElementById('autoSaveStatus').innerHTML = 
+                            '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
+                    } else {
+                        document.getElementById('autoSaveStatus').innerHTML = 
+                            '<span style="color: #ffc107;">⚠️ Limited access</span>';
+                    }
+                } else {
                     document.getElementById('autoSaveStatus').innerHTML = 
-                        '<span style="color: #28a745;">✅ Auto-Save Ready</span>';
-                }, 1000);
+                        '<span style="color: #ffc107;">⚠️ Token needs refresh</span>';
+                }
+            } catch (error) {
+                document.getElementById('autoSaveStatus').innerHTML = 
+                    '<span style="color: #dc3545;">❌ Connection failed</span>';
             }
         }
 
@@ -4853,7 +4888,6 @@
             updateOverallProgress();
         });
     </script>
-
 
 
 </body></html>
