@@ -704,7 +704,7 @@
         }
     </style>
 </head>
-<body class="edit-mode">
+<body>
     <div class="dashboard">
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
@@ -718,7 +718,7 @@
                         <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
                     <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(220, 53, 69) 0%, rgb(200, 35, 51) 100%);">✅ Exit Edit</button>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -726,7 +726,7 @@
             </div>
         </div>
 
-        <div class="edit-mode-indicator active" id="editModeIndicator">
+        <div class="edit-mode-indicator" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -1150,12 +1150,12 @@
                     <div class="progress-container">
                         <div class="progress-label">
                             <span><strong>39%</strong> Complete</span>
-                            <span class="threshold-label" onclick="editThreshold(1)">Target: 85%</span>
+                            <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
                             <div class="progress-bar progress-danger" style="width: 39%"></div>
-                            <div class="threshold-marker" style="left: 85%" data-threshold="85"></div>
+                            <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
@@ -3730,7 +3730,7 @@
           {
                     "title": "IT/Technology",
                     "progress": 39,
-                    "threshold": 85,
+                    "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
                               {
