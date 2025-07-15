@@ -704,21 +704,21 @@
         }
     </style>
 </head>
-<body>
+<body class="edit-mode">
     <div class="dashboard">
         <div class="admin-panel">
             <button class="admin-toggle" onclick="toggleAdminPanel()">⚙️ Admin</button>
-            <div class="admin-controls" id="adminControls">
-                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)">
-                <div id="adminButtons" style="display: none;">
+            <div class="admin-controls active" id="adminControls">
+                <input type="password" class="password-input" id="adminPassword" placeholder="Password" onkeypress="checkAdminPassword(event)" style="display: none;">
+                <div id="adminButtons" style="display: block;">
                     <div style="margin-bottom: 10px;">
                         <input type="password" class="password-input" id="githubToken" placeholder="GitHub Token" style="width: 200px;">
                         <button class="admin-button" onclick="testGitHubConnection()">🧪 Test</button>
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup</button>
                         <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;">Auto-save not configured</div>
-                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()">📝 Edit Mode</button>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
+                    <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(220, 53, 69) 0%, rgb(200, 35, 51) 100%);">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
                     <input type="file" id="importFile" class="file-input" accept=".json" onchange="importData(event)">
@@ -726,7 +726,7 @@
             </div>
         </div>
 
-        <div class="edit-mode-indicator" id="editModeIndicator">
+        <div class="edit-mode-indicator active" id="editModeIndicator">
             ✏️ EDIT MODE ACTIVE
         </div>
 
@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 40%;">
-                    <span id="overallPercent">40%</span>
+                <div class="overall-bar" id="overallBar" style="width: 42%;">
+                    <span id="overallPercent">42%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -748,7 +748,2884 @@
             </div>
         </div>
 
-        <div class="workstreams" id="workstreams"></div>
+        <div class="workstreams" id="workstreams"><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            ⛳ Golf Operations
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
+                                Hide Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>31%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(0)">Target: 67%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 31%"></div>
+                            <div class="threshold-marker" style="left: 67%" data-threshold="67"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 5/16</span>
+                        <span>Remaining: 11</span>
+                        <span class="showstoppers-count">🚫 9 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel " id="checkpoints-0">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">9 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 0)">
+                                        Golf Simulator Systems Installed &amp; Tested
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 0)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 1)">
+                                        Ball Tracking Technology Calibrated
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 1)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 2)">
+                                        Establish Pricing and Discounts
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 2)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 2)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 3)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 3)">
+                                        Golf Club Inventory Stocked
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 3)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 4)">
+                                        Staff Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 5)">
+                                        Finalize Training Schedule For Each Team Member
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 5)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 6)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 6)">
+                                        Orientation Session 1
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 6)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 6)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 7)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 7)">
+                                        Orientation Session 2
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 7)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 7)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 8)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 8)">
+                                        Team Member Training Begins
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 8)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 9)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 9)">
+                                        Uniform Ordering
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 9)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 9)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 10)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 10)">
+                                        Golf Lesson Strategy
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 10)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 10)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 10)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 11)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 11)">
+                                        Membership Pricing and Stratgey
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 11)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 11)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 11)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 12)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 12)">
+                                        Develop Training Matrix
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 12)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 12)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 12)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 13)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 13)">
+                                        Setup Phone Systems
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 13)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 13)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 13)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 14)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 14)">
+                                        Order Retail Merchandise
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 14)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 14)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 14)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 15)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 0, 15)">
+                                        Readiness Training Event(s) Planning
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 15)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 15)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 15)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 0)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">5/16 Complete</span>
+                            <span><span class="showstoppers-count">9 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            💻 IT/Technology
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
+                                View Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>39%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 39%"></div>
+                            <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 18/57</span>
+                        <span>Remaining: 39</span>
+                        <span class="showstoppers-count">🚫 38 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">38 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 0)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 0)">
+                                        InRange Contract Complete
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 0)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 0)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 1)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 1)">
+                                        InRange Implmentation Planning
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 1)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 1)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 2)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 2)">
+                                        InRange Hardware Procurement and Shipping
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 2)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 2)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 3)">
+                                        InRange Radar System Installation
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 4)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 4)">
+                                        InRange In-bay System Install
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 4)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 5)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 5)">
+                                        InRange System Calibration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 5)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 5)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 6)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 6)">
+                                        InRange Testing
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 6)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 6)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 7)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 7)">
+                                        InRange Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 7)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 7)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 8)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 8)">
+                                        In-Range Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 8)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 9)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 9)">
+                                        IT Define Hardware Needs
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 9)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 9)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 10)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 10)">
+                                        IT Hardware Cost Budget
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 10)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 10)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 10)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 11)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 11)">
+                                        IT Test Lab
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 11)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 11)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 11)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 12)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 12)">
+                                        IT Procure Hardware
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 12)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 12)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 12)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 13)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 13)">
+                                        IT Hardware Install at LP
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 13)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 13)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 13)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 14)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 14)">
+                                        Network Closet Design-Rack Layout
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 14)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 14)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 14)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 15)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 15)">
+                                        Network Low Voltage Design
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 15)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 15)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 15)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 16)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 16)">
+                                        Network Rack Installs
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 16)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 16)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 16)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 17)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 17)">
+                                        Network Fiber Install
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 17)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 17)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 17)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 18)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 18)">
+                                        Network Low Voltage Wire Install
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 18)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 18)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 18)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 19)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 19)">
+                                        Network Equipment Install
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 19)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 19)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 19)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 20)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 20)">
+                                        Network is Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 20)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 20)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 20)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 21)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 21)">
+                                        POS System Contract
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 21)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 21)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 21)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 22)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 22)">
+                                        POS Project Schedule
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 22)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 22)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 22)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 23)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 23)">
+                                        POS Worksheet/Menu Definition
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 23)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 23)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 23)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 24)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 24)">
+                                        POS Server Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 24)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 24)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 24)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 1, 25)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 25)">
+                                        POS Integrations Configurations
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 25)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 25)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 25)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 26)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 26)">
+                                        POS System Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 26)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 26)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 26)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 27)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 27)">
+                                        POS Super User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 27)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 27)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 27)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 28)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 28)">
+                                        POS User Acceptance Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 28)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 28)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 28)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 29)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 29)">
+                                        POS Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 29)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 29)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 29)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 30)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 30)">
+                                        POS End User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 30)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 30)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 30)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 31)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 31)">
+                                        RAS Contract Complete
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 31)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 31)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 31)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 32)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 32)">
+                                        RAS Install
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 32)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 32)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 32)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 33)">
+                                        RAS System Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 33)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 33)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 34)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 34)">
+                                        RAS Testing
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 34)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 34)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 34)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 35)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 35)">
+                                        RAS Final Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 35)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 35)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 35)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 36)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 36)">
+                                        RAS Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 36)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 36)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 36)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 37)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 37)">
+                                        Reserve Software Contract
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 37)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 37)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 37)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 38)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 38)">
+                                        Reserve Software Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 38)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 38)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 38)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 39)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 39)">
+                                        Reserve Retail POS Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 39)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 39)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 39)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 40)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 40)">
+                                        Reserve Super User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 40)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 40)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 40)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 41)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 41)">
+                                        Reserve User Acceptance Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 41)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 41)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 41)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 42)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 42)">
+                                        Reserve Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 42)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 42)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 42)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 43)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 43)">
+                                        Reserve End User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 43)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 43)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 43)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 44)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 44)">
+                                        Target System Contract
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 44)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 44)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 44)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 45)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 45)">
+                                        Target System Integration InRange to Impact
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 45)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 45)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 45)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 46)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 46)">
+                                        Target System Lighting Design/Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 46)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 46)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 46)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 47)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 47)">
+                                        Target System Install
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 47)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 47)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 47)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 48)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 48)">
+                                        Target System Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 48)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 48)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 48)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 49)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 49)">
+                                        Target System Testing
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 49)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 49)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 49)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 50)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 50)">
+                                        Target System Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 50)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 50)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 50)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 51)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 51)">
+                                        TM Scheduling System Contract
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 51)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 51)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 51)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 52)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 52)">
+                                        TM Scheduling System Configuration
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 52)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 52)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 52)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 53)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 53)">
+                                        TM Scheduling Super User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 53)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 53)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 53)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 54)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 54)">
+                                        TM Scheduling User Acceptance Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 54)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 54)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 54)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 55)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 55)">
+                                        TM Scheduling End User Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 55)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 55)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 55)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 56)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 1, 56)">
+                                        TM Scheduling Go-Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 56)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 56)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 1, 56)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 1)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">18/57 Complete</span>
+                            <span><span class="showstoppers-count">38 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            🍽️ Food &amp; Beverage
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(2)">
+                                Hide Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>33%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(2)">Target: 87%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 33%"></div>
+                            <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 4/16</span>
+                        <span>Remaining: 12</span>
+                        <span class="showstoppers-count">🚫 10 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel " id="checkpoints-2">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">10 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 0)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 0)">
+                                        Kitchen Equipment Installation Complete
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 0)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 0)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 1)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 1)">
+                                        Liquor License Approved
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 1)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 1)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 2)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 2)">
+                                        Food Safety Certification Obtained
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 2)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 2)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 3)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 3)">
+                                        Menu Finalized
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 3)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 4)">
+                                        Hiring Sous Chefs
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 5)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 5)">
+                                        Hiring Cooks and Dishwashers
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 5)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 5)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 2, 6)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 6)">
+                                        Management Team Training
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 6)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 6)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 7)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 7)">
+                                        Line Staff Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 7)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 7)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 8)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 8)">
+                                        POS System Check
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 8)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 2, 9)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 9)">
+                                        POS System Training
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 9)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 9)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 10)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 10)">
+                                        Order Dishware
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 10)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 10)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 10)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 2, 11)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 11)">
+                                        Order Glassware
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 11)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 11)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 11)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 12)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 12)">
+                                        Service Station Setup
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 12)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 12)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 12)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 13)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 13)">
+                                        Bar Setup
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 13)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 13)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 13)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 14)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 14)">
+                                        Kitchen Setup
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 14)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 14)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 14)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 2, 15)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 2, 15)">
+                                        Order and Receive Inventory
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 2, 15)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 2, 15)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 2, 15)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 2)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">4/16 Complete</span>
+                            <span><span class="showstoppers-count">10 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            📢 Marketing &amp; Communications
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(3)">
+                                View Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>50%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(3)">Target: 70%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 50%"></div>
+                            <div class="threshold-marker" style="left: 70%" data-threshold="70"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 6/17</span>
+                        <span>Remaining: 11</span>
+                        <span class="showstoppers-count">🚫 8 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-3">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">8 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 0)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 0)">
+                                        Membership Page Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 0)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 0)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 1)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 1)">
+                                        Grand Opening Marketing Campaign
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 1)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 1)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 2)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 2)">
+                                        Social Media Accounts Active
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 2)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 2)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 3)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 3)">
+                                        Signage Installation Complete
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 3)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 4)">
+                                        Pricing on Website
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 5)">
+                                        Reservations Live
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 5)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 5)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 6)">
+                                        Events Page Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 6)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 6)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 7)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 7)">
+                                        Email Sign Up Active
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 7)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 7)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 8)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 8)">
+                                        Grand Opening Event Planning
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 8)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 9)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 9)">
+                                        Community Member Opening Event Planning
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 9)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 9)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 10)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 10)">
+                                        Order Promotional Items for Events
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 10)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 10)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 10)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 11)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 11)">
+                                        First Digital Campaign
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 11)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 11)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 11)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 12)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 12)">
+                                        Setup Customer Reviews Strategy
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 12)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 12)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 12)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 13)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 13)">
+                                        Location Art Walls
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 13)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 13)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 13)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 3, 14)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 14)">
+                                        Brand Guide Employee Video
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 14)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 14)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 14)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 15)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 15)">
+                                        Customer Journey Training Video
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 15)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 15)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 15)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 16)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 3, 16)">
+                                        Lessons Page Live
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 16)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 16)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 3, 16)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 3)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">6/17 Complete</span>
+                            <span><span class="showstoppers-count">8 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            👥 HR/Talent Acquisition
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(4)">
+                                View Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>30%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(4)">Target: 81%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 30%"></div>
+                            <div class="threshold-marker" style="left: 81%" data-threshold="81"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 3/11</span>
+                        <span>Remaining: 8</span>
+                        <span class="showstoppers-count">🚫 7 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-4">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">7 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 0)">
+                                        General Manager Hired &amp; Onboarded
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 0)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 1)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 1)">
+                                        Golf Operations Manager Hired and Trained
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 1)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 1)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 2)">
+                                        Minimum Staffing Levels Met
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 2)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 3)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 3)">
+                                        Employee Handbook Created
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 3)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 4)">
+                                        New Hire Orientation
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 5)">
+                                        Head Chef Hired and Trained
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 5)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 5)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 6)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 6)">
+                                        Maintenance Manager Starts
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 6)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 6)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 6)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 7)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 7)">
+                                        Customer Service Training
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 7)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 7)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 7)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 4, 8)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 8)">
+                                        SMSC Training
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 8)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 8)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 8)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 9)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 9)">
+                                        LPG Hiring Event 1
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 9)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 9)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 9)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 10)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 4, 10)">
+                                        LPG Hiring Event 2
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 10)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 10)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 4, 10)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 4)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">3/11 Complete</span>
+                            <span><span class="showstoppers-count">7 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div><div class="workstream">
+                    <div class="workstream-header">
+                        <h3 class="workstream-title">
+                            <span class="golf-ball"></span>
+                            💰 Finance &amp; Operations
+                        </h3>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">
+                                View Tasks
+                            </button>
+                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span><strong>17%</strong> Complete</span>
+                            <span class="threshold-label" onclick="editThreshold(5)">Target: 80%</span>
+                        </div>
+                        
+                        <div class="progress-bar-container">
+                            <div class="progress-bar progress-danger" style="width: 17%"></div>
+                            <div class="threshold-marker" style="left: 80%" data-threshold="80"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tasks-info">
+                        <span>Tasks: 1/6</span>
+                        <span>Remaining: 5</span>
+                        <span class="showstoppers-count">🚫 4 Blockers</span>
+                    </div>
+                    
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-5">
+                        <div class="checkpoints-title">
+                            🎯 Critical Checkpoints
+                            <span class="blocker-badge">4 Blockers</span>
+                        </div>
+                        
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 5, 0)">
+                                    ✓
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 0)">
+                                        MID and Amex SE
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 0)">
+                                            Mark Incomplete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 0)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 0)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 1)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 1)">
+                                        InRange Monthly Service Fee &amp; Payment
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 1)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 1)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 1)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 2)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 2)">
+                                        GL Code Mapping
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 2)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 2)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 2)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 3)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 3)">
+                                        BI Reporting Overview
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 3)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 3)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 3)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 5, 4)">
+                                    !
+                                </div>
+                                <div class="checkpoint-text checkpoint-blocker-text">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 4)">
+                                        InRange PO and ETF Net 10-Day Terms
+                                        <span class="blocker-badge">Must Complete</span>
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 4)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 4)">
+                                            Remove Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 4)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="checkpoint-item">
+                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 5, 5)">
+                                    ○
+                                </div>
+                                <div class="checkpoint-text ">
+                                    <div class="editable-task" onclick="editModeAction('editTask', 5, 5)">
+                                        Gift Cards Process &amp; Product
+                                        
+                                    </div>
+                                    <div class="task-controls">
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 5, 5)">
+                                            Mark Complete
+                                        </button>
+                                        <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 5, 5)">
+                                            Make Blocker
+                                        </button>
+                                        <button class="task-btn delete" onclick="editModeAction('deleteTask', 5, 5)">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                        <button class="add-task-btn" onclick="editModeAction('addTask', 5)">
+                            ➕ Add New Task
+                        </button>
+                        
+                        <div class="checkpoint-summary">
+                            <span class="completed-count">1/6 Complete</span>
+                            <span><span class="showstoppers-count">4 Blocking Launch</span></span>
+                        </div>
+                    </div>
+                </div></div>
     </div>
 
     <script>
@@ -764,7 +3641,7 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 20,
+                    "progress": 31,
                     "threshold": 67,
                     "icon": "⛳",
                     "criticalCheckpoints": [
@@ -820,12 +3697,12 @@
                               },
                               {
                                         "task": "Golf Lesson Strategy",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": false
                               },
                               {
                                         "task": "Membership Pricing and Stratgey",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": false
                               },
                               {
@@ -2011,5 +4888,6 @@
             updateOverallProgress();
         });
     </script>
-</body>
-</html>
+
+
+</body></html>
