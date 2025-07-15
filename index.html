@@ -777,13 +777,13 @@
                     <div class="tasks-info">
                         <span>Tasks: 2/16</span>
                         <span>Remaining: 14</span>
-                        <span class="showstoppers-count">🚫 9 Blockers</span>
+                        <span class="showstoppers-count">🚫 10 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">9 Blockers</span>
+                            <span class="blocker-badge">10 Blockers</span>
                         </div>
                         
                         
@@ -893,20 +893,20 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
-                                    ○
+                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
+                                    !
                                 </div>
-                                <div class="checkpoint-text ">
+                                <div class="checkpoint-text checkpoint-blocker-text">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 5)">
                                         Finalize Training Schedule For Each Team Member
-                                        
+                                        <span class="blocker-badge">Must Complete</span>
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 5)">
                                             Mark Complete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 5)">
-                                            Make Blocker
+                                            Remove Blocker
                                         </button>
                                         <button class="task-btn delete" onclick="editModeAction('deleteTask', 0, 5)">Delete</button>
                                     </div>
@@ -1130,7 +1130,7 @@
                         
                         <div class="checkpoint-summary">
                             <span class="completed-count">2/16 Complete</span>
-                            <span><span class="showstoppers-count">9 Blocking Launch</span></span>
+                            <span><span class="showstoppers-count">10 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3673,7 +3673,7 @@
                               {
                                         "task": "Finalize Training Schedule For Each Team Member",
                                         "completed": false,
-                                        "isBlocker": false
+                                        "isBlocker": true
                               },
                               {
                                         "task": "Orientation Session 1",
