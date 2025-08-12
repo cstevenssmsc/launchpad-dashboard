@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 44%;">
-                    <span id="overallPercent">44%</span>
+                <div class="overall-bar" id="overallBar" style="width: 46%;">
+                    <span id="overallPercent">46%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -2774,25 +2774,25 @@
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(3)">
                                 Hide Tasks
                             </button>
-                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                            <span class="status-badge status-warning">ALMOST READY</span>
                         </div>
                     </div>
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>53%</strong> Complete</span>
+                            <span><strong>59%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(3)">Target: 70%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 53%"></div>
+                            <div class="progress-bar progress-warning" style="width: 59%"></div>
                             <div class="threshold-marker" style="left: 70%" data-threshold="70"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 9/17</span>
-                        <span>Remaining: 8</span>
+                        <span>Tasks: 10/17</span>
+                        <span>Remaining: 7</span>
                         <span class="showstoppers-count">🚫 6 Blockers</span>
                     </div>
                     
@@ -3119,8 +3119,8 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-pending" onclick="editModeAction('toggleTaskCompletion', 3, 15)">
-                                    ○
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 3, 15)">
+                                    ✓
                                 </div>
                                 <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 3, 15)">
@@ -3129,7 +3129,7 @@
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 3, 15)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 3, 15)">
                                             Make Blocker
@@ -3166,7 +3166,7 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">9/17 Complete</span>
+                            <span class="completed-count">10/17 Complete</span>
                             <span><span class="showstoppers-count">6 Blocking Launch</span></span>
                         </div>
                     </div>
@@ -4110,7 +4110,7 @@
           },
           {
                     "title": "Marketing & Communications",
-                    "progress": 53,
+                    "progress": 59,
                     "threshold": 70,
                     "icon": "📢",
                     "criticalCheckpoints": [
@@ -4191,7 +4191,7 @@
                               },
                               {
                                         "task": "Customer Journey Training Video",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": false
                               },
                               {
