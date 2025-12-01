@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 46%;">
-                    <span id="overallPercent">46%</span>
+                <div class="overall-bar" id="overallBar" style="width: 48%;">
+                    <span id="overallPercent">48%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -756,7 +756,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
-                                View Tasks
+                                Hide Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -764,41 +764,41 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>31%</strong> Complete</span>
+                            <span><strong>44%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(0)">Target: 67%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 31%"></div>
+                            <div class="progress-bar progress-danger" style="width: 44%"></div>
                             <div class="threshold-marker" style="left: 67%" data-threshold="67"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 5/16</span>
-                        <span>Remaining: 11</span>
-                        <span class="showstoppers-count">🚫 9 Blockers</span>
+                        <span>Tasks: 7/16</span>
+                        <span>Remaining: 9</span>
+                        <span class="showstoppers-count">🚫 7 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-0">
+                    <div class="checkpoints-panel " id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">9 Blockers</span>
+                            <span class="blocker-badge">7 Blockers</span>
                         </div>
                         
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 0)">
                                         Golf Simulator Systems Installed &amp; Tested
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 0)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 0)">
                                             Remove Blocker
@@ -809,17 +809,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 1)">
                                         Ball Tracking Technology Calibrated
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 1)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 1)">
                                             Remove Blocker
@@ -1129,8 +1129,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">5/16 Complete</span>
-                            <span><span class="showstoppers-count">9 Blocking Launch</span></span>
+                            <span class="completed-count">7/16 Complete</span>
+                            <span><span class="showstoppers-count">7 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3641,18 +3641,18 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 31,
+                    "progress": 44,
                     "threshold": 67,
                     "icon": "⛳",
                     "criticalCheckpoints": [
                               {
                                         "task": "Golf Simulator Systems Installed & Tested",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
                                         "task": "Ball Tracking Technology Calibrated",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
