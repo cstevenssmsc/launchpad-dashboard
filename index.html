@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 53%;">
-                    <span id="overallPercent">53%</span>
+                <div class="overall-bar" id="overallBar" style="width: 52%;">
+                    <span id="overallPercent">52%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -756,7 +756,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(0)">
-                                Hide Tasks
+                                View Tasks
                             </button>
                             <span class="status-badge status-ready">READY TO LAUNCH</span>
                         </div>
@@ -780,7 +780,7 @@
                         <span class="completed-count">✅ No showstoppers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-0">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             
@@ -1141,7 +1141,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
-                                View Tasks
+                                Hide Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -1149,26 +1149,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>39%</strong> Complete</span>
+                            <span><strong>33%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 39%"></div>
+                            <div class="progress-bar progress-danger" style="width: 33%"></div>
                             <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 18/57</span>
-                        <span>Remaining: 39</span>
-                        <span class="showstoppers-count">🚫 38 Blockers</span>
+                        <span>Tasks: 19/57</span>
+                        <span>Remaining: 38</span>
+                        <span class="showstoppers-count">🚫 37 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-1">
+                    <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">38 Blockers</span>
+                            <span class="blocker-badge">37 Blockers</span>
                         </div>
                         
                         
@@ -1236,17 +1236,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 3)">
                                         InRange Radar System Installation
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 3)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 3)">
                                             Remove Blocker
@@ -2375,8 +2375,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">18/57 Complete</span>
-                            <span><span class="showstoppers-count">38 Blocking Launch</span></span>
+                            <span class="completed-count">19/57 Complete</span>
+                            <span><span class="showstoppers-count">37 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3729,7 +3729,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 39,
+                    "progress": 33,
                     "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -3750,7 +3750,7 @@
                               },
                               {
                                         "task": "InRange Radar System Installation",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
