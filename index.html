@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 60%;">
-                    <span id="overallPercent">60%</span>
+                <div class="overall-bar" id="overallBar" style="width: 61%;">
+                    <span id="overallPercent">61%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -1149,26 +1149,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>72%</strong> Complete</span>
+                            <span><strong>75%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-warning" style="width: 72%"></div>
+                            <div class="progress-bar progress-warning" style="width: 75%"></div>
                             <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 41/57</span>
-                        <span>Remaining: 16</span>
-                        <span class="showstoppers-count">🚫 15 Blockers</span>
+                        <span>Tasks: 43/57</span>
+                        <span>Remaining: 14</span>
+                        <span class="showstoppers-count">🚫 13 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">15 Blockers</span>
+                            <span class="blocker-badge">13 Blockers</span>
                         </div>
                         
                         
@@ -2013,17 +2013,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 40)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 40)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 40)">
                                         Reserve Super User Training
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 40)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 40)">
                                             Remove Blocker
@@ -2034,17 +2034,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 41)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 41)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 41)">
                                         Reserve User Acceptance Training
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 41)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 41)">
                                             Remove Blocker
@@ -2375,8 +2375,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">41/57 Complete</span>
-                            <span><span class="showstoppers-count">15 Blocking Launch</span></span>
+                            <span class="completed-count">43/57 Complete</span>
+                            <span><span class="showstoppers-count">13 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3729,7 +3729,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 72,
+                    "progress": 75,
                     "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -3935,12 +3935,12 @@
                               },
                               {
                                         "task": "Reserve Super User Training",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
                                         "task": "Reserve User Acceptance Training",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
