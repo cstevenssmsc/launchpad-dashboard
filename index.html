@@ -764,26 +764,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>69%</strong> Complete</span>
+                            <span><strong>81%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(0)">Target: 67%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-ready" style="width: 69%"></div>
+                            <div class="progress-bar progress-ready" style="width: 81%"></div>
                             <div class="threshold-marker" style="left: 67%" data-threshold="67"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 11/16</span>
-                        <span>Remaining: 5</span>
-                        <span class="showstoppers-count">🚫 3 Blockers</span>
+                        <span>Tasks: 13/16</span>
+                        <span>Remaining: 3</span>
+                        <span class="showstoppers-count">🚫 1 Blocker</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-0">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">3 Blockers</span>
+                            <span class="blocker-badge">1 Blocker</span>
                         </div>
                         
                         
@@ -1040,17 +1040,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 12)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 12)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 12)">
                                         Develop Training Matrix
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 12)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 12)">
                                             Remove Blocker
@@ -1061,17 +1061,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 0, 13)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 0, 13)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 0, 13)">
                                         Setup Phone Systems
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 0, 13)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 0, 13)">
                                             Remove Blocker
@@ -1129,8 +1129,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">11/16 Complete</span>
-                            <span><span class="showstoppers-count">3 Blocking Launch</span></span>
+                            <span class="completed-count">13/16 Complete</span>
+                            <span><span class="showstoppers-count">1 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3641,7 +3641,7 @@
         const workstreams = [
           {
                     "title": "Golf Operations",
-                    "progress": 69,
+                    "progress": 81,
                     "threshold": 67,
                     "icon": "⛳",
                     "criticalCheckpoints": [
@@ -3707,12 +3707,12 @@
                               },
                               {
                                         "task": "Develop Training Matrix",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
                                         "task": "Setup Phone Systems",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
