@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 54%;">
-                    <span id="overallPercent">54%</span>
+                <div class="overall-bar" id="overallBar" style="width: 55%;">
+                    <span id="overallPercent">55%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -1149,26 +1149,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>44%</strong> Complete</span>
+                            <span><strong>47%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 44%"></div>
+                            <div class="progress-bar progress-danger" style="width: 47%"></div>
                             <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 25/57</span>
-                        <span>Remaining: 32</span>
-                        <span class="showstoppers-count">🚫 31 Blockers</span>
+                        <span>Tasks: 27/57</span>
+                        <span>Remaining: 30</span>
+                        <span class="showstoppers-count">🚫 29 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">31 Blockers</span>
+                            <span class="blocker-badge">29 Blockers</span>
                         </div>
                         
                         
@@ -1530,17 +1530,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 17)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 17)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 17)">
                                         Network Fiber Install
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 17)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 17)">
                                             Remove Blocker
@@ -1551,17 +1551,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 18)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 18)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 18)">
                                         Network Low Voltage Wire Install
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 18)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 18)">
                                             Remove Blocker
@@ -2375,8 +2375,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">25/57 Complete</span>
-                            <span><span class="showstoppers-count">31 Blocking Launch</span></span>
+                            <span class="completed-count">27/57 Complete</span>
+                            <span><span class="showstoppers-count">29 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3729,7 +3729,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 44,
+                    "progress": 47,
                     "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -3820,12 +3820,12 @@
                               },
                               {
                                         "task": "Network Fiber Install",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
                                         "task": "Network Low Voltage Wire Install",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
