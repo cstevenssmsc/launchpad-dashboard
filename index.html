@@ -1143,32 +1143,32 @@
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(1)">
                                 Hide Tasks
                             </button>
-                            <span class="status-badge status-danger">NEEDS ATTENTION</span>
+                            <span class="status-badge status-warning">ALMOST READY</span>
                         </div>
                     </div>
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>70%</strong> Complete</span>
+                            <span><strong>72%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 70%"></div>
+                            <div class="progress-bar progress-warning" style="width: 72%"></div>
                             <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 40/57</span>
-                        <span>Remaining: 17</span>
-                        <span class="showstoppers-count">🚫 16 Blockers</span>
+                        <span>Tasks: 41/57</span>
+                        <span>Remaining: 16</span>
+                        <span class="showstoppers-count">🚫 15 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">16 Blockers</span>
+                            <span class="blocker-badge">15 Blockers</span>
                         </div>
                         
                         
@@ -1992,17 +1992,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 39)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 39)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 39)">
                                         Reserve Retail POS Configuration
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 39)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 39)">
                                             Remove Blocker
@@ -2375,8 +2375,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">40/57 Complete</span>
-                            <span><span class="showstoppers-count">16 Blocking Launch</span></span>
+                            <span class="completed-count">41/57 Complete</span>
+                            <span><span class="showstoppers-count">15 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3729,7 +3729,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 70,
+                    "progress": 72,
                     "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -3930,7 +3930,7 @@
                               },
                               {
                                         "task": "Reserve Retail POS Configuration",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
