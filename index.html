@@ -717,7 +717,7 @@
                         <button class="admin-button" onclick="setupAutoSave()">🔗 Setup</button>
                         <button class="admin-button" onclick="manualSave()">💾 Save</button>
                     </div>
-                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #ffc107;">⏳ Saving...</span></div>
+                    <div id="autoSaveStatus" style="margin-bottom: 10px; font-size: 0.8rem; color: #5A5A5A;"><span style="color: #28a745;">✅ Saved at 11:24:40 AM</span></div>
                     <button class="admin-button" id="editModeBtn" onclick="toggleEditMode()" style="background: linear-gradient(135deg, rgb(220, 53, 69) 0%, rgb(200, 35, 51) 100%);">✅ Exit Edit</button>
                     <button class="admin-button export-data" onclick="exportData()">📤 Export</button>
                     <button class="admin-button import-data" onclick="document.getElementById('importFile').click()">📥 Import</button>
@@ -1149,26 +1149,26 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>61%</strong> Complete</span>
+                            <span><strong>63%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(1)">Target: 87%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 61%"></div>
+                            <div class="progress-bar progress-danger" style="width: 63%"></div>
                             <div class="threshold-marker" style="left: 87%" data-threshold="87"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 35/57</span>
-                        <span>Remaining: 22</span>
-                        <span class="showstoppers-count">🚫 21 Blockers</span>
+                        <span>Tasks: 36/57</span>
+                        <span>Remaining: 21</span>
+                        <span class="showstoppers-count">🚫 20 Blockers</span>
                     </div>
                     
                     <div class="checkpoints-panel " id="checkpoints-1">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">21 Blockers</span>
+                            <span class="blocker-badge">20 Blockers</span>
                         </div>
                         
                         
@@ -1866,17 +1866,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 1, 33)">
                                         RAS System Configuration
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 1, 33)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 1, 33)">
                                             Remove Blocker
@@ -2375,8 +2375,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">35/57 Complete</span>
-                            <span><span class="showstoppers-count">21 Blocking Launch</span></span>
+                            <span class="completed-count">36/57 Complete</span>
+                            <span><span class="showstoppers-count">20 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3729,7 +3729,7 @@
           },
           {
                     "title": "IT/Technology",
-                    "progress": 61,
+                    "progress": 63,
                     "threshold": 87,
                     "icon": "💻",
                     "criticalCheckpoints": [
@@ -3900,7 +3900,7 @@
                               },
                               {
                                         "task": "RAS System Configuration",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
