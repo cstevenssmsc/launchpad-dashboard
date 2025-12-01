@@ -738,8 +738,8 @@
         <div class="overall-progress">
             <h2 class="overall-title">🏌️ OVERALL READINESS TO LAUNCH</h2>
             <div class="overall-bar-container">
-                <div class="overall-bar" id="overallBar" style="width: 90%;">
-                    <span id="overallPercent">90%</span>
+                <div class="overall-bar" id="overallBar" style="width: 94%;">
+                    <span id="overallPercent">94%</span>
                 </div>
             </div>
             <div class="tasks-info">
@@ -3178,7 +3178,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(4)">
-                                View Tasks
+                                Hide Tasks
                             </button>
                             <span class="status-badge status-danger">NEEDS ATTENTION</span>
                         </div>
@@ -3186,41 +3186,41 @@
                     
                     <div class="progress-container">
                         <div class="progress-label">
-                            <span><strong>36%</strong> Complete</span>
+                            <span><strong>55%</strong> Complete</span>
                             <span class="threshold-label" onclick="editThreshold(4)">Target: 81%</span>
                         </div>
                         
                         <div class="progress-bar-container">
-                            <div class="progress-bar progress-danger" style="width: 36%"></div>
+                            <div class="progress-bar progress-danger" style="width: 55%"></div>
                             <div class="threshold-marker" style="left: 81%" data-threshold="81"></div>
                         </div>
                     </div>
                     
                     <div class="tasks-info">
-                        <span>Tasks: 4/11</span>
-                        <span>Remaining: 7</span>
-                        <span class="showstoppers-count">🚫 6 Blockers</span>
+                        <span>Tasks: 6/11</span>
+                        <span>Remaining: 5</span>
+                        <span class="showstoppers-count">🚫 4 Blockers</span>
                     </div>
                     
-                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-4">
+                    <div class="checkpoints-panel " id="checkpoints-4">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
-                            <span class="blocker-badge">6 Blockers</span>
+                            <span class="blocker-badge">4 Blockers</span>
                         </div>
                         
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 4, 0)">
                                         General Manager Hired &amp; Onboarded
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 0)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 0)">
                                             Remove Blocker
@@ -3252,17 +3252,17 @@
                             </div>
                         
                             <div class="checkpoint-item">
-                                <div class="checkpoint-status checkpoint-blocker" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
-                                    !
+                                <div class="checkpoint-status checkpoint-completed" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
+                                    ✓
                                 </div>
-                                <div class="checkpoint-text checkpoint-blocker-text">
+                                <div class="checkpoint-text ">
                                     <div class="editable-task" onclick="editModeAction('editTask', 4, 2)">
                                         Minimum Staffing Levels Met
-                                        <span class="blocker-badge">Must Complete</span>
+                                        
                                     </div>
                                     <div class="task-controls">
                                         <button class="task-btn" onclick="editModeAction('toggleTaskCompletion', 4, 2)">
-                                            Mark Complete
+                                            Mark Incomplete
                                         </button>
                                         <button class="task-btn" onclick="editModeAction('toggleTaskBlocker', 4, 2)">
                                             Remove Blocker
@@ -3446,8 +3446,8 @@
                         </button>
                         
                         <div class="checkpoint-summary">
-                            <span class="completed-count">4/11 Complete</span>
-                            <span><span class="showstoppers-count">6 Blocking Launch</span></span>
+                            <span class="completed-count">6/11 Complete</span>
+                            <span><span class="showstoppers-count">4 Blocking Launch</span></span>
                         </div>
                     </div>
                 </div><div class="workstream">
@@ -3458,7 +3458,7 @@
                         </h3>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <button class="toggle-checkpoints" onclick="toggleCheckpoints(5)">
-                                Hide Tasks
+                                View Tasks
                             </button>
                             <span class="status-badge status-ready">READY TO LAUNCH</span>
                         </div>
@@ -3482,7 +3482,7 @@
                         <span class="completed-count">✅ No showstoppers</span>
                     </div>
                     
-                    <div class="checkpoints-panel " id="checkpoints-5">
+                    <div class="checkpoints-panel checkpoints-hidden" id="checkpoints-5">
                         <div class="checkpoints-title">
                             🎯 Critical Checkpoints
                             
@@ -4203,13 +4203,13 @@
           },
           {
                     "title": "HR/Talent Acquisition",
-                    "progress": 36,
+                    "progress": 55,
                     "threshold": 81,
                     "icon": "👥",
                     "criticalCheckpoints": [
                               {
                                         "task": "General Manager Hired & Onboarded",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
@@ -4219,7 +4219,7 @@
                               },
                               {
                                         "task": "Minimum Staffing Levels Met",
-                                        "completed": false,
+                                        "completed": true,
                                         "isBlocker": true
                               },
                               {
